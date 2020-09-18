@@ -42,7 +42,7 @@ export const Navbar = () => {
                 <FontAwesomeIcon icon={faUserPlus} /> Register
               </NavLink>
             </NavItem>
-            <NavItem className="d-none d-sm-block">
+            <NavItem className="d-none d-md-block">
               <NavLink href="#">|</NavLink>
             </NavItem>
             <NavItem>
