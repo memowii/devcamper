@@ -1,46 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  Collapse,
+  Navbar as NavbarRS,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  Container,
+} from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLaptopCode,
+  faSignInAlt,
+  faUserPlus,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const Navbar = () => {
-  return (
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="index.html">
-          <i class="fas fa-laptop-code"></i> DevCamper
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  const [isOpen, setIsOpen] = useState(false);
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">
-                <i class="fas fa-sign-in-alt"></i> Login
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="register.html">
-                <i class="fas fa-user-plus"></i> Register
-              </a>
-            </li>
-            <li class="nav-item d-none d-sm-block">
-              <a class="nav-link" href="#">
-                |
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="bootcamps.html">
-                Browse Bootcamps
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <NavbarRS expand="md" dark fixed="top" color="primary">
+      <Container>
+        <NavbarBrand href="#">
+          <FontAwesomeIcon icon={faLaptopCode} /> DevCamper
+        </NavbarBrand>
+
+        <NavbarToggler onClick={toggle} />
+
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="#">
+                <FontAwesomeIcon icon={faSignInAlt} /> Login
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">
+                <FontAwesomeIcon icon={faUserPlus} /> Register
+              </NavLink>
+            </NavItem>
+            <NavItem className="d-none d-sm-block">
+              <NavLink href="#">|</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">Browse Bootcamps</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Container>
+    </NavbarRS>
   );
 };
