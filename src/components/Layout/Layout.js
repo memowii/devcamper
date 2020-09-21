@@ -2,7 +2,7 @@ import React from "react";
 
 import { Navbar } from "../Navbar";
 
-export const Layout = ({children}) => (
+export const Layout = ({ children }) => (
   <>
     <Navbar />
     {children}

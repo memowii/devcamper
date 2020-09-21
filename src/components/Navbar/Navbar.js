@@ -46,7 +46,9 @@ export const Navbar = () => {
               <RSNavLink className="nav-link">|</RSNavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link" to="#">Browse Bootcamps</NavLink>
+              <NavLink className="nav-link" to="#">
+                Browse Bootcamps
+              </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
