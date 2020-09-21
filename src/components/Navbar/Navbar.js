@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import {
   Collapse,
-  Navbar as NavbarRS,
+  Navbar as RSNavbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  NavLink as RSNavLink,
   Container,
 } from "reactstrap";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLaptopCode,
@@ -22,35 +22,35 @@ export const Navbar = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <NavbarRS expand="md" dark fixed="top" color="primary">
+    <RSNavbar expand="md" dark fixed="top" color="primary">
       <Container>
-        <NavbarBrand href="#">
+        <NavLink className="navbar-brand" to="/">
           <FontAwesomeIcon icon={faLaptopCode} /> DevCamper
-        </NavbarBrand>
+        </NavLink>
 
         <NavbarToggler onClick={toggle} />
 
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="#">
+              <NavLink className="nav-link" to="/login" exact>
                 <FontAwesomeIcon icon={faSignInAlt} /> Login
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">
+              <NavLink className="nav-link" to="#">
                 <FontAwesomeIcon icon={faUserPlus} /> Register
               </NavLink>
             </NavItem>
             <NavItem className="d-none d-md-block">
-              <NavLink href="#">|</NavLink>
+              <RSNavLink className="nav-link">|</RSNavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Browse Bootcamps</NavLink>
+              <NavLink className="nav-link" to="#">Browse Bootcamps</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
       </Container>
-    </NavbarRS>
+    </RSNavbar>
   );
 };
