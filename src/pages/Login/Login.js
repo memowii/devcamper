@@ -11,7 +11,11 @@ import {
   CardBody,
 } from "reactstrap";
 
+import { usePageWithoutFixedTop } from "../../hooks/usePageWithoutFixedTop";
+
 export const Login = () => {
+  usePageWithoutFixedTop();
+
   return (
     <section className="mt-5">
       <Container>
