@@ -50,14 +50,14 @@ export const Login = () => {
                   </FormGroup>
 
                   <FormGroup>
-                    <Label for="email">Email Address</Label>
                     <Input
                       type="submit"
-                      placeholder="Enter email"
+                      value="Login"
                       className="btn btn-primary btn-block"
                     />
                   </FormGroup>
                 </Form>
+                <p>Forgot Password? <a href="reset-password.html">Reset Password</a></p>
               </CardBody>
             </Card>
           </Col>
