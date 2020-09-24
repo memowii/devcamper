@@ -10,6 +10,7 @@ import {
   Card,
   CardBody,
 } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
 import { usePageWithoutFixedTop } from "../../hooks/usePageWithoutFixedTop";
 
@@ -57,7 +58,10 @@ export const Login = () => {
                     />
                   </FormGroup>
                 </Form>
-                <p>Forgot Password? <a href="reset-password.html">Reset Password</a></p>
+                <p>
+                  Forgot Password?{" "}
+                  <NavLink to="/reset-password">Reset Password</NavLink>
+                </p>
               </CardBody>
             </Card>
           </Col>
