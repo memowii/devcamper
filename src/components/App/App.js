@@ -5,6 +5,7 @@ import { Layout } from "../Layout";
 import { Home } from '../../pages/Home'
 import { Login } from '../../pages/Login'
 import { ResetPassword } from '../../pages/ResetPassword'
+import { Register } from '../../pages/Register'
 
 export const App = () => (
   <div className="App">
@@ -14,6 +15,7 @@ export const App = () => (
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/reset-password" component={ResetPassword} />
+          <Route exact path="/register" component={Register} />
         </Switch>
       </Layout>
     </BrowserRouter>

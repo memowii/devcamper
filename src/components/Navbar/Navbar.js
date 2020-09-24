@@ -38,7 +38,7 @@ export const Navbar = () => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link" to="#">
+              <NavLink className="nav-link" to="/register">
                 <FontAwesomeIcon icon={faUserPlus} /> Register
               </NavLink>
             </NavItem>

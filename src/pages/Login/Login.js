@@ -11,6 +11,8 @@ import {
   CardBody,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 import { usePageWithoutFixedTop } from "../../hooks/usePageWithoutFixedTop";
 
@@ -24,7 +26,9 @@ export const Login = () => {
           <Col md="6" className="m-auto">
             <Card className="bg-white p-4 mb-4">
               <CardBody>
-                <h1>Login</h1>
+                <h1>
+                  <FontAwesomeIcon icon={faSignInAlt} /> Login
+                </h1>
                 <p>
                   Log in to list your bootcamp or rate, review and favorite
                   bootcamps
