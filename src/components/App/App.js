@@ -6,6 +6,7 @@ import { Home } from '../../pages/Home'
 import { Login } from '../../pages/Login'
 import { ResetPassword } from '../../pages/ResetPassword'
 import { Register } from '../../pages/Register'
+import { Bootcamps } from '../../pages/Bootcamps'
 
 export const App = () => (
   <div className="App">
@@ -16,6 +17,7 @@ export const App = () => (
           <Route exact path="/login" component={Login} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/bootcamps" component={Bootcamps} />
         </Switch>
       </Layout>
     </BrowserRouter>

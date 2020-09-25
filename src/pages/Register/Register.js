@@ -28,10 +28,12 @@ export const Register = () => {
                 <h1>
                   <FontAwesomeIcon icon={faUserPlus} /> Register
                 </h1>
+
                 <p>
                   Register to list your bootcamp or rate, review and favorite
                   bootcamps
                 </p>
+
                 <Form>
                   <FormGroup>
                     <Label for="name">Name</Label>
@@ -46,7 +48,6 @@ export const Register = () => {
                   <FormGroup>
                     <Label for="email">Email Address</Label>
                     <Input
-                      type="text"
                       type="email"
                       name="email"
                       placeholder="Enter email"

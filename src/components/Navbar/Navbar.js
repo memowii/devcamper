@@ -46,7 +46,7 @@ export const Navbar = () => {
               <RSNavLink className="nav-link">|</RSNavLink>
             </NavItem>
             <NavItem>
-              <NavLink className="nav-link" to="#">
+              <NavLink className="nav-link" to="/bootcamps">
                 Browse Bootcamps
               </NavLink>
             </NavItem>
