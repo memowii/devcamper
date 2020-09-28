@@ -71,7 +71,10 @@ export const ManageBootcamp = () => {
                   Manage Courses
                 </NavLink>
 
-                <NavLink to="/manage-courses" className="btn btn-danger btn-block">
+                <NavLink
+                  to="/manage-courses"
+                  className="btn btn-danger btn-block"
+                >
                   Remove Bootcamp
                 </NavLink>
 
