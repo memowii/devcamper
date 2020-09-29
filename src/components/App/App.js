@@ -8,6 +8,7 @@ import { ResetPassword } from "../../pages/ResetPassword";
 import { Register } from "../../pages/Register";
 import { Bootcamps } from "../../pages/Bootcamps";
 import { ManageBootcamp } from "../../pages/ManageBootcamp";
+import { Bootcamp } from "../../pages/Bootcamp";
 
 export const App = () => (
   <div className="App">
@@ -19,6 +20,7 @@ export const App = () => (
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/bootcamps" component={Bootcamps} />
+          <Route exact path="/bootcamp" component={Bootcamp} />
           <Route exact path="/manage-bootcamp" component={ManageBootcamp} />
         </Switch>
       </Layout>
