@@ -44,8 +44,8 @@ export const AddReview = () => {
 
                 <Form>
                   <FormGroup>
-                    <Label>
-                      Rating: <span class="text-primary">8</span>
+                    <Label for="rating">
+                      Rating: <span className="text-primary">8</span>
                     </Label>
                     <Input
                       type="range"
@@ -54,6 +54,7 @@ export const AddReview = () => {
                       max="10"
                       step="1"
                       value="8"
+                      onChange={() => false}
                     />
                   </FormGroup>
                   <FormGroup>

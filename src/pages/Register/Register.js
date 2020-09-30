@@ -80,7 +80,7 @@ export const Register = () => {
 
                     <FormGroup check>
                       <Label check>
-                        <Input type="radio" name="role" value="user" checked />{" "}
+                        <Input type="radio" name="role" value="user" checked onChange={() => false} />{" "}
                         Regular User (Browse, Write reviews, etc)
                       </Label>
                     </FormGroup>
@@ -93,7 +93,7 @@ export const Register = () => {
                     </FormGroup>
                   </Card>
 
-                  <p class="text-danger">
+                  <p className="text-danger">
                     * You must be affiliated with the bootcamp in some way in
                     order to add it to DevCamper.
                   </p>
