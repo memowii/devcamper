@@ -9,10 +9,10 @@ export const ReviewCard = ({ title, rating, review, author }) => {
       </CardHeader>
       <CardBody>
         <CardTitle tag="h5">
-          Rating: <span class="text-success">{rating}</span>
+          Rating: <span className="text-success">{rating}</span>
         </CardTitle>
         <CardText>{review}</CardText>
-        <p class="text-muted">Writtern By {author}</p>
+        <p className="text-muted">Writtern By {author}</p>
       </CardBody>
     </Card>
   );

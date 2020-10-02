@@ -111,8 +111,9 @@ export const AddBootcamp = () => {
                         name="careers"
                         className="custom-select"
                         multiple
+                        defaultValue={["Select all that apply"]}
                       >
-                        <option value="any">Select all that apply</option>
+                        <option>Select all that apply</option>
                         <option value="Web Development">Web Development</option>
                         <option value="Mobile Development">
                           Mobile Development

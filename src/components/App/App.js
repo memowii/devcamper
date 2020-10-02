@@ -12,6 +12,7 @@ import { Bootcamp } from "../../pages/Bootcamp";
 import { Reviews } from "../../pages/Reviews";
 import { AddReview } from "../../pages/AddReview";
 import { AddBootcamp } from "../../pages/AddBootcamp";
+import { ManageCourses } from "../../pages/ManageCourses";
 
 export const App = () => (
   <div className="App">
@@ -25,6 +26,7 @@ export const App = () => (
           <Route exact path="/bootcamps" component={Bootcamps} />
           <Route exact path="/bootcamp" component={Bootcamp} />
           <Route exact path="/add-bootcamp" component={AddBootcamp} />
+          <Route exact path="/manage-courses" component={ManageCourses} />
           <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/add-review" component={AddReview} />
           <Route exact path="/manage-bootcamp" component={ManageBootcamp} />

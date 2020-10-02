@@ -51,7 +51,7 @@ export const Reviews = () => {
           </Col>
 
           <Col md="4">
-            <h1 class="text-center my-4">
+            <h1 className="text-center my-4">
               <Badge color="success" className="rounded-circle p-3">
                 8.8
               </Badge>{" "}
