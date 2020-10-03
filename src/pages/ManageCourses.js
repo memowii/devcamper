@@ -17,23 +17,23 @@ export const ManageCourses = () => {
     <section className="m-5">
       <Container>
         <Row>
-          <Col md="8">
+          <Col md="8" className="m-auto">
             <Card color="white" className="py-2 px-4">
               <CardBody>
                 <NavLink
                   to="/bootcamp"
                   target="_blank"
-                  className="btn btn-secondary my-3"
+                  className="btn btn-link text-secondary my-3"
                 >
                   <FontAwesomeIcon icon={faChevronLeft} /> Manage Bootcamp
                 </NavLink>
 
-                <h1 class="mb-4">Manage Courses</h1>
+                <h1 className="mb-4">Manage Courses</h1>
 
                 <BootcampCard
                   img={img1}
                   title="Devworks Bootcamp"
-                  rating="8.8"
+                  rating="4.9"
                   place="Boston, MA"
                   courses="Web Development, UI/UX, Mobile Development"
                 />
