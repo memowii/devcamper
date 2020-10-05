@@ -16,6 +16,7 @@ import { ManageCourses } from "../../pages/ManageCourses";
 import { AddCourse } from "../../pages/AddCourse";
 import { ManageAccount } from "../../pages/ManageAccount";
 import { UpdatePassword } from "../../pages/UpdatePassword";
+import { ManageBootcampNone } from "../../pages/ManageBootcampNone";
 
 export const App = () => (
   <div className="App">
@@ -36,6 +37,7 @@ export const App = () => (
           <Route exact path="/add-course" component={AddCourse} />
           <Route exact path="/manage-account" component={ManageAccount} />
           <Route exact path="/update-password" component={UpdatePassword} />
+          <Route exact path="/manage-bootcamp-none" component={ManageBootcampNone} />
         </Switch>
       </Layout>
     </BrowserRouter>
