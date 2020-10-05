@@ -19,7 +19,7 @@ export const ManageAccount = () => {
     <section className="mt-5">
       <Container>
         <Row>
-          <Col md="8">
+          <Col md="8" className="m-auto">
             <Card color="white" className="py-2 px-4">
               <CardBody>
                 <h1 className="mb-2">Manage Account</h1>
@@ -31,7 +31,7 @@ export const ManageAccount = () => {
                       type="text"
                       name="title"
                       placeholder="Name"
-                      value="John Doe"
+                      defaultValue="John Doe"
                     />
                   </FormGroup>
 
@@ -41,7 +41,7 @@ export const ManageAccount = () => {
                       type="email"
                       name="email"
                       placeholder="Email"
-                      value="jdoe@gmail.com"
+                      defaultValue="jdoe@gmail.com"
                     />
                   </FormGroup>
 
@@ -50,7 +50,7 @@ export const ManageAccount = () => {
                       <Col md="6">
                         <Input
                           type="submit"
-                          value="Save"
+                          defaultValue="Save"
                           className="btn btn-success btn-block"
                         />
                       </Col>
