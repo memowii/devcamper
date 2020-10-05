@@ -1,1 +1,0 @@
-export { Bootcamps } from "./Bootcamps";

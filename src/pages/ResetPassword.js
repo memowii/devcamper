@@ -12,7 +12,7 @@ import {
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-import { usePageWithoutFixedTop } from "../../hooks/usePageWithoutFixedTop";
+import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 
 export const ResetPassword = () => {
   usePageWithoutFixedTop();

@@ -8,14 +8,14 @@ import {
   PaginationLink,
 } from "reactstrap";
 
-import { usePageWithoutFixedTop } from "../../hooks/usePageWithoutFixedTop";
-import { BootcampCard } from "../../components/BootcampCard";
-import { Sidebar } from "../../components/Sidebar";
+import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
+import { BootcampCard } from "../components/BootcampCard";
+import { Sidebar } from "../components/Sidebar";
 
-import image1 from "../../assets/images/image_1.jpg";
-import image2 from "../../assets/images/image_2.jpg";
-import image3 from "../../assets/images/image_3.jpg";
-import image4 from "../../assets/images/image_4.jpg";
+import image1 from "../assets/images/image_1.jpg";
+import image2 from "../assets/images/image_2.jpg";
+import image3 from "../assets/images/image_3.jpg";
+import image4 from "../assets/images/image_4.jpg";
 
 export const Bootcamps = () => {
   usePageWithoutFixedTop();

@@ -13,7 +13,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
-import { usePageWithoutFixedTop } from "../../hooks/usePageWithoutFixedTop";
+import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 
 export const Register = () => {
   usePageWithoutFixedTop();
