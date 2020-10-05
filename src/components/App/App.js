@@ -14,6 +14,7 @@ import { AddReview } from "../../pages/AddReview";
 import { AddBootcamp } from "../../pages/AddBootcamp";
 import { ManageCourses } from "../../pages/ManageCourses";
 import { AddCourse } from "../../pages/AddCourse";
+import { ManageAccount } from "../../pages/ManageAccount";
 
 export const App = () => (
   <div className="App">
@@ -32,6 +33,7 @@ export const App = () => (
           <Route exact path="/add-review" component={AddReview} />
           <Route exact path="/manage-bootcamp" component={ManageBootcamp} />
           <Route exact path="/add-course" component={AddCourse} />
+          <Route exact path="/manage-account" component={ManageAccount} />
         </Switch>
       </Layout>
     </BrowserRouter>
