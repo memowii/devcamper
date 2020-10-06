@@ -6,8 +6,8 @@ import { faPencilAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 export const TableRow = ({ tdsContent }) => {
   return (
     <tr>
-      {tdsContent.map((tdContent) => (
-        <td>{tdContent}</td>
+      {tdsContent.map((tdContent, idx) => (
+        <td key={idx}>{tdContent}</td>
       ))}
       <td>
         <NavLink to="/add-course" className="btn btn-secondary mr-1">
