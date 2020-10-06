@@ -11,7 +11,7 @@ export const ManageCoursesNone = () => {
     <section className="mt-5">
       <Container>
         <Row>
-          <Col className="m-auto">
+          <Col md="8" className="m-auto">
             <Card color="white" className="py-2 px-4">
               <CardBody>
                 <h1 className="mb-2">Manage Courses</h1>

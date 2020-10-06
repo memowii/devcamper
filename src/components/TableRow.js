@@ -3,12 +3,14 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export const TableRow = ({ title }) => {
+export const TableRow = ({ tdsContent }) => {
   return (
     <tr>
-      <td>{title}</td>
+      {tdsContent.map((tdContent) => (
+        <td>{tdContent}</td>
+      ))}
       <td>
-        <NavLink to="/add-course" className="btn btn-secondary">
+        <NavLink to="/add-course" className="btn btn-secondary mr-1">
           <FontAwesomeIcon icon={faPencilAlt} />
         </NavLink>
         <button className="btn btn-danger">

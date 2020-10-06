@@ -53,8 +53,8 @@ export const ManageCourses = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <TableRow title="Front End Web Development" />
-                    <TableRow title="Full Stack Web Development" />
+                    <TableRow tdsContent={["Front End Web Development"]} />
+                    <TableRow tdsContent={["Full Stack Web Development"]} />
                   </tbody>
                 </Table>
               </CardBody>
