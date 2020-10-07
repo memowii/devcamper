@@ -8,7 +8,6 @@ import {
   PaginationLink,
 } from "reactstrap";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { BootcampCard } from "../components/BootcampCard";
 import { Sidebar } from "../components/Sidebar";
 
@@ -18,7 +17,6 @@ import image3 from "../assets/images/image_3.jpg";
 import image4 from "../assets/images/image_4.jpg";
 
 export const Bootcamps = () => {
-  usePageWithoutFixedTop();
   return (
     <section className="my-5">
       <Container>

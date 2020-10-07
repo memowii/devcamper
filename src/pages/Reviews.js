@@ -1,16 +1,13 @@
 import React from "react";
-import { Container, Row, Col, Badge } from "reactstrap";
+import { Col, Badge } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { ReviewCard } from "../components/ReviewCard";
 import { InnerLayout } from "../components/InnerLayout";
 
 export const Reviews = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayout>
       <Col md="8">

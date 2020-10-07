@@ -5,12 +5,9 @@ import { NavLink } from "react-router-dom";
 import img1 from "../assets/images/image_1.jpg";
 import { BootcampCard } from "../components/BootcampCard";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 
 export const ManageBootcamp = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayoutWithCard>
       <h1 className="mb-4">Manage Bootcamp</h1>

@@ -11,11 +11,7 @@ import {
   Row,
 } from "reactstrap";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
-
 export const AddBootcamp = () => {
-  usePageWithoutFixedTop();
-
   return (
     <section className="mt-5">
       <Container>

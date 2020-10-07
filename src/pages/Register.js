@@ -3,12 +3,9 @@ import { Form, FormGroup, Label, Input, Card } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 
 export const Register = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayoutWithCard colMd="6" cardClass="p-4 mb-4">
       <h1>

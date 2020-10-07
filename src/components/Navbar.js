@@ -22,7 +22,7 @@ export const Navbar = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <RSNavbar expand="md" dark fixed="top" color="primary">
+    <RSNavbar expand="md" dark color="primary">
       <Container>
         <NavLink className="navbar-brand" to="/">
           <FontAwesomeIcon icon={faLaptopCode} /> DevCamper

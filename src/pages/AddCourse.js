@@ -5,11 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 
 export const AddCourse = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayoutWithCard>
       <NavLink

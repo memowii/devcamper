@@ -2,12 +2,9 @@ import React from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 
 export const ResetPassword = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayoutWithCard>
       <NavLink to="/login">Back to login</NavLink>

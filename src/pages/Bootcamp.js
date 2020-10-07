@@ -12,12 +12,9 @@ import {
 
 import img1 from "../assets/images/image_1.jpg";
 import { CourseCard } from "../components/CourseCard";
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { InnerLayout } from "../components/InnerLayout";
 
 export const Bootcamp = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayout>
       <Col md="8">

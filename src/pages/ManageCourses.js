@@ -7,14 +7,11 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { BootcampCard } from "../components/BootcampCard";
 import { TableRow } from "../components/TableRow";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 
 import img1 from "../assets/images/image_1.jpg";
 
 export const ManageCourses = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayoutWithCard>
       <NavLink

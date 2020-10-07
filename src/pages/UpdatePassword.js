@@ -1,12 +1,9 @@
 import React from "react";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 
 export const UpdatePassword = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayoutWithCard>
       <h1 className="mb-2">Update Password</h1>

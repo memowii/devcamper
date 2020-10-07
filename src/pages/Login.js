@@ -4,12 +4,9 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 
 export const Login = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayoutWithCard colMd="6" cardClass="p-4 mb-4">
       <h1>

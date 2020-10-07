@@ -1,12 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { usePageWithoutFixedTop } from "../hooks/usePageWithoutFixedTop";
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 
 export const ManageBootcampNone = () => {
-  usePageWithoutFixedTop();
-
   return (
     <InnerLayoutWithCard>
       <h1 className="mb-2">Manage Bootcamp</h1>
