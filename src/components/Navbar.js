@@ -9,12 +9,8 @@ import {
   Container,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLaptopCode,
-  faSignInAlt,
-  faUserPlus,
-} from "@fortawesome/free-solid-svg-icons";
+
+import { IconStore } from "../components/IconStore";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +21,7 @@ export const Navbar = () => {
     <RSNavbar expand="md" dark color="primary">
       <Container>
         <NavLink className="navbar-brand" to="/">
-          <FontAwesomeIcon icon={faLaptopCode} /> DevCamper
+          {IconStore("faLaptopCode")} DevCamper
         </NavLink>
 
         <NavbarToggler onClick={toggle} />
@@ -34,12 +30,12 @@ export const Navbar = () => {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink className="nav-link" to="/login" exact>
-                <FontAwesomeIcon icon={faSignInAlt} /> Login
+                {IconStore("faSignInAlt")} Login
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className="nav-link" to="/register">
-                <FontAwesomeIcon icon={faUserPlus} /> Register
+                {IconStore("faUserPlus")} Register
               </NavLink>
             </NavItem>
             <NavItem className="d-none d-md-block">

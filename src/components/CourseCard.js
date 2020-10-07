@@ -8,8 +8,8 @@ import {
   ListGroup,
   ListGroupItem,
 } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import { IconStore } from "./IconStore";
 
 export const CourseCard = ({
   title,
@@ -34,11 +34,9 @@ export const CourseCard = ({
           <ListGroupItem>{skill}</ListGroupItem>
           <ListGroupItem>
             Scholarship Available:{" "}
-            {scholarship ? (
-              <FontAwesomeIcon icon={faCheck} className="text-success" />
-            ) : (
-              <FontAwesomeIcon icon={faTimes} className="text-danger" />
-            )}
+            {scholarship
+              ? IconStore("faCheck", "text-success")
+              : IconStore("faTimes", "text-danger")}
           </ListGroupItem>
         </ListGroup>
       </CardBody>

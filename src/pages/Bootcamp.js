@@ -1,18 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { ListGroup, ListGroupItem, Col, Badge } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faComments,
-  faPencilAlt,
-  faGlobe,
-  faCheck,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
 
 import img1 from "../assets/images/image_1.jpg";
 import { CourseCard } from "../components/CourseCard";
 import { InnerLayout } from "../components/InnerLayout";
+import { IconStore } from "../components/IconStore";
 
 export const Bootcamp = () => {
   return (
@@ -65,17 +58,17 @@ export const Bootcamp = () => {
         </h1>
 
         <NavLink to="/reviews" className="btn btn-dark btn-block my-3">
-          <FontAwesomeIcon icon={faComments} /> Read Reviews
+          {IconStore("faComments")} Read Reviews
         </NavLink>
         <NavLink to="/reviews" className="btn btn-light btn-block my-3">
-          <FontAwesomeIcon icon={faPencilAlt} /> Write a Review
+          {IconStore("faPencilAlt")} Write a Review
         </NavLink>
         <NavLink
           to="/"
           target="_blank"
           className="btn btn-secondary btn-block my-3"
         >
-          <FontAwesomeIcon icon={faGlobe} /> Visit Website
+          {IconStore("faGlobe")} Visit Website
         </NavLink>
 
         <div id="map" style={{ width: "100%", height: "300px" }}>
@@ -84,19 +77,16 @@ export const Bootcamp = () => {
 
         <ListGroup flush className="mt-4">
           <ListGroupItem>
-            <FontAwesomeIcon icon={faCheck} className="text-success" /> Housing
+            {IconStore("faCheck", "text-success")} Housing
           </ListGroupItem>
           <ListGroupItem>
-            <FontAwesomeIcon icon={faCheck} className="text-danger" /> Job
-            Assistance
+            {IconStore("faCheck", "text-danger")} Job Assistance
           </ListGroupItem>
           <ListGroupItem>
-            <FontAwesomeIcon icon={faTimes} className="text-danger" /> Job
-            Guarantee
+            {IconStore("faTimes", "text-danger")} Job Guarantee
           </ListGroupItem>
           <ListGroupItem>
-            <FontAwesomeIcon icon={faCheck} className="text-danger" /> Accepts
-            GI Bill
+            {IconStore("faCheck", "text-danger")} Accepts GI Bill
           </ListGroupItem>
         </ListGroup>
       </Col>

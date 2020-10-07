@@ -1,12 +1,11 @@
 import React from "react";
 import { Col, Badge } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 import { ReviewCard } from "../components/ReviewCard";
 import { InnerLayout } from "../components/InnerLayout";
 import { BackButton } from "../components/BackButton";
+import { IconStore } from '../components/IconStore'
 
 export const Reviews = () => {
   return (
@@ -52,7 +51,7 @@ export const Reviews = () => {
         </h1>
 
         <NavLink to="/add-review" className="btn btn-primary btn-block my-3">
-          <FontAwesomeIcon icon={faPencilAlt} /> Review This Bootcamp
+          {IconStore("faPencilAlt")} Review This Bootcamp
         </NavLink>
       </Col>
     </InnerLayout>

@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { IconStore } from "./IconStore";
 
 export const TableRow = ({ tdsContent }) => {
   return (
@@ -11,11 +10,9 @@ export const TableRow = ({ tdsContent }) => {
       ))}
       <td>
         <NavLink to="/add-course" className="btn btn-secondary mr-1">
-          <FontAwesomeIcon icon={faPencilAlt} />
+          {IconStore("faPencilAlt")}
         </NavLink>
-        <button className="btn btn-danger">
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
+        <button className="btn btn-danger">{IconStore("faTimes")}</button>
       </td>
     </tr>
   );

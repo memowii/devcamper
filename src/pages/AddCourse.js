@@ -1,8 +1,5 @@
 import React from "react";
 import { Label, Input, Form, FormGroup } from "reactstrap";
-import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 import { BackButton } from "../components/BackButton";

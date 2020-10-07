@@ -1,17 +1,14 @@
 import React from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
+import { IconStore } from "../components/IconStore";
 
 export const Login = () => {
   return (
     <InnerLayoutWithCard colMd="6" cardClass="p-4 mb-4">
-      <h1>
-        <FontAwesomeIcon icon={faSignInAlt} /> Login
-      </h1>
+      <h1>{IconStore("faSignInAlt")} Login</h1>
 
       <p>Log in to list your bootcamp or rate, review and favorite bootcamps</p>
       <Form>
