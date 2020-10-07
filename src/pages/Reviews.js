@@ -2,22 +2,19 @@ import React from "react";
 import { Col, Badge } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 import { ReviewCard } from "../components/ReviewCard";
 import { InnerLayout } from "../components/InnerLayout";
+import { BackButton } from "../components/BackButton";
 
 export const Reviews = () => {
   return (
     <InnerLayout>
       <Col md="8">
-        <NavLink
-          to="/bootcamp"
-          target="_blank"
-          className="btn btn-secondary my-3"
-        >
-          <FontAwesomeIcon icon={faChevronLeft} /> Bootcamp Info
-        </NavLink>
+        <BackButton to="/bootcamp" className="btn-secondary">
+          Bootcamp Info
+        </BackButton>
 
         <h1 className="mb-4">DevWorks Bootcamp Reviews</h1>
 

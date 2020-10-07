@@ -5,17 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
+import { BackButton } from "../components/BackButton";
 
 export const AddCourse = () => {
   return (
     <InnerLayoutWithCard>
-      <NavLink
-        to="/bootcamp"
-        target="_blank"
-        className="btn btn-link text-secondary my-3"
-      >
-        <FontAwesomeIcon icon={faChevronLeft} /> Manage Courses
-      </NavLink>
+      <BackButton to="/bootcamp" className="btn-link text-secondary">
+        Manage Courses
+      </BackButton>
 
       <h1 className="mb-2">DevWorks Bootcamp</h1>
 

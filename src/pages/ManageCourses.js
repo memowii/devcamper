@@ -8,19 +8,16 @@ import { BootcampCard } from "../components/BootcampCard";
 import { TableRow } from "../components/TableRow";
 
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
+import { BackButton } from "../components/BackButton";
 
 import img1 from "../assets/images/image_1.jpg";
 
 export const ManageCourses = () => {
   return (
     <InnerLayoutWithCard>
-      <NavLink
-        to="/bootcamp"
-        target="_blank"
-        className="btn btn-link text-secondary my-3"
-      >
-        <FontAwesomeIcon icon={faChevronLeft} /> Manage Bootcamp
-      </NavLink>
+      <BackButton to="/bootcamp" className="btn-link text-secondary">
+        Manage Bootcamp
+      </BackButton>
 
       <h1 className="mb-4">Manage Courses</h1>
 
