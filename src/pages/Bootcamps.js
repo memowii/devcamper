@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Row,
@@ -7,16 +7,43 @@ import {
   PaginationItem,
   PaginationLink,
 } from "reactstrap";
+import { connect } from "react-redux";
 
 import { BootcampCard } from "../components/BootcampCard";
 import { Sidebar } from "../components/Sidebar";
+import * as bootcampsActions from "../actions/bootcampsActions";
 
 import image1 from "../assets/images/image_1.jpg";
-import image2 from "../assets/images/image_2.jpg";
-import image3 from "../assets/images/image_3.jpg";
-import image4 from "../assets/images/image_4.jpg";
 
-export const Bootcamps = () => {
+const _Bootcamps = (props) => {
+  const { fetchAll } = props;
+
+  useEffect(() => {
+    fetchAll();
+  }, [fetchAll]);
+
+  const putContent = () => {
+    if (props.loading) {
+      return <p>Loading...</p>;
+    }
+
+    if (props.error) {
+      return <p>Error</p>;
+    }
+
+    return props.bootcamps.map((bootcamp) => (
+      <React.Fragment key={bootcamp.id}>
+        <BootcampCard
+          photo={image1}
+          name={bootcamp.name}
+          averageRating={10}
+          place={`${bootcamp.location.city}, ${bootcamp.location.state}`}
+          careers={bootcamp.careers.join(", ")}
+        />
+      </React.Fragment>
+    ));
+  };
+
   return (
     <section className="my-5">
       <Container>
@@ -26,37 +53,7 @@ export const Bootcamps = () => {
           </Col>
 
           <Col md="8">
-            <BootcampCard
-              img={image1}
-              title="Devworks Bootcamp"
-              rating="8.8"
-              place="Boston, MA"
-              courses="Web Development, UI/UX, Mobile Development"
-            />
-
-            <BootcampCard
-              img={image2}
-              title="ModernTech Bootcamp"
-              rating="7.5"
-              place="Boston, MA"
-              courses="Web Development, UI/UX, Mobile Development"
-            />
-
-            <BootcampCard
-              img={image3}
-              title="Codemasters"
-              rating="9.2"
-              place="Burlington, VT"
-              courses="Web Development, Data Science, Marketing"
-            />
-
-            <BootcampCard
-              img={image4}
-              title="DevCentral Bootcamp"
-              rating="6.4"
-              place="Kingston, RI"
-              courses="Web Development, UI/UX, Mobile Development, Marketing"
-            />
+            {putContent()}
 
             <Pagination>
               <PaginationItem>
@@ -81,3 +78,9 @@ export const Bootcamps = () => {
     </section>
   );
 };
+
+const mapStateToProps = (reducers) => {
+  return reducers.bootcampsReducer;
+};
+
+export const Bootcamps = connect(mapStateToProps, bootcampsActions)(_Bootcamps);
