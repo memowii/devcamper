@@ -30,7 +30,7 @@ export const App = () => (
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/bootcamps" component={Bootcamps} />
-          <Route exact path="/bootcamp" component={Bootcamp} />
+          <Route exact path="/bootcamp/:id" component={Bootcamp} />
           <Route exact path="/add-bootcamp" component={AddBootcamp} />
           <Route exact path="/manage-courses" component={ManageCourses} />
           <Route exact path="/reviews" component={Reviews} />

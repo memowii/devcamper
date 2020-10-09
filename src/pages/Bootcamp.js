@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { ListGroup, ListGroupItem, Col, Badge } from "reactstrap";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
 
 import img1 from "../assets/images/image_1.jpg";
+
 import { CourseCard } from "../components/CourseCard";
 import { InnerLayout } from "../components/InnerLayout";
 import { IconStore } from "../components/IconStore";
+import * as bootcampsActions from "../actions/bootcampsActions";
 
-export const Bootcamp = () => {
+const _Bootcamp = (props) => {
+  const { id } = useParams();
+  const { fetchOne } = props;
+
+  useEffect(() => {
+    fetchOne(id);
+  }, [fetchOne, id]);
+
   return (
     <InnerLayout>
       <Col md="8">
@@ -93,3 +104,9 @@ export const Bootcamp = () => {
     </InnerLayout>
   );
 };
+
+const mapStateToProps = (reducers) => {
+  return reducers.bootcampsReducer;
+};
+
+export const Bootcamp = connect(mapStateToProps, bootcampsActions)(_Bootcamp);

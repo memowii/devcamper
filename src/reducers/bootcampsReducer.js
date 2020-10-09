@@ -1,7 +1,8 @@
-import { FETCH_ALL, LOADING, ERROR } from "../types/bootcampTypes";
+import { FETCH_ALL, FETCH_ONE, LOADING, ERROR } from "../types/bootcampTypes";
 
 const INITIAL_STATE = {
   bootcamps: [],
+  bootcamp: {},
   loading: false,
   error: "",
 };
@@ -12,6 +13,13 @@ export const bootcampsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         bootcamps: action.payload,
+        loading: false,
+        error: "",
+      };
+    case FETCH_ONE:
+      return {
+        ...state,
+        bootcamp: action.payload,
         loading: false,
         error: "",
       };

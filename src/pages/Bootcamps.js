@@ -24,7 +24,7 @@ const _Bootcamps = (props) => {
     fetchAll();
   }, [fetchAll]);
 
-  const putContent = () => {
+  const putBootcamps = () => {
     if (props.loading) {
       return <Spinner />;
     }
@@ -36,9 +36,10 @@ const _Bootcamps = (props) => {
     return props.bootcamps.map((bootcamp) => (
       <React.Fragment key={bootcamp.id}>
         <BootcampCard
+          id={bootcamp.id}
           photo={image1}
           name={bootcamp.name}
-          averageRating={10}
+          averageRating={bootcamp.averageRating}
           place={`${bootcamp.location.city}, ${bootcamp.location.state}`}
           careers={bootcamp.careers.join(", ")}
         />
@@ -55,7 +56,7 @@ const _Bootcamps = (props) => {
           </Col>
 
           <Col md="8">
-            {putContent()}
+            {putBootcamps()}
 
             <Pagination>
               <PaginationItem>
