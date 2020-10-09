@@ -11,6 +11,8 @@ import { connect } from "react-redux";
 
 import { BootcampCard } from "../components/BootcampCard";
 import { Sidebar } from "../components/Sidebar";
+import { Spinner } from "../components/Spinner";
+import { Fatal } from "../components/Fatal";
 import * as bootcampsActions from "../actions/bootcampsActions";
 
 import image1 from "../assets/images/image_1.jpg";
@@ -24,11 +26,11 @@ const _Bootcamps = (props) => {
 
   const putContent = () => {
     if (props.loading) {
-      return <p>Loading...</p>;
+      return <Spinner />;
     }
 
     if (props.error) {
-      return <p>Error</p>;
+      return <Fatal message={props.error} />;
     }
 
     return props.bootcamps.map((bootcamp) => (

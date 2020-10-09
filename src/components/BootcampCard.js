@@ -24,7 +24,7 @@ export const BootcampCard = ({
         </Col>
         <Col md="8">
           <CardBody>
-            <CardTitle className="h5">
+            <CardTitle tag="h5">
               <a href="/">
                 {name}
                 <Badge className="float-right" color="success">
