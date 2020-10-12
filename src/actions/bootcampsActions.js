@@ -30,9 +30,16 @@ export const fetchOne = (id) => async (dispatchEvent, getState) => {
   }
 
   try {
-    const response = await axios.get(`${API_URL}/bootcamps/${id}`);
-    const { data } = response;
-    dispatchEvent({ type: FETCH_ONE, payload: data.data });
+    const response = await Promise.all([
+      axios.get(`${API_URL}/bootcamps/${id}`),
+      axios.get(`${API_URL}/bootcamps/${id}/courses`),
+    ]);
+
+    const bootcamp = response[0].data.data;
+    const courses = response[1].data.data;
+    bootcamp.courses = courses;
+
+    dispatchEvent({ type: FETCH_ONE, payload: bootcamp });
   } catch (error) {
     dispatchEvent({
       type: ERROR,

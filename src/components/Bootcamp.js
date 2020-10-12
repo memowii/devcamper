@@ -7,7 +7,7 @@ import { IconStore } from "../components/IconStore";
 
 import img1 from "../assets/images/image_1.jpg";
 
-export const Bootcamp = ({ name, description, averageCost }) => {
+export const Bootcamp = ({ name, description, averageCost, courses = [] }) => {
   return (
     <>
       <Col md="8">
@@ -20,28 +20,12 @@ export const Bootcamp = ({ name, description, averageCost }) => {
           <span className="text-primary">{averageCost}</span>
         </p>
 
-        <CourseCard
-          title="Front End Web Development"
-          duration="Duration: 8 Weeks"
-          description="This course will provide you with all of the essentials to
-                  become a successful frontend web developer. You will learn to
-                  master HTML, CSS and front end JavaScript, along with tools
-                  like Git, VSCode and front end frameworks like Vue"
-          cost="Cost: $8,000 USD"
-          skill="Skill Required: Beginner"
-          scholarship={true}
-        />
-
-        <CourseCard
-          title="Full Stack Web Development"
-          duration="Duration: 12 Weeks"
-          description="In this course you will learn full stack web development, 
-                  first learning all about the frontend with HTML/CSS/JS/Vue and then 
-                  the backend with Node.js/Express/MongoDB"
-          cost="Cost: $10,000 USD"
-          skill="Skill Required: Intermediate"
-          scholarship={false}
-        />
+        {courses.length > 0 &&
+          courses.map((course) => (
+            <React.Fragment key={course._id}>
+              <CourseCard {...course} />
+            </React.Fragment>
+          ))}
       </Col>
 
       <Col md="4">

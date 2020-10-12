@@ -26,7 +26,7 @@ const _BootcampContainer = (props) => {
       return <Fatal message={error} />;
     }
 
-    return <Bootcamp {...bootcamp} />;
+    return <Bootcamp {...bootcamp} courses={bootcamp.courses} />;
   };
 
   return <InnerLayout>{putBootcamp()}</InnerLayout>;

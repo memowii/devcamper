@@ -13,28 +13,31 @@ import { IconStore } from "./IconStore";
 
 export const CourseCard = ({
   title,
-  duration,
+  weeks,
   description,
-  cost,
-  skill,
-  scholarship,
+  tuition,
+  minimumSkill,
+  scholarshipAvailable,
 }) => {
+  const getTextDuration = (weeks) =>
+    weeks > 1 ? `Duration: ${weeks} Weeks` : `Duration: ${weeks} Week`;
+
   return (
     <Card className="mb-3">
       <CardHeader tag="h5" className="text-white bg-primary">
         {title}
       </CardHeader>
       <CardBody>
-        <CardTitle tag="h5">{duration}</CardTitle>
+        <CardTitle tag="h5">{getTextDuration(weeks)}</CardTitle>
 
         <CardText>{description}</CardText>
 
         <ListGroup className="mb-3">
-          <ListGroupItem>{cost}</ListGroupItem>
-          <ListGroupItem>{skill}</ListGroupItem>
+          <ListGroupItem>Cost: ${tuition} USD</ListGroupItem>
+          <ListGroupItem>Skill Required: {minimumSkill}</ListGroupItem>
           <ListGroupItem>
             Scholarship Available:{" "}
-            {scholarship
+            {scholarshipAvailable
               ? IconStore("faCheck", "text-success")
               : IconStore("faTimes", "text-danger")}
           </ListGroupItem>
