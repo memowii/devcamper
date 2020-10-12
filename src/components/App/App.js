@@ -8,7 +8,7 @@ import { ResetPassword } from "../../pages/ResetPassword";
 import { Register } from "../../pages/Register";
 import { Bootcamps } from "../../pages/Bootcamps";
 import { ManageBootcamp } from "../../pages/ManageBootcamp";
-import { Bootcamp } from "../../pages/Bootcamp";
+import { BootcampContainer } from "../../pages/BootcampContainer";
 import { Reviews } from "../../pages/Reviews";
 import { AddReview } from "../../pages/AddReview";
 import { AddBootcamp } from "../../pages/AddBootcamp";
@@ -30,7 +30,7 @@ export const App = () => (
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/bootcamps" component={Bootcamps} />
-          <Route exact path="/bootcamp/:id" component={Bootcamp} />
+          <Route exact path="/bootcamp/:id" component={BootcampContainer} />
           <Route exact path="/add-bootcamp" component={AddBootcamp} />
           <Route exact path="/manage-courses" component={ManageCourses} />
           <Route exact path="/reviews" component={Reviews} />

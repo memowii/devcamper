@@ -1,37 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { ListGroup, ListGroupItem, Col, Badge } from "reactstrap";
-import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
+
+import { CourseCard } from "../components/CourseCard";
+import { IconStore } from "../components/IconStore";
 
 import img1 from "../assets/images/image_1.jpg";
 
-import { CourseCard } from "../components/CourseCard";
-import { InnerLayout } from "../components/InnerLayout";
-import { IconStore } from "../components/IconStore";
-import * as bootcampsActions from "../actions/bootcampsActions";
-
-const _Bootcamp = (props) => {
-  const { id } = useParams();
-  const { fetchOne } = props;
-
-  useEffect(() => {
-    fetchOne(id);
-  }, [fetchOne, id]);
-
+export const Bootcamp = ({ name, description, averageCost }) => {
   return (
-    <InnerLayout>
+    <>
       <Col md="8">
-        <h1>DevWorks Bootcamp</h1>
+        <h1>{name}</h1>
 
-        <p>
-          Devworks is a full stack JavaScript Bootcamp located in the heart of
-          Boston that focuses on the technologies you need to get a high paying
-          job as a web developer
-        </p>
+        <p>{description}</p>
 
         <p className="lead mb-4">
-          Average Course Cost: <span className="text-primary">$10,000</span>
+          Average Course Cost:{" "}
+          <span className="text-primary">{averageCost}</span>
         </p>
 
         <CourseCard
@@ -59,7 +45,7 @@ const _Bootcamp = (props) => {
       </Col>
 
       <Col md="4">
-        <img src={img1} className="img-thumbnail" alt="" />
+        <img src={img1} className="img-thumbnail" alt={name} />
 
         <h1 className="text-center my-4">
           <Badge color="success" className="rounded-circle p-3">
@@ -101,12 +87,6 @@ const _Bootcamp = (props) => {
           </ListGroupItem>
         </ListGroup>
       </Col>
-    </InnerLayout>
+    </>
   );
 };
-
-const mapStateToProps = (reducers) => {
-  return reducers.bootcampsReducer;
-};
-
-export const Bootcamp = connect(mapStateToProps, bootcampsActions)(_Bootcamp);
