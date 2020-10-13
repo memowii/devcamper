@@ -10,6 +10,8 @@ import {
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
+import { RatingBadge } from "./RatingBadge";
+
 export const BootcampCard = ({
   id,
   photo,
@@ -29,7 +31,9 @@ export const BootcampCard = ({
             <CardTitle tag="h5">
               <NavLink to={`/bootcamp/${id}`}>
                 {name}
-                <RatingBadge>{averageRating}</RatingBadge>
+                <RatingBadge className="float-right">
+                  {averageRating}
+                </RatingBadge>
               </NavLink>
             </CardTitle>
             <Badge color="dark" className="mb-2">
@@ -40,31 +44,5 @@ export const BootcampCard = ({
         </Col>
       </Row>
     </Card>
-  );
-};
-
-const RatingBadge = ({ children, averageRating }) => {
-  if (!children) {
-    return (
-      <Badge className="float-right" color="dark">
-        N/A
-      </Badge>
-    );
-  }
-
-  let color,
-    rating = parseInt(children, 10);
-  if (rating <= 5) {
-    color = "danger";
-  } else if (rating > 5 && rating < 8) {
-    color = "warning";
-  } else {
-    color = "success";
-  }
-
-  return (
-    <Badge className="float-right" color={color}>
-      {children}
-    </Badge>
   );
 };

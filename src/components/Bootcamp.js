@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ListGroup, ListGroupItem, Col, Badge } from "reactstrap";
+import { ListGroup, ListGroupItem, Col } from "reactstrap";
 
 import { CourseCard } from "../components/CourseCard";
 import { IconStore } from "../components/IconStore";
 import { formatCost } from "../utils/formatCost";
+import { RatingBadge } from "./RatingBadge";
 
 import img1 from "../assets/images/image_1.jpg";
 
@@ -33,9 +34,9 @@ export const Bootcamp = ({ name, description, averageCost, courses = [] }) => {
         <img src={img1} className="img-thumbnail" alt={name} />
 
         <h1 className="text-center my-4">
-          <Badge color="success" className="rounded-circle p-3">
+          <RatingBadge className="p-3" rounded>
             8.8
-          </Badge>{" "}
+          </RatingBadge>{" "}
           Rating
         </h1>
 
