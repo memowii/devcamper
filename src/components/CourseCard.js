@@ -10,6 +10,8 @@ import {
 } from "reactstrap";
 
 import { IconStore } from "./IconStore";
+import { formatCost } from "../utils/formatCost";
+import { capitalizeWord } from "../utils/capitalizeWord";
 
 export const CourseCard = ({
   title,
@@ -33,8 +35,10 @@ export const CourseCard = ({
         <CardText>{description}</CardText>
 
         <ListGroup className="mb-3">
-          <ListGroupItem>Cost: ${tuition} USD</ListGroupItem>
-          <ListGroupItem>Skill Required: {minimumSkill}</ListGroupItem>
+          <ListGroupItem>Cost: {formatCost(tuition)} USD</ListGroupItem>
+          <ListGroupItem>
+            Skill Required: {capitalizeWord(minimumSkill)}
+          </ListGroupItem>
           <ListGroupItem>
             Scholarship Available:{" "}
             {scholarshipAvailable

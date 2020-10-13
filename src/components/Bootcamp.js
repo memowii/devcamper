@@ -4,6 +4,7 @@ import { ListGroup, ListGroupItem, Col, Badge } from "reactstrap";
 
 import { CourseCard } from "../components/CourseCard";
 import { IconStore } from "../components/IconStore";
+import { formatCost } from "../utils/formatCost";
 
 import img1 from "../assets/images/image_1.jpg";
 
@@ -17,7 +18,7 @@ export const Bootcamp = ({ name, description, averageCost, courses = [] }) => {
 
         <p className="lead mb-4">
           Average Course Cost:{" "}
-          <span className="text-primary">{averageCost}</span>
+          <span className="text-primary">{formatCost(averageCost)}</span>
         </p>
 
         {courses.length > 0 &&
