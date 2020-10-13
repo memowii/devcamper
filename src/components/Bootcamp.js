@@ -6,10 +6,21 @@ import { CourseCard } from "../components/CourseCard";
 import { IconStore } from "../components/IconStore";
 import { formatCost } from "../utils/formatCost";
 import { RatingBadge } from "./RatingBadge";
+import { AcceptedSymbol } from "./AcceptedSymbol";
 
 import img1 from "../assets/images/image_1.jpg";
 
-export const Bootcamp = ({ name, description, averageCost, courses = [] }) => {
+export const Bootcamp = ({
+  name,
+  description,
+  averageCost,
+  averageRating,
+  courses = [],
+  housing,
+  jobAssistance,
+  jobGuarantee,
+  acceptGi,
+}) => {
   return (
     <>
       <Col md="8">
@@ -35,7 +46,7 @@ export const Bootcamp = ({ name, description, averageCost, courses = [] }) => {
 
         <h1 className="text-center my-4">
           <RatingBadge className="p-3" rounded>
-            8.8
+            {averageRating}
           </RatingBadge>{" "}
           Rating
         </h1>
@@ -60,16 +71,16 @@ export const Bootcamp = ({ name, description, averageCost, courses = [] }) => {
 
         <ListGroup flush className="mt-4">
           <ListGroupItem>
-            {IconStore("faCheck", "text-success")} Housing
+            <AcceptedSymbol accepted={housing} /> Housing
           </ListGroupItem>
           <ListGroupItem>
-            {IconStore("faCheck", "text-danger")} Job Assistance
+            <AcceptedSymbol accepted={jobAssistance} /> Job Assistance
           </ListGroupItem>
           <ListGroupItem>
-            {IconStore("faTimes", "text-danger")} Job Guarantee
+            <AcceptedSymbol accepted={jobGuarantee} /> Job Guarantee
           </ListGroupItem>
           <ListGroupItem>
-            {IconStore("faCheck", "text-danger")} Accepts GI Bill
+            <AcceptedSymbol accepted={acceptGi} /> Accepts GI Bill
           </ListGroupItem>
         </ListGroup>
       </Col>

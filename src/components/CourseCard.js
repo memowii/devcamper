@@ -9,9 +9,9 @@ import {
   ListGroupItem,
 } from "reactstrap";
 
-import { IconStore } from "./IconStore";
 import { formatCost } from "../utils/formatCost";
 import { capitalizeWord } from "../utils/capitalizeWord";
+import { AcceptedSymbol } from "./AcceptedSymbol";
 
 export const CourseCard = ({
   title,
@@ -41,9 +41,7 @@ export const CourseCard = ({
           </ListGroupItem>
           <ListGroupItem>
             Scholarship Available:{" "}
-            {scholarshipAvailable
-              ? IconStore("faCheck", "text-success")
-              : IconStore("faTimes", "text-danger")}
+            <AcceptedSymbol accepted={scholarshipAvailable} />
           </ListGroupItem>
         </ListGroup>
       </CardBody>
