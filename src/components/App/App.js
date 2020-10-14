@@ -31,9 +31,9 @@ export const App = () => (
           <Route exact path="/register" component={Register} />
           <Route exact path="/bootcamps" component={Bootcamps} />
           <Route exact path="/bootcamp/:id" component={BootcampContainer} />
+          <Route exact path="/bootcamp/:id/reviews" component={Reviews} />
           <Route exact path="/add-bootcamp" component={AddBootcamp} />
           <Route exact path="/manage-courses" component={ManageCourses} />
-          <Route exact path="/reviews" component={Reviews} />
           <Route exact path="/add-review" component={AddReview} />
           <Route exact path="/manage-bootcamp" component={ManageBootcamp} />
           <Route exact path="/add-course" component={AddCourse} />

@@ -11,6 +11,7 @@ import { AcceptedSymbol } from "./AcceptedSymbol";
 import img1 from "../assets/images/image_1.jpg";
 
 export const Bootcamp = ({
+  id,
   name,
   description,
   averageCost,
@@ -64,7 +65,7 @@ export const Bootcamp = ({
           Rating
         </h1>
 
-        <NavLink to="/reviews" className="btn btn-dark btn-block my-3">
+        <NavLink to={`/bootcamp/${id}/reviews`} className="btn btn-dark btn-block my-3">
           {IconStore("faComments")} Read Reviews
         </NavLink>
         <NavLink to="/reviews" className="btn btn-light btn-block my-3">
