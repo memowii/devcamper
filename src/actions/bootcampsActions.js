@@ -21,14 +21,6 @@ export const fetchAll = () => async (dispatchEvent) => {
 export const fetchOne = (id) => async (dispatchEvent, getState) => {
   dispatchEvent({ type: LOADING });
 
-  const { bootcamps } = getState().bootcampsReducer;
-  const bootcamp = bootcamps.find((bootcamp) => bootcamp.id === id);
-
-  if (bootcamp) {
-    dispatchEvent({ type: FETCH_ONE, payload: bootcamp });
-    return;
-  }
-
   try {
     const response = await Promise.all([
       axios.get(`${API_URL}/bootcamps/${id}`),
@@ -45,5 +37,15 @@ export const fetchOne = (id) => async (dispatchEvent, getState) => {
       type: ERROR,
       payload: "Bootcamp information not available.",
     });
+  }
+};
+
+export const fetchOneLocal = (id) => (dispatchEvent, getState) => {
+  const { bootcamps } = getState().bootcampsReducer;
+  const bootcamp = bootcamps.find((bootcamp) => bootcamp.id === id);
+
+  if (bootcamp) {
+    dispatchEvent({ type: FETCH_ONE, payload: bootcamp });
+    return;
   }
 };

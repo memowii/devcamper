@@ -11,11 +11,23 @@ import * as bootcampsActions from "../actions/bootcampsActions";
 
 const _BootcampContainer = (props) => {
   const { id } = useParams();
-  const { fetchOne, bootcamp, loading, error } = props;
+  const {
+    fetchOne,
+    fetchOneLocal,
+    bootcamps,
+    bootcamp,
+    loading,
+    error,
+  } = props;
 
   useEffect(() => {
-    fetchOne(id);
-  }, [fetchOne, id]);
+    if (bootcamps.length === 0) {
+      fetchOne(id);
+      return;
+    } else {
+      fetchOneLocal(id);
+    }
+  }, [fetchOne, fetchOneLocal, id, bootcamps]);
 
   const putBootcamp = () => {
     if (loading) {
