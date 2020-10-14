@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ListGroup, ListGroupItem, Col } from "reactstrap";
+import { ListGroup, ListGroupItem, Col, Alert } from "reactstrap";
 
 import { CourseCard } from "../components/CourseCard";
 import { IconStore } from "../components/IconStore";
@@ -21,6 +21,22 @@ export const Bootcamp = ({
   jobGuarantee,
   acceptGi,
 }) => {
+  const putCourses = () => {
+    if (courses.length === 0) {
+      return (
+        <Alert color="warning">
+          There are no courses available in this bootcamp.
+        </Alert>
+      );
+    }
+
+    return courses.map((course) => (
+      <React.Fragment key={course._id}>
+        <CourseCard {...course} />
+      </React.Fragment>
+    ));
+  };
+
   return (
     <>
       <Col md="8">
@@ -30,15 +46,12 @@ export const Bootcamp = ({
 
         <p className="lead mb-4">
           Average Course Cost:{" "}
-          <span className="text-primary">{formatCost(averageCost)}</span>
+          <span className="text-primary">
+            {formatCost(averageCost) ? formatCost(averageCost) : "N/A"}
+          </span>
         </p>
 
-        {courses.length > 0 &&
-          courses.map((course) => (
-            <React.Fragment key={course._id}>
-              <CourseCard {...course} />
-            </React.Fragment>
-          ))}
+        {putCourses()}
       </Col>
 
       <Col md="4">
@@ -58,7 +71,7 @@ export const Bootcamp = ({
           {IconStore("faPencilAlt")} Write a Review
         </NavLink>
         <NavLink
-          to="/"
+          to="#"
           target="_blank"
           className="btn btn-secondary btn-block my-3"
         >
