@@ -35,7 +35,7 @@ const _BootcampContainer = (props) => {
     }
 
     if (error) {
-      return <Fatal message={error} />;
+      return <Fatal message={error} className="w-100 py-4" />;
     }
 
     return <Bootcamp {...bootcamp} courses={bootcamp.courses} />;
