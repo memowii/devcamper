@@ -1,16 +1,39 @@
-import React from "react";
-import { Col, Badge } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { ReviewCard } from "../components/ReviewCard";
+import { Spinner } from "../components/Spinner";
+import { Fatal } from "../components/Fatal";
+import * as reviewsActions from "../actions/reviewsActions";
+
 import { InnerLayout } from "../components/InnerLayout";
-import { BackButton } from "../components/BackButton";
-import { IconStore } from '../components/IconStore'
 
-export const Reviews = () => {
+export const _Reviews = (props) => {
+  const { id } = useParams();
+  const { fetchBootcampReviews, reviews, loading, error } = props;
+
+  useEffect(() => {
+    fetchBootcampReviews(id);
+  }, [id, fetchBootcampReviews]);
+
+  const putReviews = () => {
+    if (loading) {
+      return <Spinner />;
+    }
+
+    if (error) {
+      return <Fatal message={error} className="w-100 py-4" />;
+    }
+
+    return <p>reviews list</p>;
+  };
+
   return (
     <InnerLayout>
-      <Col md="8">
+      <p>reviews</p>
+      {/* {putReviews()} */}
+
+      {/* <Col md="8">
         <BackButton to="/bootcamp" className="btn-secondary">
           Bootcamp Info
         </BackButton>
@@ -53,7 +76,13 @@ export const Reviews = () => {
         <NavLink to="/add-review" className="btn btn-primary btn-block my-3">
           {IconStore("faPencilAlt")} Review This Bootcamp
         </NavLink>
-      </Col>
+      </Col> */}
     </InnerLayout>
   );
 };
+
+const mapStateToProps = (reducers) => {
+  return reducers.reviewsReducer;
+};
+
+export const Reviews = connect(mapStateToProps, reviewsActions)(_Reviews);

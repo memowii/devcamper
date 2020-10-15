@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_ALL, FETCH_ONE, LOADING, ERROR } from "../types/bootcampTypes";
+import { FETCH_ALL, FETCH_ONE, LOADING, ERROR } from "../types/bootcampsTypes";
 
 const API_URL = "http://localhost:5000/api/v1";
 

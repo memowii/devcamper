@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { InnerLayout } from "../components/InnerLayout";
 
+import { InnerLayout } from "../components/InnerLayout";
 import { Bootcamp } from "../components/Bootcamp";
 import { Spinner } from "../components/Spinner";
 import { Fatal } from "../components/Fatal";

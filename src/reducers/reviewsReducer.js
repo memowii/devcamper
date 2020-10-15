@@ -1,25 +1,17 @@
-import { FETCH_ALL, FETCH_ONE, LOADING, ERROR } from "../types/bootcampsTypes";
+import { FETCH_BOOTCAMP_REVIEWS, LOADING, ERROR } from "../types/reviewsTypes";
 
 const INITIAL_STATE = {
-  bootcamps: [],
-  bootcamp: {},
+  reviews: [],
   loading: false,
   error: "",
 };
 
-export const bootcampsReducer = (state = INITIAL_STATE, action) => {
+export const reviewsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case FETCH_ALL:
+    case FETCH_BOOTCAMP_REVIEWS:
       return {
         ...state,
-        bootcamps: action.payload,
-        loading: false,
-        error: "",
-      };
-    case FETCH_ONE:
-      return {
-        ...state,
-        bootcamp: action.payload,
+        reviews: action.payload,
         loading: false,
         error: "",
       };

@@ -65,10 +65,16 @@ export const Bootcamp = ({
           Rating
         </h1>
 
-        <NavLink to={`/bootcamp/${id}/reviews`} className="btn btn-dark btn-block my-3">
+        <NavLink
+          to={`/bootcamp/${id}/reviews`}
+          className="btn btn-dark btn-block my-3"
+        >
           {IconStore("faComments")} Read Reviews
         </NavLink>
-        <NavLink to="/reviews" className="btn btn-light btn-block my-3">
+        <NavLink
+          to={`/bootcamp/${id}/add-review`}
+          className="btn btn-light btn-block my-3"
+        >
           {IconStore("faPencilAlt")} Write a Review
         </NavLink>
         <NavLink

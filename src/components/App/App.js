@@ -26,15 +26,15 @@ export const App = () => (
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/reset-password" component={ResetPassword} />
-          <Route exact path="/register" component={Register} />
           <Route exact path="/bootcamps" component={Bootcamps} />
           <Route exact path="/bootcamp/:id" component={BootcampContainer} />
           <Route exact path="/bootcamp/:id/reviews" component={Reviews} />
+          <Route exact path="/bootcamp/:id/add-review" component={AddReview} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/reset-password" component={ResetPassword} />
+          <Route exact path="/register" component={Register} />
           <Route exact path="/add-bootcamp" component={AddBootcamp} />
           <Route exact path="/manage-courses" component={ManageCourses} />
-          <Route exact path="/add-review" component={AddReview} />
           <Route exact path="/manage-bootcamp" component={ManageBootcamp} />
           <Route exact path="/add-course" component={AddCourse} />
           <Route exact path="/manage-account" component={ManageAccount} />
