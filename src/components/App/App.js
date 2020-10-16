@@ -9,7 +9,7 @@ import { Register } from "../../pages/Register";
 import { Bootcamps } from "../../pages/Bootcamps";
 import { ManageBootcamp } from "../../pages/ManageBootcamp";
 import { BootcampContainer } from "../../pages/BootcampContainer";
-import { Reviews } from "../../pages/Reviews";
+import { ReviewsContainer } from "../../pages/ReviewsContainer";
 import { AddReview } from "../../pages/AddReview";
 import { AddBootcamp } from "../../pages/AddBootcamp";
 import { ManageCourses } from "../../pages/ManageCourses";
@@ -28,7 +28,7 @@ export const App = () => (
           <Route exact path="/" component={Home} />
           <Route exact path="/bootcamps" component={Bootcamps} />
           <Route exact path="/bootcamp/:id" component={BootcampContainer} />
-          <Route exact path="/bootcamp/:id/reviews" component={Reviews} />
+          <Route exact path="/bootcamp/:id/reviews" component={ReviewsContainer} />
           <Route exact path="/bootcamp/:id/add-review" component={AddReview} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/reset-password" component={ResetPassword} />

@@ -11,7 +11,6 @@ export const fetchBootcampReviews = (id) => async (dispatchEvent) => {
     const {
       data: { data },
     } = response;
-    console.log("data", data);
     dispatchEvent({ type: FETCH_BOOTCAMP_REVIEWS, payload: data });
   } catch (error) {
     console.log("error", error);
