@@ -4,39 +4,59 @@ import { connect } from "react-redux";
 
 import { Spinner } from "../components/Spinner";
 import { Fatal } from "../components/Fatal";
-import * as reviewsActions from "../actions/reviewsActions";
-
 import { InnerLayout } from "../components/InnerLayout";
 import { Reviews } from "../components/Reviews";
 
+import * as reviewsActions from "../actions/reviewsActions";
+import * as bootcampsActions from "../actions/bootcampsActions";
+
+const { fetchBootcampReviews } = reviewsActions;
+const { fetchOne: fetchBootcamp } = bootcampsActions;
+
 export const _ReviewsContainer = (props) => {
   const { id } = useParams();
-  const { fetchBootcampReviews, reviews, loading, error } = props;
+  const {
+    fetchBootcampReviews,
+    fetchBootcamp,
+    bootcampsReducer: {
+      bootcamp,
+      loading: bootcampsLoading,
+      error: bootcampsError,
+    },
+    reviewsReducer: { reviews, loading: reviewsLoading, error: reviewsError },
+  } = props;
 
   useEffect(() => {
     fetchBootcampReviews(id);
-  }, [id, fetchBootcampReviews]);
+    fetchBootcamp(id);
+  }, [id, fetchBootcampReviews, fetchBootcamp]);
 
   const putReviews = () => {
-    if (loading) {
+    if (bootcampsLoading || reviewsLoading) {
       return <Spinner />;
     }
 
-    if (error) {
-      return <Fatal message={error} className="w-100 py-4" />;
+    if (bootcampsError || reviewsError) {
+      return <Fatal message={reviewsError} className="w-100 py-4" />;
     }
 
-    return <Reviews reviews={reviews} />;
+    return <Reviews bootcamp={bootcamp} reviews={reviews} />;
   };
 
   return <InnerLayout>{putReviews()}</InnerLayout>;
 };
 
-const mapStateToProps = (reducers) => {
-  return reducers.reviewsReducer;
+const mapStateToProps = ({ reviewsReducer, bootcampsReducer }) => ({
+  reviewsReducer,
+  bootcampsReducer,
+});
+
+const mapDispatchToProps = {
+  fetchBootcampReviews,
+  fetchBootcamp,
 };
 
 export const ReviewsContainer = connect(
   mapStateToProps,
-  reviewsActions
+  mapDispatchToProps
 )(_ReviewsContainer);

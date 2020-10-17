@@ -8,7 +8,7 @@ export const BackButton = ({ to, className, children }) => {
   const _className = className ? className : "";
 
   return (
-    <NavLink to={_to} target="_blank" className={`btn my-3 ${_className}`}>
+    <NavLink to={_to} target="_self" className={`btn my-3 ${_className}`}>
       {IconStore("faCheck")} {children}
     </NavLink>
   );

@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { Layout } from "../Layout";
 import { Home } from "../../pages/Home";
+import { Bootcamps } from "../../pages/Bootcamps";
+import { BootcampContainer } from "../../pages/BootcampContainer";
+import { ReviewsContainer } from "../../pages/ReviewsContainer";
 import { Login } from "../../pages/Login";
 import { ResetPassword } from "../../pages/ResetPassword";
 import { Register } from "../../pages/Register";
-import { Bootcamps } from "../../pages/Bootcamps";
 import { ManageBootcamp } from "../../pages/ManageBootcamp";
-import { BootcampContainer } from "../../pages/BootcampContainer";
-import { ReviewsContainer } from "../../pages/ReviewsContainer";
 import { AddReview } from "../../pages/AddReview";
 import { AddBootcamp } from "../../pages/AddBootcamp";
 import { ManageCourses } from "../../pages/ManageCourses";

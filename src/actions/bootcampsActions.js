@@ -18,7 +18,7 @@ export const fetchAll = () => async (dispatchEvent) => {
   }
 };
 
-export const fetchOne = (id) => async (dispatchEvent, getState) => {
+export const fetchOne = (id) => async (dispatchEvent) => {
   dispatchEvent({ type: LOADING });
 
   try {

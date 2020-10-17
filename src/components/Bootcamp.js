@@ -26,7 +26,7 @@ export const Bootcamp = ({
     if (courses.length === 0) {
       return (
         <Alert color="warning">
-          There are no courses available in this bootcamp.
+          There are no courses available for this bootcamp.
         </Alert>
       );
     }
