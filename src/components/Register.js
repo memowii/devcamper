@@ -1,8 +1,42 @@
 import React from "react";
-import { Form, FormGroup, Label, Input, Card } from "reactstrap";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+import { Form, FormGroup, Label, Input, Card, FormFeedback } from "reactstrap";
 import { IconStore } from "../components/IconStore";
 
-export const Register = () => {
+const schema = yup.object().shape({
+  name: yup.string().trim().required(),
+  email: yup.string().email().trim().required(),
+  password: yup
+    .string()
+    .min(3)
+    .trim()
+    .oneOf([yup.ref("password_conf"), null], "The passwords must match.")
+    .required(),
+  password_conf: yup
+    .string()
+    .min(3)
+    .trim()
+    .oneOf([yup.ref("password"), null], "The passwords must match.")
+    .required(),
+});
+
+export const Register = ({ user }) => {
+  const { handleSubmit, register, errors, trigger, formState } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const { isSubmitted } = formState;
+  const onSubmit = (data) => console.log(data);
+  const onError = (errors, e) => console.log(errors, e);
+
+  const validatePasswordsAfterSubtting = () => {
+    if (!isSubmitted) return;
+
+    trigger(["password", "password_conf"]);
+  };
+
   return (
     <>
       <h1>{IconStore("faUserPlus")} Register</h1>
@@ -11,20 +45,29 @@ export const Register = () => {
         Register to list your bootcamp or rate, review and favorite bootcamps
       </p>
 
-      <Form>
+      <Form onSubmit={handleSubmit(onSubmit, onError)}>
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
             type="text"
             name="name"
             placeholder="Enter full name"
-            required
+            innerRef={register}
+            invalid={errors.name ? true : false}
           />
+          <FormFeedback>{errors.name?.message}</FormFeedback>
         </FormGroup>
 
         <FormGroup>
           <Label for="email">Email Address</Label>
-          <Input type="email" name="email" placeholder="Enter email" required />
+          <Input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            innerRef={register}
+            invalid={errors.email ? true : false}
+          />
+          <FormFeedback>{errors.email?.message}</FormFeedback>
         </FormGroup>
 
         <FormGroup>
@@ -33,21 +76,27 @@ export const Register = () => {
             type="password"
             name="password"
             placeholder="Enter password"
-            required
+            innerRef={register}
+            invalid={errors.password ? true : false}
+            onChange={validatePasswordsAfterSubtting}
           />
+          <FormFeedback>{errors.password?.message}</FormFeedback>
         </FormGroup>
 
         <FormGroup>
-          <Label for="password2">Confirm Password</Label>
+          <Label for="password_conf">Confirm Password</Label>
           <Input
             type="password"
-            name="password2"
+            name="password_conf"
             placeholder="Confirm password"
-            required
+            innerRef={register}
+            invalid={errors.password_conf ? true : false}
+            onChange={validatePasswordsAfterSubtting}
           />
+          <FormFeedback>{errors.password_conf?.message}</FormFeedback>
         </FormGroup>
 
-        <Card body className="mb-3">
+        {/* <Card body className="mb-3">
           <h5>User Role</h5>
 
           <FormGroup check>
@@ -69,7 +118,7 @@ export const Register = () => {
               Publisher
             </Label>
           </FormGroup>
-        </Card>
+        </Card> */}
 
         <p className="text-danger">
           * You must be affiliated with the bootcamp in some way in order to add
@@ -79,7 +128,7 @@ export const Register = () => {
         <FormGroup>
           <Input
             type="submit"
-            value="Register"
+            defaultValue="Register"
             className="btn btn-primary btn-block"
           />
         </FormGroup>
