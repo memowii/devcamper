@@ -6,9 +6,9 @@ import { Home } from "../../pages/Home";
 import { Bootcamps } from "../../pages/Bootcamps";
 import { BootcampContainer } from "../../pages/BootcampContainer";
 import { ReviewsContainer } from "../../pages/ReviewsContainer";
+import { RegisterContainer } from "../../pages/RegisterContainer";
 import { Login } from "../../pages/Login";
 import { ResetPassword } from "../../pages/ResetPassword";
-import { Register } from "../../pages/Register";
 import { ManageBootcamp } from "../../pages/ManageBootcamp";
 import { AddReview } from "../../pages/AddReview";
 import { AddBootcamp } from "../../pages/AddBootcamp";
@@ -28,11 +28,15 @@ export const App = () => (
           <Route exact path="/" component={Home} />
           <Route exact path="/bootcamps" component={Bootcamps} />
           <Route exact path="/bootcamp/:id" component={BootcampContainer} />
-          <Route exact path="/bootcamp/:id/reviews" component={ReviewsContainer} />
+          <Route
+            exact
+            path="/bootcamp/:id/reviews"
+            component={ReviewsContainer}
+          />
+          <Route exact path="/register" component={RegisterContainer} />
           <Route exact path="/bootcamp/:id/add-review" component={AddReview} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/reset-password" component={ResetPassword} />
-          <Route exact path="/register" component={Register} />
           <Route exact path="/add-bootcamp" component={AddBootcamp} />
           <Route exact path="/manage-courses" component={ManageCourses} />
           <Route exact path="/manage-bootcamp" component={ManageBootcamp} />

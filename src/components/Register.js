@@ -1,12 +1,10 @@
 import React from "react";
 import { Form, FormGroup, Label, Input, Card } from "reactstrap";
-
-import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
 import { IconStore } from "../components/IconStore";
 
 export const Register = () => {
   return (
-    <InnerLayoutWithCard colMd="6" cardClass="p-4 mb-4">
+    <>
       <h1>{IconStore("faUserPlus")} Register</h1>
 
       <p>
@@ -86,6 +84,6 @@ export const Register = () => {
           />
         </FormGroup>
       </Form>
-    </InnerLayoutWithCard>
+    </>
   );
 };
