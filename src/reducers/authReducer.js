@@ -1,4 +1,4 @@
-import { CREATE, LOADING, ERROR } from "../types/usersTypes";
+import { CREATE, LOADING, ERROR } from "../types/authTypes";
 
 const INITIAL_STATE = {
   user: {},
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   error: "",
 };
 
-export const usersReducer = (state = INITIAL_STATE, action) => {
+export const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CREATE:
       return {

@@ -2,24 +2,29 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
-import * as usersActions from "../actions/usersActions";
+import * as authActions from "../actions/authActions";
 import { Register } from "../components/Register";
 
 const _RegisterContainer = (props) => {
-  const { user } = props;
+  const { register } = props;
+
+  const onSubmit = (data) => {
+    console.log('data', data);
+    register(data)
+  }
 
   return (
     <InnerLayoutWithCard colMd="6" cardClass="p-4 mb-4">
-      <Register user={user} />
+      <Register handleUserRegistration={onSubmit} />
     </InnerLayoutWithCard>
   );
 };
 
 const mapStateToProps = (reducers) => {
-  return reducers.usersReducer;
+  return reducers.authReducer;
 };
 
 export const RegisterContainer = connect(
   mapStateToProps,
-  usersActions
+  authActions
 )(_RegisterContainer);

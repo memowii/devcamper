@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { bootcampsReducer } from "./bootcampsReducer";
 import { reviewsReducer } from "./reviewsReducer";
-import { usersReducer } from "./usersReducer";
+import { authReducer } from "./authReducer";
 
 export default combineReducers({
   bootcampsReducer,
   reviewsReducer,
-  usersReducer,
+  authReducer,
 });

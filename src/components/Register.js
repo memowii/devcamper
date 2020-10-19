@@ -21,15 +21,23 @@ const schema = yup.object().shape({
     .trim()
     .oneOf([yup.ref("password"), null], "The passwords must match.")
     .required(),
+  role: yup.string().required(),
 });
 
-export const Register = ({ user }) => {
+const defaultValues = {
+  name: "",
+  email: "",
+  password: "",
+  password_conf: "",
+  role: "",
+};
+
+export const Register = ({ handleUserRegistration }) => {
   const { handleSubmit, register, errors, trigger, formState } = useForm({
+    defaultValues,
     resolver: yupResolver(schema),
   });
   const { isSubmitted } = formState;
-  const onSubmit = (data) => console.log(data);
-  const onError = (errors, e) => console.log(errors, e);
 
   const validatePasswordsAfterSubtting = () => {
     if (!isSubmitted) return;
@@ -45,7 +53,7 @@ export const Register = ({ user }) => {
         Register to list your bootcamp or rate, review and favorite bootcamps
       </p>
 
-      <Form onSubmit={handleSubmit(onSubmit, onError)}>
+      <Form onSubmit={handleSubmit(handleUserRegistration)}>
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
@@ -96,7 +104,7 @@ export const Register = ({ user }) => {
           <FormFeedback>{errors.password_conf?.message}</FormFeedback>
         </FormGroup>
 
-        {/* <Card body className="mb-3">
+        <Card body className="mb-3">
           <h5>User Role</h5>
 
           <FormGroup check>
@@ -105,8 +113,7 @@ export const Register = ({ user }) => {
                 type="radio"
                 name="role"
                 value="user"
-                checked
-                onChange={() => false}
+                innerRef={register}
               />{" "}
               Regular User (Browse, Write reviews, etc)
             </Label>
@@ -114,11 +121,25 @@ export const Register = ({ user }) => {
 
           <FormGroup check>
             <Label check>
-              <Input type="radio" name="role" value="publisher" /> Bootcamp
-              Publisher
+              <Input
+                type="radio"
+                name="role"
+                value="publisher"
+                innerRef={register}
+                invalid
+              />{" "}
+              Bootcamp Publisher
             </Label>
           </FormGroup>
-        </Card> */}
+
+          <FormGroup style={{ marginBottom: 0 }}>
+            <Input
+              style={{ display: "none" }}
+              invalid={errors.role ? true : false}
+            />
+            <FormFeedback>{errors.role?.message}</FormFeedback>
+          </FormGroup>
+        </Card>
 
         <p className="text-danger">
           * You must be affiliated with the bootcamp in some way in order to add
