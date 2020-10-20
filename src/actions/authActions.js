@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOADING, ERROR } from "../types/authTypes";
+import { CREATE, LOADING, ERROR } from "../types/authTypes";
 
 const API_URL = "http://localhost:5000/api/v1";
 
@@ -15,16 +15,21 @@ export const register = (user) => async (dispatchEvent) => {
       role,
     });
     const {
-      data: { success, token },
+      data: { success }, // don't forget the token, it has to be saved somewhere
     } = response;
 
-    console.log("response", response);
-
+    if (success) {
+      dispatchEvent({ type: CREATE });
+      return;
+    } else {
+      throw new Error();
+    }
   } catch (error) {
     console.log("error", error);
     dispatchEvent({
       type: ERROR,
-      payload: "Reviews information not available.",
+      payload:
+        "The user registration couldn't be completed. Please try again later.",
     });
   }
 };

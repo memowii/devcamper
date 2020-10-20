@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   user: {},
   loading: false,
   error: "",
+  successfulRegistration: false,
 };
 
 export const authReducer = (state = INITIAL_STATE, action) => {
@@ -11,9 +12,9 @@ export const authReducer = (state = INITIAL_STATE, action) => {
     case CREATE:
       return {
         ...state,
-        user: action.payload,
         loading: false,
         error: "",
+        successfulRegistration: true,
       };
     case LOADING:
       return { ...state, loading: true };

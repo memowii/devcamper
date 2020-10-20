@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import SnackbarProvider from "react-simple-snackbar";
 
 import { Layout } from "../Layout";
 import { Home } from "../../pages/Home";
@@ -24,37 +25,43 @@ export const App = () => (
   <div className="App">
     <BrowserRouter>
       <Layout>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/bootcamps" component={Bootcamps} />
-          <Route exact path="/bootcamp/:id" component={BootcampContainer} />
-          <Route
-            exact
-            path="/bootcamp/:id/reviews"
-            component={ReviewsContainer}
-          />
-          <Route exact path="/register" component={RegisterContainer} />
-          <Route exact path="/bootcamp/:id/add-review" component={AddReview} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/reset-password" component={ResetPassword} />
-          <Route exact path="/add-bootcamp" component={AddBootcamp} />
-          <Route exact path="/manage-courses" component={ManageCourses} />
-          <Route exact path="/manage-bootcamp" component={ManageBootcamp} />
-          <Route exact path="/add-course" component={AddCourse} />
-          <Route exact path="/manage-account" component={ManageAccount} />
-          <Route exact path="/update-password" component={UpdatePassword} />
-          <Route exact path="/manage-reviews" component={ManageReviews} />
-          <Route
-            exact
-            path="/manage-bootcamp-none"
-            component={ManageBootcampNone}
-          />
-          <Route
-            exact
-            path="/manage-courses-none"
-            component={ManageCoursesNone}
-          />
-        </Switch>
+        <SnackbarProvider>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/bootcamps" component={Bootcamps} />
+            <Route exact path="/bootcamp/:id" component={BootcampContainer} />
+            <Route
+              exact
+              path="/bootcamp/:id/reviews"
+              component={ReviewsContainer}
+            />
+            <Route exact path="/register" component={RegisterContainer} />
+            <Route
+              exact
+              path="/bootcamp/:id/add-review"
+              component={AddReview}
+            />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/reset-password" component={ResetPassword} />
+            <Route exact path="/add-bootcamp" component={AddBootcamp} />
+            <Route exact path="/manage-courses" component={ManageCourses} />
+            <Route exact path="/manage-bootcamp" component={ManageBootcamp} />
+            <Route exact path="/add-course" component={AddCourse} />
+            <Route exact path="/manage-account" component={ManageAccount} />
+            <Route exact path="/update-password" component={UpdatePassword} />
+            <Route exact path="/manage-reviews" component={ManageReviews} />
+            <Route
+              exact
+              path="/manage-bootcamp-none"
+              component={ManageBootcampNone}
+            />
+            <Route
+              exact
+              path="/manage-courses-none"
+              component={ManageCoursesNone}
+            />
+          </Switch>
+        </SnackbarProvider>
       </Layout>
     </BrowserRouter>
   </div>

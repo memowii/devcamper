@@ -6,16 +6,18 @@ import * as authActions from "../actions/authActions";
 import { Register } from "../components/Register";
 
 const _RegisterContainer = (props) => {
-  const { register } = props;
+  const { register, loading, error, successfulRegistration } = props;
 
-  const onSubmit = (data) => {
-    console.log('data', data);
-    register(data)
-  }
+  const onSubmit = (data) => register(data);
 
   return (
     <InnerLayoutWithCard colMd="6" cardClass="p-4 mb-4">
-      <Register handleUserRegistration={onSubmit} />
+      <Register
+        handleUserRegistration={onSubmit}
+        loading={loading}
+        error={error}
+        successfulRegistration={successfulRegistration}
+      />
     </InnerLayoutWithCard>
   );
 };

@@ -2,8 +2,18 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useSnackbar } from "react-simple-snackbar";
 
-import { Form, FormGroup, Label, Input, Card, FormFeedback } from "reactstrap";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Card,
+  FormFeedback,
+  Button,
+  Spinner,
+} from "reactstrap";
 import { IconStore } from "../components/IconStore";
 
 const schema = yup.object().shape({
@@ -32,18 +42,42 @@ const defaultValues = {
   role: "",
 };
 
-export const Register = ({ handleUserRegistration }) => {
+const snackbarOptions = {
+  style: {
+    backgroundColor: "#d4edda",
+    color: "#155724",
+  },
+  closeStyle: {
+    color: "#155724",
+  },
+};
+
+export const Register = ({
+  handleUserRegistration,
+  loading,
+  successfulRegistration,
+}) => {
   const { handleSubmit, register, errors, trigger, formState } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
   });
   const { isSubmitted } = formState;
+  const [openSnackbar, closeSnackbar] = useSnackbar(snackbarOptions);
 
   const validatePasswordsAfterSubtting = () => {
     if (!isSubmitted) return;
 
     trigger(["password", "password_conf"]);
   };
+
+  React.useEffect(() => {
+    if (successfulRegistration) {
+      openSnackbar("blah");
+      // wait for 4 seconsd and
+      // close snacbkar
+      // move user to list of bootcamps
+    }
+  }, [successfulRegistration]);
 
   return (
     <>
@@ -147,11 +181,15 @@ export const Register = ({ handleUserRegistration }) => {
         </p>
 
         <FormGroup>
-          <Input
-            type="submit"
-            defaultValue="Register"
-            className="btn btn-primary btn-block"
-          />
+          <Button type="submit" color="primary" block>
+            {!loading ? (
+              "Submit"
+            ) : (
+              <>
+                <Spinner tag="span" size="sm" color="light" /> Registering user
+              </>
+            )}
+          </Button>
         </FormGroup>
       </Form>
     </>
