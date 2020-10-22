@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-import { RatingBadge } from "./RatingBadge";
+import { RatingBadge } from "../../common/components/RatingBadge";
 
 export const BootcampCard = ({
   id,

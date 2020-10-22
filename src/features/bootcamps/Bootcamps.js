@@ -7,17 +7,15 @@ import {
   PaginationItem,
   PaginationLink,
 } from "reactstrap";
-import { connect } from "react-redux";
 
-import { BootcampCard } from "../components/BootcampCard";
-import { Sidebar } from "../components/Sidebar";
-import { Spinner } from "../components/Spinner";
-import { Fatal } from "../components/Fatal";
-import * as bootcampsActions from "../actions/bootcampsActions";
+import { BootcampCard } from "./BootcampCard";
+import { Sidebar } from "./Sidebar";
+import { Spinner } from "../../common/components/Spinner";
+import { Fatal } from "../../common/components/Fatal";
 
-import image1 from "../assets/images/image_1.jpg";
+import image1 from "../../assets/images/image_1.jpg";
 
-const _Bootcamps = (props) => {
+export const Bootcamps = (props) => {
   const { fetchAll } = props;
 
   useEffect(() => {
@@ -81,9 +79,3 @@ const _Bootcamps = (props) => {
     </section>
   );
 };
-
-const mapStateToProps = (reducers) => {
-  return reducers.bootcampsReducer;
-};
-
-export const Bootcamps = connect(mapStateToProps, bootcampsActions)(_Bootcamps);

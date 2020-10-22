@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge } from "reactstrap";
 
-import { isFloat } from "../utils/isFloat";
+import { isFloat } from "../../common/utils";
 
 export const RatingBadge = ({ children: rating, className, rounded }) => {
   const _className = className ? className : "";

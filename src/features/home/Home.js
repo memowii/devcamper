@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Form, FormGroup, Input } from "reactstrap";
 
-import { usePageWithFixedTop } from "../hooks/usePageWithFixedTop";
+import { usePageWithFixedTop } from "../../common/hooks/usePageWithFixedTop";
 
 export const Home = () => {
   usePageWithFixedTop();

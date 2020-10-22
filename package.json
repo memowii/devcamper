@@ -20,7 +20,6 @@
     "react-scripts": "3.4.3",
     "react-simple-snackbar": "^1.1.10",
     "reactstrap": "^8.5.1",
-    "redux-thunk": "^2.3.0",
     "yup": "^0.29.3"
   },
   "scripts": {
