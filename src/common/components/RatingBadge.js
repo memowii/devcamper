@@ -6,7 +6,7 @@ import { isFloat } from "../../common/utils";
 
 export const RatingBadge = ({ children: rating, className, rounded }) => {
   const ratingBadgeClass = classnames({
-    [className]: className && true,
+    [className]: className,
     "rounded-circle": rounded,
   });
   const _rating = parseRating(rating);
@@ -26,7 +26,7 @@ const parseRating = (rating) => {
   if (!rating) return null;
 
   if (isFloat(rating)) {
-    return parseFloat(rating, 10).toFixed(0);
+    return parseFloat(rating, 10).toFixed(1);
   } else {
     return parseInt(rating, 10);
   }

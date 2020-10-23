@@ -1,10 +1,13 @@
 import React from "react";
+import classnames from "classnames";
 
 export const Fatal = ({ message, className }) => {
-  const _className = className ? className : "";
+  const fatalClass = classnames("alert alert-primary my-5", {
+    [className]: className,
+  });
 
   return (
-    <div className={`alert alert-primary my-5 ${_className}`}>
+    <div className={fatalClass}>
       <h6 className="text-center">{message}</h6>
     </div>
   );

@@ -10,7 +10,7 @@ import { Fatal } from "../../common/components/Fatal";
 
 import { BASE_API_URL } from "../../common/costants";
 
-export const Bootcamps = () => {
+export const BootcampsPage = () => {
   const [bootcamps, setBootcamps] = useState([]);
   const { response, get, loading, error } = useFetch(BASE_API_URL);
 

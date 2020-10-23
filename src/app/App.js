@@ -4,8 +4,8 @@ import SnackbarProvider from "react-simple-snackbar";
 
 import { Layout } from "./Layout";
 import { Home } from "../features/home/Home";
-import { Bootcamps } from "../features/bootcamps/Bootcamps";
-// import { BootcampContainer } from "../pages/BootcampContainer";
+import { BootcampsPage } from "../features/bootcamps/BootcampsPage";
+import { BootcampPage } from "../features/bootcamp/BootcampPage";
 // import { ReviewsContainer } from "../pages/ReviewsContainer";
 // import { RegisterContainer } from "../pages/RegisterContainer";
 // import { Login } from "../pages/Login";
@@ -28,9 +28,9 @@ export const App = () => (
         <SnackbarProvider>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/bootcamps" component={Bootcamps} />
+            <Route exact path="/bootcamps" component={BootcampsPage} />
+            <Route exact path="/bootcamp/:bootcampId" component={BootcampPage} />
             {/* 
-            <Route exact path="/bootcamp/:id" component={BootcampContainer} />
             <Route
               exact
               path="/bootcamp/:id/reviews"
