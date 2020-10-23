@@ -7,7 +7,7 @@ import { Home } from "../features/home/Home";
 import { BootcampsPage } from "../features/bootcamps/BootcampsPage";
 import { BootcampPage } from "../features/bootcamp/BootcampPage";
 import { ReviewsPage } from "../features/reviews/ReviewsPage";
-// import { RegisterContainer } from "../pages/RegisterContainer";
+import { RegisterPage } from "../features/register/RegisterPage";
 // import { Login } from "../pages/Login";
 // import { ResetPassword } from "../pages/ResetPassword";
 // import { ManageBootcamp } from "../pages/ManageBootcamp";
@@ -39,8 +39,8 @@ export const App = () => (
               path="/bootcamp/:bootcampId/reviews"
               component={ReviewsPage}
             />
+            <Route exact path="/register" component={RegisterPage} />
             {/* 
-            <Route exact path="/register" component={RegisterContainer} />
             <Route
               exact
               path="/bootcamp/:id/add-review"
