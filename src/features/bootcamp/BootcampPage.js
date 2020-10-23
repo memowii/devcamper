@@ -16,7 +16,12 @@ export const BootcampPage = ({ match }) => {
   const { response, get, loading, error } = useFetch(BASE_API_URL);
 
   const fetchBootcampData = useCallback(async () => {
-    const fetchedBootcamp = await get(`/bootcamps/${bootcampId}`);
+    const [fetchedBootcamp, fetchedCourses] = await Promise.all([
+      get(`/bootcamps/${bootcampId}`),
+      get(`/bootcamps/${bootcampId}/courses`),
+    ]);
+    fetchedBootcamp.data.courses = fetchedCourses.data;
+    
     if (response.ok) setBootcamp(fetchedBootcamp.data);
   }, [response, get]);
 

@@ -4,7 +4,7 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 
 import { RatingBadge } from "../../common/components/RatingBadge";
 import { IconStore } from "../../common/components/IconStore";
-import { AcceptedSymbol } from "../../common/components/AcceptedSymbol";
+import { AcceptedSymbol } from "./AcceptedSymbol";
 
 import img1 from "../../assets/images/image_1.jpg";
 

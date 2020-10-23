@@ -1,4 +1,4 @@
-import { IconStore } from "./IconStore";
+import { IconStore } from "../../common/components/IconStore";
 
 export const AcceptedSymbol = ({ accepted }) =>
   accepted

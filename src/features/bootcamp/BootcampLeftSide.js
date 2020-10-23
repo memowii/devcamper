@@ -1,5 +1,7 @@
 import React from "react";
+import { Alert } from "reactstrap";
 
+import { CourseCard } from "./CourseCard";
 import { formatCost } from "../../common/utils";
 
 export const BootcampLeftSide = ({
@@ -8,6 +10,22 @@ export const BootcampLeftSide = ({
   averageCost,
   courses = [],
 }) => {
+  const putCourses = () => {
+    if (courses.length === 0) {
+      return (
+        <Alert color="warning">
+          There are no courses available for this bootcamp.
+        </Alert>
+      );
+    }
+
+    return courses.map((course) => (
+      <React.Fragment key={course._id}>
+        <CourseCard {...course} />
+      </React.Fragment>
+    ));
+  };
+
   return (
     <>
       <h1>{name}</h1>
@@ -21,8 +39,7 @@ export const BootcampLeftSide = ({
         </span>
       </p>
 
-      {/* Don't forget the courses */}
-      {/* {putCourses()} */}
+      {putCourses()}
     </>
   );
 };

@@ -9,8 +9,8 @@ import {
   ListGroupItem,
 } from "reactstrap";
 
-import { formatCost } from "../utils/formatCost";
-import { capitalizeWord } from "../utils/capitalizeWord";
+import { formatCost } from "../../common/utils";
+import { capitalizeWord } from "../../common/utils";
 import { AcceptedSymbol } from "./AcceptedSymbol";
 
 export const CourseCard = ({
