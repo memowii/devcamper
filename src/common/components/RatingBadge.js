@@ -8,6 +8,7 @@ export const RatingBadge = ({ children: rating, className, rounded }) => {
   const ratingBadgeClass = classnames({
     [className]: className,
     "rounded-circle": rounded,
+    "px-4": rounded && !isFloat(rating),
   });
   const _rating = parseRating(rating);
   let color, ratingValue;

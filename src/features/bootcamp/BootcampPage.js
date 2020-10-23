@@ -23,7 +23,7 @@ export const BootcampPage = ({ match }) => {
     fetchedBootcamp.data.courses = fetchedCourses.data;
     
     if (response.ok) setBootcamp(fetchedBootcamp.data);
-  }, [response, get]);
+  }, [response, get, bootcampId]);
 
   useEffect(() => {
     fetchBootcampData();
