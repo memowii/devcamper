@@ -20,6 +20,7 @@
     "react-scripts": "3.4.3",
     "react-simple-snackbar": "^1.1.10",
     "reactstrap": "^8.5.1",
+    "use-http": "^1.0.15",
     "yup": "^0.29.3"
   },
   "scripts": {

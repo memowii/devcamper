@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Container,
   Row,
@@ -7,42 +7,38 @@ import {
   PaginationItem,
   PaginationLink,
 } from "reactstrap";
+import useFetch from "use-http";
 
-import { BootcampCard } from "./BootcampCard";
+import { BootcampList } from "./BootcampList";
 import { Sidebar } from "./Sidebar";
 import { Spinner } from "../../common/components/Spinner";
 import { Fatal } from "../../common/components/Fatal";
 
-import image1 from "../../assets/images/image_1.jpg";
+import { BASE_API_URL } from "../../common/costants";
 
-export const Bootcamps = (props) => {
-  const { fetchAll } = props;
+export const Bootcamps = () => {
+  const [bootcamps, setBootcamps] = useState([]);
+  const { response, get, loading, error } = useFetch(BASE_API_URL);
+
+  const fetchBootcamps = useCallback(async () => {
+    const fetchedBootcamps = await get("/bootcamps");
+    if (response.ok) setBootcamps(fetchedBootcamps.data);
+  }, [response, get]);
 
   useEffect(() => {
-    fetchAll();
-  }, [fetchAll]);
+    fetchBootcamps();
+  }, [fetchBootcamps]);
 
   const putBootcamps = () => {
-    if (props.loading) {
+    if (loading) {
       return <Spinner />;
     }
 
-    if (props.error) {
-      return <Fatal message={props.error} />;
+    if (error) {
+      return <Fatal message={error} />;
     }
 
-    return props.bootcamps.map((bootcamp) => (
-      <React.Fragment key={bootcamp.id}>
-        <BootcampCard
-          id={bootcamp.id}
-          photo={image1}
-          name={bootcamp.name}
-          averageRating={bootcamp.averageRating}
-          place={`${bootcamp.location.city}, ${bootcamp.location.state}`}
-          careers={bootcamp.careers.join(", ")}
-        />
-      </React.Fragment>
-    ));
+    return <BootcampList bootcamps={bootcamps} />;
   };
 
   return (
