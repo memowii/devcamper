@@ -6,7 +6,7 @@ import { Layout } from "./Layout";
 import { Home } from "../features/home/Home";
 import { BootcampsPage } from "../features/bootcamps/BootcampsPage";
 import { BootcampPage } from "../features/bootcamp/BootcampPage";
-// import { ReviewsContainer } from "../pages/ReviewsContainer";
+import { ReviewsPage } from "../features/reviews/ReviewsPage";
 // import { RegisterContainer } from "../pages/RegisterContainer";
 // import { Login } from "../pages/Login";
 // import { ResetPassword } from "../pages/ResetPassword";
@@ -29,13 +29,17 @@ export const App = () => (
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/bootcamps" component={BootcampsPage} />
-            <Route exact path="/bootcamp/:bootcampId" component={BootcampPage} />
-            {/* 
             <Route
               exact
-              path="/bootcamp/:id/reviews"
-              component={ReviewsContainer}
+              path="/bootcamp/:bootcampId"
+              component={BootcampPage}
             />
+            <Route
+              exact
+              path="/bootcamp/:bootcampId/reviews"
+              component={ReviewsPage}
+            />
+            {/* 
             <Route exact path="/register" component={RegisterContainer} />
             <Route
               exact
