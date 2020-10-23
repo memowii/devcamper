@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Form, FormGroup, Label, Input, Card } from "reactstrap";
 
-export const Sidebar = () => {
+export const BootcampsSidebar = () => {
   return (
     <>
       <Card body className="mb-4">

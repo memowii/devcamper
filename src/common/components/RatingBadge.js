@@ -1,28 +1,22 @@
 import React from "react";
 import { Badge } from "reactstrap";
+import classnames from "classnames";
 
 import { isFloat } from "../../common/utils";
 
 export const RatingBadge = ({ children: rating, className, rounded }) => {
-  const _className = className ? className : "";
-  const _rounded = rounded ? "rounded-circle" : "";
+  const ratingBadgeClass = classnames({
+    [className]: className && true,
+    "rounded-circle": rounded,
+  });
   const _rating = parseRating(rating);
   let color, ratingValue;
 
-  if (!_rating) {
-    color = "dark";
-  } else if (_rating <= 5) {
-    color = "danger";
-  } else if (_rating > 5 && rating < 8) {
-    color = "warning";
-  } else {
-    color = "success";
-  }
-
+  color = getRatingColor(_rating);
   ratingValue = !_rating ? "N/A" : _rating;
 
   return (
-    <Badge className={`${_className} ${_rounded}`} color={color}>
+    <Badge className={ratingBadgeClass} color={color}>
       {ratingValue}
     </Badge>
   );
@@ -32,8 +26,20 @@ const parseRating = (rating) => {
   if (!rating) return null;
 
   if (isFloat(rating)) {
-    return parseFloat(rating, 10);
+    return parseFloat(rating, 10).toFixed(0);
   } else {
     return parseInt(rating, 10);
+  }
+};
+
+const getRatingColor = (rating) => {
+  if (!rating) {
+    return "dark";
+  } else if (rating <= 5) {
+    return "danger";
+  } else if (rating > 5 && rating < 8) {
+    return "warning";
+  } else {
+    return "success";
   }
 };

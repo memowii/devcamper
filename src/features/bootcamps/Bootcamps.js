@@ -1,16 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
-} from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import useFetch from "use-http";
 
 import { BootcampList } from "./BootcampList";
-import { Sidebar } from "./Sidebar";
+import { BootcampsPagination } from "./BootcampsPagination";
+import { BootcampsSidebar } from "./BootcampsSidebar";
 import { Spinner } from "../../common/components/Spinner";
 import { Fatal } from "../../common/components/Fatal";
 
@@ -46,29 +40,13 @@ export const Bootcamps = () => {
       <Container>
         <Row>
           <Col md="4">
-            <Sidebar />
+            <BootcampsSidebar />
           </Col>
 
           <Col md="8">
             {putBootcamps()}
 
-            <Pagination>
-              <PaginationItem>
-                <PaginationLink>Previous</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink>1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink>2</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink>4</PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink>Next</PaginationLink>
-              </PaginationItem>
-            </Pagination>
+            <BootcampsPagination />
           </Col>
         </Row>
       </Container>
