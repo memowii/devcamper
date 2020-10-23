@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-import { IconStore } from "../components/IconStore";
+import { IconStore } from "../common/components/IconStore";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

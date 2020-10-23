@@ -14,14 +14,14 @@ export const BootcampsPage = () => {
   const [bootcamps, setBootcamps] = useState([]);
   const { response, get, loading, error } = useFetch(BASE_API_URL);
 
-  const fetchBootcamps = useCallback(async () => {
+  const fetchBootcampsData = useCallback(async () => {
     const fetchedBootcamps = await get("/bootcamps");
     if (response.ok) setBootcamps(fetchedBootcamps.data);
   }, [response, get]);
 
   useEffect(() => {
-    fetchBootcamps();
-  }, [fetchBootcamps]);
+    fetchBootcampsData();
+  }, [fetchBootcampsData]);
 
   const putBootcamps = () => {
     if (loading) {
