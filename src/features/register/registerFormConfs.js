@@ -1,6 +1,7 @@
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-export const schema = yup.object().shape({
+const schema = yup.object().shape({
   name: yup.string().trim().required(),
   email: yup.string().email().trim().required(),
   password: yup
@@ -17,6 +18,8 @@ export const schema = yup.object().shape({
     .required(),
   role: yup.string().required(),
 });
+
+export const schemaResolver = yupResolver(schema);
 
 export const defaultValues = {
   name: "",

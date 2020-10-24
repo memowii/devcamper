@@ -1,7 +1,9 @@
 import React from "react";
+import useFetch from "use-http";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
+import { toast } from "react-toastify";
+import { writeStorage } from "@rehooks/local-storage";
+import { useHistory } from "react-router-dom";
 import {
   Form,
   FormGroup,
@@ -13,26 +15,82 @@ import {
   Spinner,
 } from "reactstrap";
 
-import { schema, defaultValues } from "./registerFormConfs";
+import { BASE_API_URL } from "../../common/costants";
+import { schemaResolver, defaultValues } from "./registerFormConfs";
 
-export const RegisterForm = ({
-  handleUserRegistration,
-  userInRegistration,
-}) => {
-  const { handleSubmit, register, errors, trigger, formState } = useForm({
+const DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION = 3000;
+const DELAY_TIME_WHEN_FAILED_REGISTRATION = 4000;
+const EMAIL_IN_USE_ERROR = "emailInUseError";
+const PASSWORD_IS_SHORT_ERROR = "passwordIsShortError";
+
+export const RegisterForm = () => {
+  const { post, response, loading } = useFetch(BASE_API_URL + "/auth");
+  const {
+    handleSubmit,
+    register,
+    errors,
+    trigger,
+    formState,
+    setError,
+  } = useForm({
     defaultValues,
-    resolver: yupResolver(schema),
+    resolver: schemaResolver,
   });
   const { isSubmitted } = formState;
+  const history = useHistory();
+
+  const registerUser = async (userData) => {
+    const { name, email, password, role } = userData;
+    const data = await post("/register", { name, email, password, role });
+
+    if (response.ok) {
+      toast.success("The user was registered successfully.", {
+        autoClose: DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION,
+        position: toast.POSITION.TOP_RIGHT,
+        closeButton: false,
+      });
+      setTimeout(() => {
+        const { token } = data;
+        writeStorage("sessionToken", token);
+        // Redirect user to the /bootcamps page.
+        history.push("/bootcamps");
+      }, DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION);
+    } else {
+      if (getErrorType(data) === EMAIL_IN_USE_ERROR) {
+        setError("email", { type: "manula", message: "email is duplicated" });
+      } else if (getErrorType(data) === PASSWORD_IS_SHORT_ERROR) {
+        setError("password", {
+          type: "manula",
+          message: "password is too short",
+        });
+        setError("password_conf", {
+          type: "manula",
+          message: "password is too short",
+        });
+      } else {
+        toast.error(
+          "An error occurred in your registration, please try again later.",
+          {
+            autoClose: DELAY_TIME_WHEN_FAILED_REGISTRATION,
+            position: toast.POSITION.TOP_RIGHT,
+            closeButton: false,
+          }
+        );
+        setTimeout(() => {
+          // Refresh current page.
+          history.go(0);
+        }, DELAY_TIME_WHEN_FAILED_REGISTRATION);
+      }
+    }
+  };
 
   const validatePasswordsAfterSubtting = () => {
     if (!isSubmitted) return;
-
     trigger(["password", "password_conf"]);
   };
 
   return (
-    <Form onSubmit={handleSubmit(handleUserRegistration)}>
+    <Form onSubmit={handleSubmit(registerUser)}>
       <FormGroup>
         <Label for="name">Name</Label>
         <Input
@@ -122,7 +180,7 @@ export const RegisterForm = ({
 
       <FormGroup>
         <Button type="submit" color="primary" block>
-          {!userInRegistration ? (
+          {!loading ? (
             "Submit"
           ) : (
             <>
@@ -133,4 +191,16 @@ export const RegisterForm = ({
       </FormGroup>
     </Form>
   );
+};
+
+const getErrorType = (response) => {
+  const { error } = response;
+
+  if (error) {
+    if (error.includes("Duplicate field")) return EMAIL_IN_USE_ERROR;
+    if (error.includes("password") && error.includes("shorter"))
+      return PASSWORD_IS_SHORT_ERROR;
+  }
+
+  return null;
 };
