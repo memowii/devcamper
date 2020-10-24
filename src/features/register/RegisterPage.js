@@ -1,6 +1,6 @@
 import React from "react";
 import useFetch from "use-http";
-import { useSnackbar } from "react-simple-snackbar";
+import { toast } from "react-toastify";
 import { writeStorage } from "@rehooks/local-storage";
 import { useHistory } from "react-router-dom";
 
@@ -10,19 +10,8 @@ import { RegisterForm } from "./RegisterForm";
 
 import { BASE_API_URL } from "../../common/costants";
 
-const snackbarOptions = {
-  style: {
-    backgroundColor: "#d4edda",
-    color: "#155724",
-  },
-  closeStyle: {
-    color: "#155724",
-  },
-};
-
 export const RegisterPage = () => {
   const { post, response, loading, error } = useFetch(BASE_API_URL + "/auth");
-  const [openSnackbar, closeSnackbar] = useSnackbar(snackbarOptions);
   const history = useHistory();
 
   const registerUser = async (userData) => {
@@ -30,22 +19,31 @@ export const RegisterPage = () => {
     const { token } = await post("/register", { name, email, password, role });
 
     if (response.ok) {
-      openSnackbar("The user was registered successfully.");
+      toast.success("The user was registered successfully.", {
+        autoClose: 3000,
+        position: toast.POSITION.TOP_RIGHT,
+        closeButton: false,
+      });
       setTimeout(() => {
         writeStorage("sessionToken", token);
-        closeSnackbar();
         history.push("/bootcamps");
       }, 3000);
-    } else {
-      openSnackbar(
-        "An error occurred in your registration, please try again later."
-      );
-      setTimeout(() => {
-        closeSnackbar();
-        history.go(0);
-      }, 4000);
     }
   };
+
+  if (error) {
+    toast.error(
+      "An error occurred in your registration, please try again later.",
+      {
+        autoClose: 4000,
+        position: toast.POSITION.TOP_RIGHT,
+        closeButton: false,
+      }
+    );
+    setTimeout(() => {
+      history.go(0);
+    }, 4000);
+  }
 
   return (
     <InnerLayoutWithCard colMd="6" cardClass="p-4 mb-4">

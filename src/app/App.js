@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SnackbarProvider from "react-simple-snackbar";
+import { ToastContainer } from "react-toastify";
 
 import { Layout } from "./Layout";
 import { Home } from "../features/home/Home";
@@ -25,22 +25,17 @@ export const App = () => (
   <div className="App">
     <BrowserRouter>
       <Layout>
-        <SnackbarProvider>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/bootcamps" component={BootcampsPage} />
-            <Route
-              exact
-              path="/bootcamp/:bootcampId"
-              component={BootcampPage}
-            />
-            <Route
-              exact
-              path="/bootcamp/:bootcampId/reviews"
-              component={ReviewsPage}
-            />
-            <Route exact path="/register" component={RegisterPage} />
-            {/* 
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/bootcamps" component={BootcampsPage} />
+          <Route exact path="/bootcamp/:bootcampId" component={BootcampPage} />
+          <Route
+            exact
+            path="/bootcamp/:bootcampId/reviews"
+            component={ReviewsPage}
+          />
+          <Route exact path="/register" component={RegisterPage} />
+          {/* 
             <Route
               exact
               path="/bootcamp/:id/add-review"
@@ -65,9 +60,9 @@ export const App = () => (
               path="/manage-courses-none"
               component={ManageCoursesNone}
             /> */}
-          </Switch>
-        </SnackbarProvider>
+        </Switch>
       </Layout>
+      <ToastContainer />
     </BrowserRouter>
   </div>
 );
