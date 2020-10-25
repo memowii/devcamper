@@ -2,16 +2,17 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import { PrivateRoute } from "../common/components/PrivateRoute";
 import { Layout } from "./Layout";
 import { Home } from "../features/home/Home";
 import { BootcampsPage } from "../features/bootcamps/BootcampsPage";
 import { BootcampPage } from "../features/bootcamp/BootcampPage";
 import { ReviewsPage } from "../features/reviews/ReviewsPage";
+import { AddReviewPage } from "../features/reviews/AddReviewPage";
 import { RegisterPage } from "../features/register/RegisterPage";
-// import { Login } from "../pages/Login";
+import { LoginUser } from "../features/user/LoginUser";
 // import { ResetPassword } from "../pages/ResetPassword";
 // import { ManageBootcamp } from "../pages/ManageBootcamp";
-// import { AddReview } from "../pages/AddReview";
 // import { AddBootcamp } from "../pages/AddBootcamp";
 // import { ManageCourses } from "../pages/ManageCourses";
 // import { AddCourse } from "../pages/AddCourse";
@@ -34,14 +35,14 @@ export const App = () => (
             path="/bootcamp/:bootcampId/reviews"
             component={ReviewsPage}
           />
+          <PrivateRoute
+            exact
+            path="/bootcamp/:bootcampId/add-review"
+            component={AddReviewPage}
+          />
           <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/login" component={LoginUser} />
           {/* 
-            <Route
-              exact
-              path="/bootcamp/:id/add-review"
-              component={AddReview}
-            />
-            <Route exact path="/login" component={Login} />
             <Route exact path="/reset-password" component={ResetPassword} />
             <Route exact path="/add-bootcamp" component={AddBootcamp} />
             <Route exact path="/manage-courses" component={ManageCourses} />

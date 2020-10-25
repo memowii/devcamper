@@ -1,10 +1,10 @@
 import React from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 
-import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
-import { BackButton } from "../components/BackButton";
+import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
+import { BackButton } from "../../common/components/BackButton";
 
-export const AddReview = () => {
+export const AddReviewPage = () => {
   return (
     <InnerLayoutWithCard>
       <BackButton to="/bootcamp" className="btn-link text-secondary">

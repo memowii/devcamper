@@ -2,10 +2,10 @@ import React from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
-import { IconStore } from "../components/IconStore";
+import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
+import { IconStore } from "../../common/components/IconStore";
 
-export const Login = () => {
+export const LoginUser = () => {
   return (
     <InnerLayoutWithCard colMd="6" cardClass="p-4 mb-4">
       <h1>{IconStore("faSignInAlt")} Login</h1>
