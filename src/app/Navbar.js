@@ -7,22 +7,29 @@ import {
   NavItem,
   NavLink as RSNavLink,
   Container,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
-import { NavLink } from "react-router-dom";
-import { Switch, Route } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { IconStore } from "../common/components/IconStore";
 import { getLoggedInUserData } from "../common/utils";
+import { selectUserToken } from "../features/user/userSlice";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const userData = getLoggedInUserData();
-  let NavItemsForUser;
+  const token = useSelector(selectUserToken);
+  const userData = getLoggedInUserData(token);
+  const history = useHistory();
+  let NavItemsForSpecificUser;
 
   const toggle = () => setIsOpen(!isOpen);
 
   if (!userData) {
-    NavItemsForUser = () => (
+    NavItemsForSpecificUser = () => (
       <>
         <NavItem>
           <NavLink className="nav-link" to="/login" exact>
@@ -39,28 +46,49 @@ export const Navbar = () => {
   }
 
   if (userData && userData.role === "user") {
-    console.log(userData);
-    NavItemsForUser = () => (
-      <>
-        <NavItem>
-          <NavLink className="nav-link" to="/login" exact>
-            {IconStore("faSignInAlt")} Account user
-          </NavLink>
-        </NavItem>
-      </>
+    NavItemsForSpecificUser = () => (
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav caret>
+          {IconStore("faUser")} Account{" "}
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem onClick={() => history.push("/managereviews")}>
+            Manage Reviews
+          </DropdownItem>
+          <DropdownItem onClick={() => history.push("/manage-account")}>
+            Manage Account
+          </DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem to="/reviews">
+            {IconStore("faSignOutAlt")} Logout
+          </DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
     );
   }
 
   if (userData && userData.role === "publisher") {
-    console.log(userData);
-    NavItemsForUser = () => (
-      <>
-        <NavItem>
-          <NavLink className="nav-link" to="/login" exact>
-            {IconStore("faSignInAlt")} Account publisher
-          </NavLink>
-        </NavItem>
-      </>
+    NavItemsForSpecificUser = () => (
+      <UncontrolledDropdown nav inNavbar>
+        <DropdownToggle nav caret>
+          {IconStore("faUser")} Account{" "}
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem onClick={() => history.push("/manage-bootcamp")}>
+            Manage Bootcamps
+          </DropdownItem>
+          <DropdownItem onClick={() => history.push("/manage-reviews")}>
+            Manage Reviews
+          </DropdownItem>
+          <DropdownItem onClick={() => history.push("/manage-account")}>
+            Manage Account
+          </DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem to="/reviews">
+            {IconStore("faSignOutAlt")} Logout
+          </DropdownItem>
+        </DropdownMenu>
+      </UncontrolledDropdown>
     );
   }
 
@@ -75,9 +103,7 @@ export const Navbar = () => {
 
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <Switch>
-              <Route children={NavItemsForUser} />
-            </Switch>
+            <NavItemsForSpecificUser />
 
             <NavItem className="d-none d-md-block">
               <RSNavLink className="nav-link">|</RSNavLink>

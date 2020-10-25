@@ -10,6 +10,8 @@ import {
   faSignInAlt,
   faLaptopCode,
   faChevronLeft,
+  faUser,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 const icons = {
@@ -22,6 +24,8 @@ const icons = {
   faSignInAlt,
   faLaptopCode,
   faChevronLeft,
+  faUser,
+  faSignOutAlt
 };
 
 export const IconStore = (icon, className = "") => {

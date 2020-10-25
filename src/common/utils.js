@@ -19,8 +19,14 @@ export const isFloat = (value) =>
 export const isEmpty = (value) =>
   Object.keys(value).length === 0 && value.constructor === Object;
 
-export const getLoggedInUserData = () => {
-  const sessionToken = localStorage.getItem("sessionToken");
+export const getLoggedInUserData = (token = "") => {
+  let sessionToken;
+
+  if (!token) {
+    sessionToken = localStorage.getItem("sessionToken");
+  } else {
+    sessionToken = token;
+  }
 
   if (!sessionToken) return null;
 

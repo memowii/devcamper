@@ -14,10 +14,13 @@ import {
   Button,
   Spinner,
 } from "reactstrap";
+import { useDispatch } from "react-redux";
 
 import { BASE_API_URL } from "../../common/costants";
 import { schemaResolver, defaultValues } from "./registerFormConfs";
+import { userAdded } from "../user/userSlice";
 
+// REVIEW: Should be in another file?
 const DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION = 3000;
 const DELAY_TIME_WHEN_FAILED_REGISTRATION = 4000;
 const EMAIL_IN_USE_ERROR = "emailInUseError";
@@ -38,12 +41,14 @@ export const RegisterForm = () => {
   });
   const { isSubmitted } = formState;
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const registerUser = async (userData) => {
     const { name, email, password, role } = userData;
     const data = await post("/register", { name, email, password, role });
 
     if (response.ok) {
+      // REVIEW: Check if the calls to toast can be reduced in lines.
       toast.success("The user was registered successfully.", {
         autoClose: DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION,
         position: toast.POSITION.TOP_RIGHT,
@@ -52,6 +57,7 @@ export const RegisterForm = () => {
       setTimeout(() => {
         const { token } = data;
         writeStorage("sessionToken", token);
+        dispatch(userAdded(token));
         // Redirect user to the /bootcamps page.
         history.push("/bootcamps");
       }, DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION);
@@ -179,6 +185,7 @@ export const RegisterForm = () => {
       </p>
 
       <FormGroup>
+      {/* // REVIEW: Should be in another file? */}
         <Button type="submit" color="primary" block>
           {!loading ? (
             "Submit"
@@ -193,6 +200,7 @@ export const RegisterForm = () => {
   );
 };
 
+// REVIEW: Should be in another file?
 const getErrorType = (response) => {
   const { error } = response;
 
