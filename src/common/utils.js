@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { useLocalStorage } from "@rehooks/local-storage";
 
 export const capitalizeWord = (word) => word[0].toUpperCase() + word.substr(1);
 
