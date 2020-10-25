@@ -9,13 +9,60 @@ import {
   Container,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import { IconStore } from "../common/components/IconStore";
+import { getLoggedInUserData } from "../common/utils";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const userData = getLoggedInUserData();
+  let NavItemsForUser;
 
   const toggle = () => setIsOpen(!isOpen);
+
+  if (!userData) {
+    NavItemsForUser = () => (
+      <>
+        <NavItem>
+          <NavLink className="nav-link" to="/login" exact>
+            {IconStore("faSignInAlt")} Login
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink className="nav-link" to="/register">
+            {IconStore("faUserPlus")} Register
+          </NavLink>
+        </NavItem>
+      </>
+    );
+  }
+
+  if (userData && userData.role === "user") {
+    console.log(userData);
+    NavItemsForUser = () => (
+      <>
+        <NavItem>
+          <NavLink className="nav-link" to="/login" exact>
+            {IconStore("faSignInAlt")} Account user
+          </NavLink>
+        </NavItem>
+      </>
+    );
+  }
+
+  if (userData && userData.role === "publisher") {
+    console.log(userData);
+    NavItemsForUser = () => (
+      <>
+        <NavItem>
+          <NavLink className="nav-link" to="/login" exact>
+            {IconStore("faSignInAlt")} Account publisher
+          </NavLink>
+        </NavItem>
+      </>
+    );
+  }
 
   return (
     <RSNavbar expand="md" dark color="primary">
@@ -28,16 +75,10 @@ export const Navbar = () => {
 
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink className="nav-link" to="/login" exact>
-                {IconStore("faSignInAlt")} Login
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="nav-link" to="/register">
-                {IconStore("faUserPlus")} Register
-              </NavLink>
-            </NavItem>
+            <Switch>
+              <Route children={NavItemsForUser} />
+            </Switch>
+
             <NavItem className="d-none d-md-block">
               <RSNavLink className="nav-link">|</RSNavLink>
             </NavItem>
