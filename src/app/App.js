@@ -11,6 +11,7 @@ import { ReviewsPage } from "../features/reviews/ReviewsPage";
 import { AddReviewPage } from "../features/reviews/AddReviewPage";
 import { RegisterPage } from "../features/register/RegisterPage";
 import { LoginUser } from "../features/user/LoginUser";
+import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
 // import { ResetPassword } from "../pages/ResetPassword";
 // import { ManageBootcamp } from "../pages/ManageBootcamp";
 // import { AddBootcamp } from "../pages/AddBootcamp";
@@ -39,9 +40,11 @@ export const App = () => (
             exact
             path="/bootcamp/:bootcampId/add-review"
             component={AddReviewPage}
+            allowedUserRole="user"
           />
           <Route exact path="/register" component={RegisterPage} />
           <Route exact path="/login" component={LoginUser} />
+          <Route exact path="/unauthorized" component={UnauthorizedUser} />
           {/* 
             <Route exact path="/reset-password" component={ResetPassword} />
             <Route exact path="/add-bootcamp" component={AddBootcamp} />

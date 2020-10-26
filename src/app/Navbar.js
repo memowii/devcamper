@@ -77,9 +77,6 @@ export const Navbar = () => {
           <DropdownItem onClick={() => history.push("/manage-bootcamp")}>
             Manage Bootcamps
           </DropdownItem>
-          <DropdownItem onClick={() => history.push("/manage-reviews")}>
-            Manage Reviews
-          </DropdownItem>
           <DropdownItem onClick={() => history.push("/manage-account")}>
             Manage Account
           </DropdownItem>
