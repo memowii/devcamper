@@ -6,13 +6,13 @@ const schema = yup.object().shape({
   email: yup.string().email().trim().required(),
   password: yup
     .string()
-    .min(3)
+    .min(6)
     .trim()
     .oneOf([yup.ref("password_conf"), null], "The passwords must match.")
     .required(),
   password_conf: yup
     .string()
-    .min(3)
+    .min(6)
     .trim()
     .oneOf([yup.ref("password"), null], "The passwords must match.")
     .required(),

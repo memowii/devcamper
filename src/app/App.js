@@ -10,7 +10,7 @@ import { BootcampPage } from "../features/bootcamp/BootcampPage";
 import { ReviewsPage } from "../features/reviews/ReviewsPage";
 import { AddReviewPage } from "../features/reviews/AddReviewPage";
 import { RegisterUserPage } from "../features/user/RegisterUserPage";
-import { LoginUser } from "../features/user/LoginUser";
+import { LoginUserPage } from "../features/user/LoginUserPage";
 import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
 // import { ResetPassword } from "../pages/ResetPassword";
 // import { ManageBootcamp } from "../pages/ManageBootcamp";
@@ -43,7 +43,7 @@ export const App = () => (
             allowedUserRole="user"
           />
           <Route exact path="/register" component={RegisterUserPage} />
-          <Route exact path="/login" component={LoginUser} />
+          <Route exact path="/login" component={LoginUserPage} />
           <Route exact path="/unauthorized" component={UnauthorizedUser} />
           {/* 
             <Route exact path="/reset-password" component={ResetPassword} />
