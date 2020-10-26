@@ -9,7 +9,7 @@ import { BootcampsPage } from "../features/bootcamps/BootcampsPage";
 import { BootcampPage } from "../features/bootcamp/BootcampPage";
 import { ReviewsPage } from "../features/reviews/ReviewsPage";
 import { AddReviewPage } from "../features/reviews/AddReviewPage";
-import { RegisterPage } from "../features/register/RegisterPage";
+import { RegisterUserPage } from "../features/user/RegisterUserPage";
 import { LoginUser } from "../features/user/LoginUser";
 import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
 // import { ResetPassword } from "../pages/ResetPassword";
@@ -42,7 +42,7 @@ export const App = () => (
             component={AddReviewPage}
             allowedUserRole="user"
           />
-          <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/register" component={RegisterUserPage} />
           <Route exact path="/login" component={LoginUser} />
           <Route exact path="/unauthorized" component={UnauthorizedUser} />
           {/* 

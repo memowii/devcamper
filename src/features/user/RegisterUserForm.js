@@ -17,8 +17,8 @@ import {
 import { useDispatch } from "react-redux";
 
 import { BASE_API_URL } from "../../common/costants";
-import { schemaResolver, defaultValues } from "./registerFormConfs";
-import { userAdded } from "../user/userSlice";
+import { schemaResolver, defaultValues } from "./registerUserFormConfs";
+import { userAdded } from "./userSlice";
 
 // REVIEW: Should be in another file?
 const DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION = 3000;
@@ -26,7 +26,7 @@ const DELAY_TIME_WHEN_FAILED_REGISTRATION = 4000;
 const EMAIL_IN_USE_ERROR = "emailInUseError";
 const PASSWORD_IS_SHORT_ERROR = "passwordIsShortError";
 
-export const RegisterForm = () => {
+export const RegisterUserForm = () => {
   const { post, response, loading } = useFetch(BASE_API_URL + "/auth");
   const {
     handleSubmit,

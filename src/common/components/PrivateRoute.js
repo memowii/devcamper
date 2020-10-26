@@ -24,7 +24,6 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
         />
       );
   } else if (allowedUserRole !== userData.role) {
-    console.log('ent 1');
     FinalComp = () => (
       <Redirect
         to={{
