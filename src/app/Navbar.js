@@ -24,12 +24,12 @@ export const Navbar = () => {
   const token = useSelector(selectUserToken);
   const userData = getLoggedInUserData(token);
   const history = useHistory();
-  let NavItemsForSpecificUser;
+  let OptionsForSpecificUser;
 
   const toggle = () => setIsOpen(!isOpen);
 
   if (!userData) {
-    NavItemsForSpecificUser = () => (
+    OptionsForSpecificUser = () => (
       <>
         <NavItem>
           <NavLink className="nav-link" to="/login" exact>
@@ -46,46 +46,28 @@ export const Navbar = () => {
   }
 
   if (userData && userData.role === "user") {
-    NavItemsForSpecificUser = () => (
-      <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret>
-          {IconStore("faUser")} Account{" "}
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem onClick={() => history.push("/managereviews")}>
-            Manage Reviews
-          </DropdownItem>
-          <DropdownItem onClick={() => history.push("/manage-account")}>
-            Manage Account
-          </DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem to="/reviews">
-            {IconStore("faSignOutAlt")} Logout
-          </DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown>
+    OptionsForSpecificUser = () => (
+      <Dropdown>
+        <DropdownItem onClick={() => history.push("/managereviews")}>
+          Manage Reviews
+        </DropdownItem>
+        <DropdownItem onClick={() => history.push("/manage-account")}>
+          Manage Account
+        </DropdownItem>
+      </Dropdown>
     );
   }
 
   if (userData && userData.role === "publisher") {
-    NavItemsForSpecificUser = () => (
-      <UncontrolledDropdown nav inNavbar>
-        <DropdownToggle nav caret>
-          {IconStore("faUser")} Account{" "}
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem onClick={() => history.push("/manage-bootcamp")}>
-            Manage Bootcamps
-          </DropdownItem>
-          <DropdownItem onClick={() => history.push("/manage-account")}>
-            Manage Account
-          </DropdownItem>
-          <DropdownItem divider />
-          <DropdownItem to="/reviews">
-            {IconStore("faSignOutAlt")} Logout
-          </DropdownItem>
-        </DropdownMenu>
-      </UncontrolledDropdown>
+    OptionsForSpecificUser = () => (
+      <Dropdown>
+        <DropdownItem onClick={() => history.push("/manage-bootcamp")}>
+          Manage Bootcamps
+        </DropdownItem>
+        <DropdownItem onClick={() => history.push("/manage-account")}>
+          Manage Account
+        </DropdownItem>
+      </Dropdown>
     );
   }
 
@@ -100,7 +82,7 @@ export const Navbar = () => {
 
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItemsForSpecificUser />
+            <OptionsForSpecificUser />
 
             <NavItem className="d-none d-md-block">
               <RSNavLink className="nav-link">|</RSNavLink>
@@ -116,3 +98,18 @@ export const Navbar = () => {
     </RSNavbar>
   );
 };
+
+const Dropdown = ({ children }) => (
+  <UncontrolledDropdown nav inNavbar>
+    <DropdownToggle nav caret>
+      {IconStore("faUser")} Account{" "}
+    </DropdownToggle>
+    <DropdownMenu>
+      {children}
+      <DropdownItem divider />
+      <DropdownItem to="/reviews">
+        {IconStore("faSignOutAlt")} Logout
+      </DropdownItem>
+    </DropdownMenu>
+  </UncontrolledDropdown>
+);
