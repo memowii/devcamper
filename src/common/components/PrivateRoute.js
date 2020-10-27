@@ -12,14 +12,14 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
   let FinalComp;
 
   if (!allowedUserRole) {
-    FinalComp = ({ location }) =>
+    FinalComp = (props) =>
       userData ? (
-        <Component />
+        <Component {...props} />
       ) : (
         <Redirect
           to={{
             pathname: "/login",
-            state: { from: location },
+            state: { from: props.location },
           }}
         />
       );
@@ -33,20 +33,8 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
       />
     );
   } else {
-    FinalComp = () => <Component />;
+    FinalComp = (props) => <Component {...props} />;
   }
 
-  return (
-    <Route
-      {...rest}
-      render={({ location }) => (
-        <FinalComp
-          location={
-            (!allowedUserRole && location) ||
-            (allowedUserRole !== userData.role && "")
-          }
-        />
-      )}
-    />
-  );
+  return <Route {...rest} render={(props) => <FinalComp {...props} />} />;
 };

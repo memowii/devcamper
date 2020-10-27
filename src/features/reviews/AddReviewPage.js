@@ -4,10 +4,15 @@ import { Form, FormGroup, Label, Input } from "reactstrap";
 import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
 import { BackButton } from "../../common/components/BackButton";
 
-export const AddReviewPage = () => {
+export const AddReviewPage = ({ match }) => {
+  const { bootcampId } = match.params;
+
   return (
     <InnerLayoutWithCard>
-      <BackButton to="/bootcamp" className="btn-link text-secondary">
+      <BackButton
+        to={`/bootcamp/${bootcampId}`}
+        className="btn-link text-secondary"
+      >
         Bootcamp Info
       </BackButton>
 
