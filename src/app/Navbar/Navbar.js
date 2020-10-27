@@ -11,7 +11,7 @@ import {
 import { NavLink } from "react-router-dom";
 
 import { IconStore } from "../../common/components/IconStore";
-import { OptionsForSpecificUser } from './OptionsForSpecificUser'
+import { OptionsForSpecificUser } from "./OptionsForSpecificUser";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

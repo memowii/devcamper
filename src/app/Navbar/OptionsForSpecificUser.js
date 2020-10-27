@@ -9,19 +9,35 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import useFetch from "use-http";
+import { useDispatch } from "react-redux";
+import { deleteFromStorage } from "@rehooks/local-storage";
 
 import { IconStore } from "../../common/components/IconStore";
 import { getLoggedInUserData } from "../../common/utils";
 import { selectUserToken } from "../../features/user/userSlice";
+import { BASE_API_URL } from "../../common/costants";
+import { userAdded } from "../../features/user/userSlice";
 
 export const OptionsForSpecificUser = () => {
-  const token = useSelector(selectUserToken);
-  const userData = getLoggedInUserData(token);
+  const { get, response } = useFetch(BASE_API_URL + "/auth");
+  const token = useSelector(selectUserToken),
+    userData = getLoggedInUserData(token),
+    dispatch = useDispatch(),
+    history = useHistory();
 
-  const logOut = () => {
-    // call api to logout
-    // clean token from storage
-    // clean token from store
+  const handleLogOut = async () => {
+    await get("/logout");
+
+    if (response.ok) {
+      deleteFromStorage("sessionToken");
+      dispatch(userAdded({ token: "" }));
+      history.push("/login");
+    } else {
+      deleteFromStorage("sessionToken");
+      dispatch(userAdded({ token: "" }));
+      history.push("/login");
+    }
   };
 
   if (!userData) {
@@ -43,7 +59,7 @@ export const OptionsForSpecificUser = () => {
 
   if (userData && userData.role === "user") {
     return (
-      <Dropdown>
+      <Dropdown onLogout={handleLogOut}>
         <DropdownItem path="/manage-reviews">Manage Reviews</DropdownItem>
       </Dropdown>
     );
@@ -51,19 +67,19 @@ export const OptionsForSpecificUser = () => {
 
   if (userData && userData.role === "publisher") {
     return (
-      <Dropdown>
+      <Dropdown onLogout={handleLogOut}>
         <DropdownItem path="/manage-bootcamp">Manage Bootcamps</DropdownItem>
       </Dropdown>
     );
   }
 };
 
-const Dropdown = ({ children }) => {
+const Dropdown = ({ children, onLogout }) => {
   const history = useHistory();
   const goTo = (path) => history.push(path);
   const { path } = children.props;
 
-  const ClonedDropdown = () =>
+  const ClonedDropdownItem = () =>
     cloneElement(children, { onClick: () => goTo(path) });
 
   return (
@@ -72,12 +88,12 @@ const Dropdown = ({ children }) => {
         {IconStore("faUser")} Account{" "}
       </DropdownToggle>
       <DropdownMenu>
-        <ClonedDropdown />
+        <ClonedDropdownItem />
         <DropdownItem onClick={() => goTo("/manage-account")}>
           Manage Account
         </DropdownItem>
         <DropdownItem divider />
-        <DropdownItem to="/reviews">
+        <DropdownItem onClick={onLogout}>
           {IconStore("faSignOutAlt")} Logout
         </DropdownItem>
       </DropdownMenu>
