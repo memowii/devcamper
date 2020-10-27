@@ -1,5 +1,4 @@
 import React, { cloneElement } from "react";
-// REVIEW: Check if NavLink should be a Link.
 import { useHistory, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
@@ -76,11 +75,14 @@ export const OptionsForSpecificUser = () => {
 
 const Dropdown = ({ children, onLogout }) => {
   const history = useHistory();
-  const goTo = (path) => history.push(path);
+  const goTo = (e, path) => {
+    e.preventDefault();
+    history.push(path);
+  };
   const { path } = children.props;
 
   const ClonedDropdownItem = () =>
-    cloneElement(children, { onClick: () => goTo(path) });
+    cloneElement(children, { onClick: (e) => goTo(e, path) });
 
   return (
     <UncontrolledDropdown nav inNavbar>
@@ -89,7 +91,11 @@ const Dropdown = ({ children, onLogout }) => {
       </DropdownToggle>
       <DropdownMenu>
         <ClonedDropdownItem />
-        <DropdownItem onClick={() => goTo("/manage-account")}>
+        <DropdownItem
+          tag="a"
+          href="/manage-account"
+          onClick={(e) => goTo(e, "/manage-account")}
+        >
           Manage Account
         </DropdownItem>
         <DropdownItem divider />
