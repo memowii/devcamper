@@ -1,5 +1,11 @@
 import jwt from "jsonwebtoken";
 
+import {
+  EMAIL_IN_USE_ERROR,
+  PASSWORD_IS_SHORT_ERROR,
+  INVALID_CREDENTIALS,
+} from "./costants";
+
 export const capitalizeWord = (word) => word[0].toUpperCase() + word.substr(1);
 
 export const formatCost = (cost) => {
@@ -36,4 +42,17 @@ export const getLoggedInUserData = (token = "") => {
   if (currentTime > exp) return null;
 
   return { id, role, exp };
+};
+
+export const getErrorType = (response) => {
+  const { error } = response;
+
+  if (error) {
+    if (error.includes("Duplicate field")) return EMAIL_IN_USE_ERROR;
+    if (error.includes("password") && error.includes("shorter"))
+      return PASSWORD_IS_SHORT_ERROR;
+    if (error.includes("Invalid credentials")) return INVALID_CREDENTIALS;
+  }
+
+  return null;
 };

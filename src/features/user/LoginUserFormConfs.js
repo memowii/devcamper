@@ -9,6 +9,6 @@ const schema = yup.object().shape({
 export const schemaResolver = yupResolver(schema);
 
 export const defaultValues = {
-  email: "",
-  password: "",
+  email: "memowii24@gmail.com",
+  password: "123456",
 };

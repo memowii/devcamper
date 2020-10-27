@@ -7,11 +7,6 @@ const initialState = {
   token: "",
 };
 
-// export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-//   const response = await client.get("/fakeApi/user");
-//   return response.user;
-// });
-
 const userSlice = createSlice({
   name: "user",
   initialState,

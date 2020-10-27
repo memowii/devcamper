@@ -11,20 +11,20 @@ import {
   Input,
   Card,
   FormFeedback,
-  Button,
-  Spinner,
 } from "reactstrap";
 import { useDispatch } from "react-redux";
 
-import { BASE_API_URL } from "../../common/costants";
+import {
+  BASE_API_URL,
+  DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION,
+  DELAY_TIME_WHEN_FAILED_REGISTRATION,
+  EMAIL_IN_USE_ERROR,
+  PASSWORD_IS_SHORT_ERROR,
+} from "../../common/costants";
 import { schemaResolver, defaultValues } from "./registerUserFormConfs";
 import { userAdded } from "./userSlice";
-
-// REVIEW: Should be in another file?
-const DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION = 3000;
-const DELAY_TIME_WHEN_FAILED_REGISTRATION = 4000;
-const EMAIL_IN_USE_ERROR = "emailInUseError";
-const PASSWORD_IS_SHORT_ERROR = "passwordIsShortError";
+import { getErrorType } from "../../common/utils";
+import { LoadingButton } from "../../common/components/LoadingButton";
 
 export const RegisterUserForm = () => {
   const { post, response, loading } = useFetch(BASE_API_URL + "/auth");
@@ -57,20 +57,22 @@ export const RegisterUserForm = () => {
       setTimeout(() => {
         const { token } = data;
         writeStorage("sessionToken", token);
-        dispatch(userAdded(token));
+        // The token is saved in the store because we need the Navbar component
+        // to update reactively.
+        dispatch(userAdded({ token }));
         // Redirect user to the /bootcamps page.
         history.push("/bootcamps");
       }, DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION);
     } else {
       if (getErrorType(data) === EMAIL_IN_USE_ERROR) {
-        setError("email", { type: "manula", message: "email is duplicated" });
+        setError("email", { type: "manual", message: "email is duplicated" });
       } else if (getErrorType(data) === PASSWORD_IS_SHORT_ERROR) {
         setError("password", {
-          type: "manula",
+          type: "manual",
           message: "password is too short",
         });
         setError("password_conf", {
-          type: "manula",
+          type: "manual",
           message: "password is too short",
         });
       } else {
@@ -80,6 +82,7 @@ export const RegisterUserForm = () => {
             autoClose: DELAY_TIME_WHEN_FAILED_REGISTRATION,
             position: toast.POSITION.TOP_RIGHT,
             closeButton: false,
+            toastId: "toastid",
           }
         );
         setTimeout(() => {
@@ -185,30 +188,8 @@ export const RegisterUserForm = () => {
       </p>
 
       <FormGroup>
-      {/* // REVIEW: Should be in another file? */}
-        <Button type="submit" color="primary" block>
-          {!loading ? (
-            "Submit"
-          ) : (
-            <>
-              <Spinner tag="span" size="sm" color="light" /> Registering user
-            </>
-          )}
-        </Button>
+        <LoadingButton loading={loading} loadingText="Registering user" />
       </FormGroup>
     </Form>
   );
-};
-
-// REVIEW: Should be in another file?
-const getErrorType = (response) => {
-  const { error } = response;
-
-  if (error) {
-    if (error.includes("Duplicate field")) return EMAIL_IN_USE_ERROR;
-    if (error.includes("password") && error.includes("shorter"))
-      return PASSWORD_IS_SHORT_ERROR;
-  }
-
-  return null;
 };
