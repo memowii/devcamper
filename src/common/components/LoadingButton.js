@@ -1,11 +1,16 @@
 import React from "react";
 import { Button, Spinner } from "reactstrap";
 
-export const LoadingButton = ({ loading, loadingText }) => {
+export const LoadingButton = ({
+  loading,
+  text = "Submit",
+  color = "primary",
+  loadingText,
+}) => {
   return (
-    <Button type="submit" color="primary" block>
+    <Button type="submit" color={color} block>
       {!loading ? (
-        "Submit"
+        text
       ) : (
         <>
           <Spinner tag="span" size="sm" color="light" /> {loadingText}

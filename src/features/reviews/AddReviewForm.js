@@ -11,6 +11,8 @@ import useFetch from "use-http";
 import { useForm } from "react-hook-form";
 
 import { schemaResolver, defaultValues } from "./addReviewFormConfs";
+import { BASE_API_URL } from "../../common/costants";
+import { LoadingButton } from "../../common/components/LoadingButton";
 
 export const AddReviewForm = () => {
   const {
@@ -24,6 +26,7 @@ export const AddReviewForm = () => {
     defaultValues,
     resolver: schemaResolver,
   });
+  const { post, response, loading } = useFetch(BASE_API_URL);
   const [rating, setRating] = useState(defaultValues.rating);
 
   const handleRatingChange = (e) => setRating(parseInt(e.target.value, 10));
@@ -78,9 +81,12 @@ export const AddReviewForm = () => {
       </FormGroup>
 
       <FormGroup>
-        <Button type="submit" color="dark" block>
-          Submit Review
-        </Button>
+        <LoadingButton
+          loading={loading}
+          text="Submit Review"
+          color="dark"
+          loadingText="Adding review"
+        />
       </FormGroup>
     </Form>
   );
