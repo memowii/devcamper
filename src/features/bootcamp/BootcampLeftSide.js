@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Alert } from "reactstrap";
 
 import { CourseCard } from "./CourseCard";
@@ -20,9 +20,9 @@ export const BootcampLeftSide = ({
     }
 
     return courses.map((course) => (
-      <React.Fragment key={course._id}>
+      <Fragment key={course._id}>
         <CourseCard {...course} />
-      </React.Fragment>
+      </Fragment>
     ));
   };
 

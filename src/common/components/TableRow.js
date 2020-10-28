@@ -1,17 +1,19 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IconStore } from "./IconStore";
 
-export const TableRow = ({ tdsContent }) => {
+export const TableRow = ({ _id, bootcamp, rating }) => {
   return (
     <tr>
-      {tdsContent.map((tdContent, idx) => (
-        <td key={idx}>{tdContent}</td>
-      ))}
+      <td>{bootcamp.name}</td>
+      <td>{rating}</td>
       <td>
-        <NavLink to="/add-course" className="btn btn-secondary mr-1">
+        <Link
+          to={`/bootcamp/${_id}/add-review`}
+          className="btn btn-secondary mr-1"
+        >
           {IconStore("faPencilAlt")}
-        </NavLink>
+        </Link>
         <button className="btn btn-danger">{IconStore("faTimes")}</button>
       </td>
     </tr>
