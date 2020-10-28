@@ -22,7 +22,7 @@ export const AddReviewPage = ({ match }) => {
 
       <p>You must have attended and graduated this bootcamp to review</p>
 
-      <AddReviewForm />
+      <AddReviewForm bootcampId={bootcampId} />
     </InnerLayoutWithCard>
   );
 };

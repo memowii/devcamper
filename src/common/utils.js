@@ -41,7 +41,7 @@ export const getLoggedInUserData = (token = "") => {
 
   if (currentTime > exp) return null;
 
-  return { id, role, exp };
+  return { id, role, exp, token: sessionToken };
 };
 
 export const getErrorType = (response) => {
@@ -49,8 +49,10 @@ export const getErrorType = (response) => {
 
   if (error) {
     if (error.includes("Duplicate field")) return EMAIL_IN_USE_ERROR;
+
     if (error.includes("password") && error.includes("shorter"))
       return PASSWORD_IS_SHORT_ERROR;
+
     if (error.includes("Invalid credentials")) return INVALID_CREDENTIALS;
   }
 

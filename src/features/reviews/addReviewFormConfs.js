@@ -11,7 +11,6 @@ export const schemaResolver = yupResolver(schema);
 
 export const defaultValues = {
   rating: 5,
-  title: "Title text yyy",
-  text:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, commodi ducimus non cum nulla totam dolorum quod id corrupti voluptatibus. Quas quos rerum culpa repellendus dolores aliquam quod, perspiciatis deserunt.",
+  title: "",
+  text: "",
 };
