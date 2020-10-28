@@ -24,27 +24,33 @@ export const AddReviewForm = () => {
     defaultValues,
     resolver: schemaResolver,
   });
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(defaultValues.rating);
 
   const handleRatingChange = (e) => setRating(parseInt(e.target.value, 10));
 
   const handleSubmitReview = (data) => console.log(data);
 
   return (
-    <Form onSubmit={handleSubmit(handleSubmitReview)}>
+    <Form
+      onSubmit={handleSubmit(handleSubmitReview, (error) => console.log(error))}
+    >
       <FormGroup>
         <Label for="rating">
           Rating: <span className="text-primary">{rating}</span>
         </Label>
         <Input
           type="range"
+          name="rating"
           className="custom-range"
           min="1"
           max="10"
           step="1"
           value={rating}
           onChange={handleRatingChange}
+          innerRef={register}
+          invalid={errors.rating ? true : false}
         />
+        <FormFeedback>{errors.rating?.message}</FormFeedback>
       </FormGroup>
 
       <FormGroup>
