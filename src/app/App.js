@@ -9,6 +9,7 @@ import { BootcampsPage } from "../features/bootcamps/BootcampsPage";
 import { BootcampPage } from "../features/bootcamp/BootcampPage";
 import { ReviewsPage } from "../features/reviews/ReviewsPage";
 import { AddReviewPage } from "../features/reviews/AddReviewPage";
+import { ManageReviewsPage } from "../features/reviews/ManageReviewsPage";
 import { RegisterUserPage } from "../features/user/RegisterUserPage";
 import { LoginUserPage } from "../features/user/LoginUserPage";
 import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
@@ -21,7 +22,6 @@ import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
 // import { UpdatePassword } from "../pages/UpdatePassword";
 // import { ManageBootcampNone } from "../pages/ManageBootcampNone";
 // import { ManageCoursesNone } from "../pages/ManageCoursesNone";
-// import { ManageReviews } from "../pages/ManageReviews";
 
 export const App = () => (
   <div className="App">
@@ -42,6 +42,12 @@ export const App = () => (
             component={AddReviewPage}
             allowedUserRole="user"
           />
+          <Route
+            exact
+            path="/manage-reviews"
+            component={ManageReviewsPage}
+            allowedUserRole="user"
+          />
           <Route exact path="/register" component={RegisterUserPage} />
           <Route exact path="/login" component={LoginUserPage} />
           <Route exact path="/unauthorized" component={UnauthorizedUser} />
@@ -53,7 +59,6 @@ export const App = () => (
             <Route exact path="/add-course" component={AddCourse} />
             <Route exact path="/manage-account" component={ManageAccount} />
             <Route exact path="/update-password" component={UpdatePassword} />
-            <Route exact path="/manage-reviews" component={ManageReviews} />
             <Route
               exact
               path="/manage-bootcamp-none"

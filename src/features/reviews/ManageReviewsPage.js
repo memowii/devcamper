@@ -1,10 +1,10 @@
 import React from "react";
 import { Table } from "reactstrap";
 
-import { TableRow } from "../components/TableRow";
-import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
+import { TableRow } from "../../common/components/TableRow";
+import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
 
-export const ManageReviews = () => {
+export const ManageReviewsPage = () => {
   return (
     <InnerLayoutWithCard>
       <h1 className="mb-4">Manage Reviews</h1>
