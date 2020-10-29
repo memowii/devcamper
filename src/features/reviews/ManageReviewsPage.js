@@ -49,7 +49,7 @@ export const ManageReviewsPage = () => {
 
   const deleteReview = async (reviewId) => {
     setIsDeleting(true);
-    await del(`/reviews/${reviewId + "x"}`);
+    await del(`/reviews/${reviewId}`);
 
     if (response.ok) {
       setReviews((reviews) =>
