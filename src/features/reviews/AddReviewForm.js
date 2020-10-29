@@ -3,6 +3,7 @@ import { Form, FormGroup, Label, Input, FormFeedback } from "reactstrap";
 import useFetch from "use-http";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { schemaResolver, defaultValues } from "./addReviewFormConfs";
 import {
@@ -13,7 +14,6 @@ import {
 import { LoadingButton } from "../../common/components/LoadingButton";
 import { getLoggedInUserData } from "../../common/utils";
 import { getErrorType } from "../../common/utils";
-import { toast } from "react-toastify";
 
 export const AddReviewForm = ({ bootcampId }) => {
   const { handleSubmit, register, errors } = useForm({
@@ -62,7 +62,7 @@ export const AddReviewForm = ({ bootcampId }) => {
 
   return (
     <Form
-      onSubmit={handleSubmit(handleSubmitReview, (error) => console.log(error))}
+      onSubmit={handleSubmit(handleSubmitReview)}
     >
       <FormGroup>
         <Label for="rating">
