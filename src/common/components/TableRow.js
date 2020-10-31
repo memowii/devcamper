@@ -11,12 +11,14 @@ export const TableRow = ({ _id, bootcamp, rating, toggleModal }) => {
       <td>{rating}</td>
       <td>
         <Link
-          to={`/bootcamp/${_id}/add-review`}
+          to={`/manage-reviews/${_id}/edit-review`}
           className="btn btn-secondary mr-1"
         >
           {IconStore("faPencilAlt")}
         </Link>
-        <Button color="danger" onClick={toggleModal}>{IconStore("faTimes")}</Button>
+        <Button color="danger" onClick={toggleModal}>
+          {IconStore("faTimes")}
+        </Button>
       </td>
     </tr>
   );

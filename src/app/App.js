@@ -10,6 +10,7 @@ import { BootcampPage } from "../features/bootcamp/BootcampPage";
 import { ReviewsPage } from "../features/reviews/ReviewsPage";
 import { AddReviewPage } from "../features/reviews/AddReviewPage";
 import { ManageReviewsPage } from "../features/reviews/ManageReviewsPage";
+import { EditReviewPage } from "../features/reviews/EditReviewPage";
 import { RegisterUserPage } from "../features/user/RegisterUserPage";
 import { LoginUserPage } from "../features/user/LoginUserPage";
 import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
@@ -46,6 +47,12 @@ export const App = () => (
             exact
             path="/manage-reviews"
             component={ManageReviewsPage}
+            allowedUserRole="user"
+          />
+          <Route
+            exact
+            path="/manage-reviews/:reviewId/edit-review"
+            component={EditReviewPage}
             allowedUserRole="user"
           />
           <Route exact path="/register" component={RegisterUserPage} />
