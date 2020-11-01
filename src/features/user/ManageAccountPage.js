@@ -1,10 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 
-import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
+import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
 
-export const ManageAccount = () => {
+export const ManageAccountPage = () => {
   return (
     <InnerLayoutWithCard>
       <h1 className="mb-2">Manage Account</h1>
@@ -41,12 +41,12 @@ export const ManageAccount = () => {
             </Col>
 
             <Col md="6">
-              <NavLink
+              <Link
                 to="/update-password"
                 className="btn btn-secondary btn-block"
               >
                 Update Password
-              </NavLink>
+              </Link>
             </Col>
           </Row>
         </FormGroup>
