@@ -15,37 +15,32 @@ import { LoadingButton } from "../../common/components/LoadingButton";
 import { getLoggedInUserData } from "../../common/utils";
 import { getErrorType } from "../../common/utils";
 
-export const EditReviewForm = ({ match }) => {
-  const { reviewId } = match.params;
-  const [review, setReview] = useState({});
-  const { handleSubmit, register, errors } = useForm({
+export const EditReviewForm = ({ rating, title, text }) => {
+  const { handleSubmit, register, errors, reset } = useForm({
     defaultValues,
     resolver: schemaResolver,
   });
   const { token } = getLoggedInUserData();
-  const { get, post, response, loading } = useFetch(BASE_API_URL, {
+  const { post, response, loading } = useFetch(BASE_API_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  const [rating, setRating] = useState(defaultValues.rating);
+  const [formRating, setFormRating] = useState(rating || "");
   const history = useHistory();
 
-  const handleRatingChange = (e) => setRating(parseInt(e.target.value, 10));
+  const handleRatingChange = (e) => setFormRating(parseInt(e.target.value, 10));
 
-  const fetchReview = useCallback(async () => {
-    const fetchedReview = await get(`/reviews/${reviewId}`);
-
-    if (response.ok) setReview(fetchedReview.data);
-  }, [reviewId, get, response]);
-
-  useEffect(() => {});
+  useEffect(() => {
+    reset({ rating, title, text });
+    setFormRating(rating);
+  }, [rating, title, text]);
 
   return (
     <Form onSubmit={handleSubmit()}>
       <FormGroup>
         <Label for="rating">
-          Rating: <span className="text-primary">{rating}</span>
+          Rating: <span className="text-primary">{formRating}</span>
         </Label>
         <Input
           type="range"
@@ -54,7 +49,6 @@ export const EditReviewForm = ({ match }) => {
           min="1"
           max="10"
           step="1"
-          value={rating}
           onChange={handleRatingChange}
           innerRef={register}
           invalid={errors.rating ? true : false}
@@ -91,7 +85,7 @@ export const EditReviewForm = ({ match }) => {
           loading={loading}
           text="Submit Review"
           color="dark"
-          loadingText="Adding review"
+          loadingText="Updating review"
         />
       </FormGroup>
     </Form>

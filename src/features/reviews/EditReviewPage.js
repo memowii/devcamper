@@ -4,21 +4,21 @@ import { toast } from "react-toastify";
 
 import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
 import { BackButton } from "../../common/components/BackButton";
-import { AddReviewForm } from "./AddReviewForm";
+import { EditReviewForm } from "./EditReviewForm";
 import {
   BASE_API_URL,
   DELAY_TIME_WHEN_FAILED_REGISTRATION,
 } from "../../common/costants";
 
-export const AddReviewPage = ({ match }) => {
-  const { bootcampId } = match.params;
-  const [bootcamp, setBootcamp] = useState({});
+export const EditReviewPage = ({ match }) => {
+  const { reviewId } = match.params;
+  const [review, setReview] = useState({});
   const { get, response } = useFetch(BASE_API_URL);
 
-  const fetchBootcamp = useCallback(async () => {
-    const fetchedBootcamp = await get(`/bootcamps/${bootcampId}`);
+  const fetchReview = useCallback(async () => {
+    const fetchedReview = await get(`/reviews/${reviewId}`);
 
-    if (response.ok) setBootcamp(fetchedBootcamp.data);
+    if (response.ok) setReview(fetchedReview.data);
     else {
       toast.error("Right now our servers are down. Please try again later.", {
         autoClose: DELAY_TIME_WHEN_FAILED_REGISTRATION,
@@ -27,28 +27,23 @@ export const AddReviewPage = ({ match }) => {
         toastId: "toastid",
       });
     }
-  }, [get, bootcampId, response.ok]);
+  }, [get, response.ok, reviewId]);
 
   useEffect(() => {
-    fetchBootcamp();
-  }, [fetchBootcamp]);
+    fetchReview();
+  }, [fetchReview]);
 
   return (
     <InnerLayoutWithCard>
-      <BackButton
-        to={`/bootcamp/${bootcampId}`}
-        className="btn-link text-secondary"
-      >
-        Bootcamp Info
+      <BackButton to={`/manage-reviews`} className="btn-link text-secondary">
+        Reviews management
       </BackButton>
 
-      <h1 className="mb-2">{bootcamp.name} Bootcamp</h1>
+      <h1 className="mb-2">{review.bootcamp?.name} Bootcamp</h1>
 
-      <h3 className="text-primary mb-4">Write a review</h3>
+      <h3 className="text-primary mb-4">Edit your review</h3>
 
-      <p>You must have attended and graduated this bootcamp to review it.</p>
-
-      <AddReviewForm bootcampId={bootcampId} />
+      <EditReviewForm {...review} />
     </InnerLayoutWithCard>
   );
 };
