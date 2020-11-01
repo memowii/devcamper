@@ -12,7 +12,7 @@ import {
   INVALID_CREDENTIALS,
   DELAY_TIME_WHEN_FAILED_REGISTRATION,
 } from "../../common/costants";
-import { schemaResolver, defaultValues } from "./LoginUserFormConfs";
+import { schemaResolver, defaultValues } from "./loginUserFormConfs";
 import { userAdded } from "./userSlice";
 import { getErrorType } from "../../common/utils";
 import { LoadingButton } from "../../common/components/LoadingButton";
