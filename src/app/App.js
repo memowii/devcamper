@@ -10,7 +10,8 @@ import { BootcampPage } from "../features/bootcamp/BootcampPage";
 import { ReviewsPage } from "../features/reviews/ReviewsPage";
 import { AddReviewPage } from "../features/reviews/AddReviewPage";
 import { ManageReviewsPage } from "../features/reviews/ManageReviewsPage";
-import { ManageAccountPage } from "../features/user/ManageAccountPage";
+import { ManageUserAccountPage } from "../features/user/ManageUserAccountPage";
+import { UpdateUserPasswordPage } from "../features/user/UpdateUserPasswordPage";
 import { EditReviewPage } from "../features/reviews/EditReviewPage";
 import { RegisterUserPage } from "../features/user/RegisterUserPage";
 import { LoginUserPage } from "../features/user/LoginUserPage";
@@ -20,7 +21,6 @@ import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
 // import { AddBootcamp } from "../pages/AddBootcamp";
 // import { ManageCourses } from "../pages/ManageCourses";
 // import { AddCourse } from "../pages/AddCourse";
-// import { UpdatePassword } from "../pages/UpdatePassword";
 // import { ManageBootcampNone } from "../pages/ManageBootcampNone";
 // import { ManageCoursesNone } from "../pages/ManageCoursesNone";
 
@@ -61,7 +61,12 @@ export const App = () => (
           <PrivateRoute
             exact
             path="/manage-account"
-            component={ManageAccountPage}
+            component={ManageUserAccountPage}
+          />
+          <PrivateRoute
+            exact
+            path="/update-password"
+            component={UpdateUserPasswordPage}
           />
           {/* 
             <Route exact path="/reset-password" component={ResetPassword} />
@@ -69,7 +74,6 @@ export const App = () => (
             <Route exact path="/manage-courses" component={ManageCourses} />
             <Route exact path="/manage-bootcamp" component={ManageBootcamp} />
             <Route exact path="/add-course" component={AddCourse} />
-            <Route exact path="/update-password" component={UpdatePassword} />
             <Route
               exact
               path="/manage-bootcamp-none"

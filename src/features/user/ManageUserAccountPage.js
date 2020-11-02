@@ -24,7 +24,7 @@ import { getErrorType, getLoggedInUserData } from "../../common/utils";
 import { schemaResolver, defaultValues } from "./manageAccountFormConfs";
 import { LoadingButton } from "../../common/components/LoadingButton";
 
-export const ManageAccountPage = () => {
+export const ManageUserAccountPage = () => {
   const { token } = getLoggedInUserData();
   const { get, put, response, loading } = useFetch(BASE_API_URL + "/auth", {
     headers: {

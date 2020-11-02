@@ -1,9 +1,9 @@
 import React from "react";
 import { Form, FormGroup, Input, Label } from "reactstrap";
 
-import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
+import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
 
-export const UpdatePassword = () => {
+export const UpdateUserPasswordPage = () => {
   return (
     <InnerLayoutWithCard>
       <h1 className="mb-2">Update Password</h1>
