@@ -21,7 +21,7 @@ import {
   EMAIL_IN_USE_ERROR,
 } from "../../common/costants";
 import { getErrorType, getLoggedInUserData } from "../../common/utils";
-import { schemaResolver, defaultValues } from "./manageAccountFormConfs";
+import { schemaResolver, defaultValues } from "./manageUserAccountFormConfs";
 import { LoadingButton } from "../../common/components/LoadingButton";
 
 export const ManageUserAccountPage = () => {
