@@ -16,19 +16,22 @@ import { toast } from "react-toastify";
 import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
 import {
   BASE_API_URL,
+  DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION,
   DELAY_TIME_WHEN_FAILED_REGISTRATION,
+  EMAIL_IN_USE_ERROR,
 } from "../../common/costants";
-import { getLoggedInUserData } from "../../common/utils";
+import { getErrorType, getLoggedInUserData } from "../../common/utils";
 import { schemaResolver, defaultValues } from "./manageAccountFormConfs";
+import { LoadingButton } from "../../common/components/LoadingButton";
 
 export const ManageAccountPage = () => {
   const { token } = getLoggedInUserData();
-  const { get, response, loading } = useFetch(BASE_API_URL + "/auth", {
+  const { get, put, response, loading } = useFetch(BASE_API_URL + "/auth", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  const { handleSubmit, register, errors, formState, reset } = useForm({
+  const { handleSubmit, register, errors, reset, setError } = useForm({
     defaultValues,
     resolver: schemaResolver,
   });
@@ -40,23 +43,47 @@ export const ManageAccountPage = () => {
       const { name, email } = fetchedUser.data;
       reset({ name, email });
     } else {
-      toast.error(
-        "An error ocurred while updating this review. Please try again later.",
-        {
-          autoClose: DELAY_TIME_WHEN_FAILED_REGISTRATION,
-          position: toast.POSITION.TOP_RIGHT,
-          closeButton: false,
-          toastId: "toastid",
-        }
-      );
+      toast.error("Right now our servers are down. Please try again later.", {
+        autoClose: DELAY_TIME_WHEN_SUCCESSFUL_REGISTRATION,
+        position: toast.POSITION.TOP_RIGHT,
+        closeButton: false,
+        toastId: "toastid-1",
+      });
     }
-  }, [get, response.ok]);
+  }, [get, response, reset]);
 
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
 
-  const handleSubtmiUser = (data) => console.log(data);
+  const handleSubtmiUser = async (userData) => {
+    const resData = await put("/updatedetails", userData);
+
+    if (response.ok) {
+      toast.success("Your account has been updated.", {
+        autoClose: DELAY_TIME_WHEN_FAILED_REGISTRATION,
+        position: toast.POSITION.TOP_RIGHT,
+        closeButton: false,
+        toastId: "toastid",
+      });
+      const { name, email } = resData.data;
+      reset({ name, email });
+    } else {
+      if (getErrorType(resData) === EMAIL_IN_USE_ERROR) {
+        setError("email", { type: "manual", message: "email is duplicated" });
+      } else {
+        toast.error(
+          "An error occurred in your update, please try again later.",
+          {
+            autoClose: DELAY_TIME_WHEN_FAILED_REGISTRATION,
+            position: toast.POSITION.TOP_RIGHT,
+            closeButton: false,
+            toastId: "toastid",
+          }
+        );
+      }
+    }
+  };
 
   return (
     <InnerLayoutWithCard>
@@ -90,10 +117,10 @@ export const ManageAccountPage = () => {
         <FormGroup>
           <Row>
             <Col md="6">
-              <Input
-                type="submit"
-                defaultValue="Save"
-                className="btn btn-success btn-block"
+              <LoadingButton
+                loading={loading}
+                loadingText="Updating your account."
+                color="success"
               />
             </Col>
 
