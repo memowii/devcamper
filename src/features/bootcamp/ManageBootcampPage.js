@@ -25,7 +25,7 @@ export const ManageBootcampPage = () => {
         setBootcamp({});
       }
     }
-  }, [userId, response.ok]);
+  }, [userId, response.ok, get]);
 
   useEffect(() => {
     fetchBootcamp();

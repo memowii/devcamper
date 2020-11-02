@@ -9,9 +9,27 @@ import {
   Input,
   Label,
   Row,
+  FormFeedback,
 } from "reactstrap";
+import { useForm } from "react-hook-form";
 
-export const AddBootcamp = () => {
+import { schemaResolver, defaultValues } from "./addBootcampFormConfs";
+
+export const AddBootcampPage = () => {
+  const {
+    handleSubmit,
+    register,
+    errors,
+    // trigger,
+    // formState,
+    // setError,
+  } = useForm({
+    defaultValues,
+    resolver: schemaResolver,
+  });
+
+  const handleSubmitBootcamp = (data) => console.log(data);
+
   return (
     <section className="mt-5">
       <Container>
@@ -21,7 +39,7 @@ export const AddBootcamp = () => {
           Important: You must be affiliated with a bootcamp to add to DevCamper
         </p>
 
-        <Form>
+        <Form onSubmit={handleSubmit(handleSubmitBootcamp)}>
           <Row>
             <Col md="6">
               <Card color="white" className="py-2 px-4">
@@ -38,8 +56,10 @@ export const AddBootcamp = () => {
                       type="text"
                       name="name"
                       placeholder="Bootcamp Name"
-                      required
+                      innerRef={register}
+                      invalid={errors.name ? true : false}
                     />
+                    <FormFeedback>{errors.name?.message}</FormFeedback>
                   </FormGroup>
 
                   <FormGroup>
@@ -48,8 +68,10 @@ export const AddBootcamp = () => {
                       type="text"
                       name="address"
                       placeholder="Full Address"
-                      required
+                      innerRef={register}
+                      invalid={errors.address ? true : false}
                     />
+                    <FormFeedback>{errors.address?.message}</FormFeedback>
                     <small className="form-text text-muted">
                       Street, city, state, etc
                     </small>
@@ -57,7 +79,14 @@ export const AddBootcamp = () => {
 
                   <FormGroup>
                     <Label>Phone Number</Label>
-                    <Input type="text" name="phone" placeholder="Phone" />
+                    <Input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone"
+                      innerRef={register}
+                      invalid={errors.phone ? true : false}
+                    />
+                    <FormFeedback>{errors.phone?.message}</FormFeedback>
                   </FormGroup>
 
                   <FormGroup>
@@ -66,7 +95,10 @@ export const AddBootcamp = () => {
                       type="text"
                       name="email"
                       placeholder="Contact Email"
+                      innerRef={register}
+                      invalid={errors.email ? true : false}
                     />
+                    <FormFeedback>{errors.email?.message}</FormFeedback>
                   </FormGroup>
 
                   <FormGroup>
@@ -75,7 +107,10 @@ export const AddBootcamp = () => {
                       type="text"
                       name="website"
                       placeholder="Website URL"
+                      innerRef={register}
+                      invalid={errors.website ? true : false}
                     />
+                    <FormFeedback>{errors.website?.message}</FormFeedback>
                   </FormGroup>
                 </CardBody>
               </Card>
@@ -93,7 +128,10 @@ export const AddBootcamp = () => {
                       rows="5"
                       placeholder="Description (What you offer, etc)"
                       maxLength="500"
+                      innerRef={register}
+                      invalid={errors.description ? true : false}
                     />
+                    <FormFeedback>{errors.description?.message}</FormFeedback>
                     <small className="form-text text-muted">
                       No more than 500 characters
                     </small>
@@ -105,7 +143,8 @@ export const AddBootcamp = () => {
                       name="careers"
                       className="custom-select"
                       multiple
-                      defaultValue={["Select all that apply"]}
+                      innerRef={register}
+                      invalid={errors.careers ? true : false}
                     >
                       <option>Select all that apply</option>
                       <option value="Web Development">Web Development</option>
@@ -117,25 +156,46 @@ export const AddBootcamp = () => {
                       <option value="Business">Business</option>
                       <option value="Other">Other</option>
                     </Input>
+                    <FormFeedback>{errors.careers?.message}</FormFeedback>
                   </FormGroup>
                   <FormGroup check>
                     <Label check>
-                      <Input type="checkbox" /> Housing
+                      <Input
+                        type="checkbox"
+                        name="housing"
+                        innerRef={register}
+                      />{" "}
+                      Housing
                     </Label>
                   </FormGroup>
                   <FormGroup check>
                     <Label check>
-                      <Input type="checkbox" /> Job Assistance
+                      <Input
+                        type="checkbox"
+                        name="jobAssistance"
+                        innerRef={register}
+                      />{" "}
+                      Job Assistance
                     </Label>
                   </FormGroup>
                   <FormGroup check>
                     <Label check>
-                      <Input type="checkbox" /> Job Guarantee
+                      <Input
+                        type="checkbox"
+                        name="jobGuarantee"
+                        innerRef={register}
+                      />{" "}
+                      Job Guarantee
                     </Label>
                   </FormGroup>
                   <FormGroup check>
                     <Label check>
-                      <Input type="checkbox" /> Accepts GI Bill
+                      <Input
+                        type="checkbox"
+                        name="acceptGi"
+                        innerRef={register}
+                      />{" "}
+                      Accepts GI Bill
                     </Label>
                   </FormGroup>
 
@@ -154,15 +214,6 @@ export const AddBootcamp = () => {
               value="Submit Bootcamp"
               className="btn btn-success btn-block my-4"
             />
-
-            {/* 
-              Should this button be implemented?
-              <a
-                href="manage-bootcamp.html"
-                class="btn btn-danger btn-block mb-4"
-              >
-                Cancel
-              </a> */}
           </FormGroup>
         </Form>
       </Container>
