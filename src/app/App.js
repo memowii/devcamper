@@ -16,8 +16,8 @@ import { EditReviewPage } from "../features/reviews/EditReviewPage";
 import { RegisterUserPage } from "../features/user/RegisterUserPage";
 import { LoginUserPage } from "../features/user/LoginUserPage";
 import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
+import { ManageBootcampPage } from "../features/bootcamp/ManageBootcampPage";
 // import { ResetPassword } from "../pages/ResetPassword";
-// import { ManageBootcamp } from "../pages/ManageBootcamp";
 // import { AddBootcamp } from "../pages/AddBootcamp";
 // import { ManageCourses } from "../pages/ManageCourses";
 // import { AddCourse } from "../pages/AddCourse";
@@ -68,11 +68,16 @@ export const App = () => (
             path="/update-password"
             component={UpdateUserPasswordPage}
           />
+          <PrivateRoute
+            exact
+            path="/manage-bootcamp"
+            role="publisher"
+            component={ManageBootcampPage}
+          />
           {/* 
             <Route exact path="/reset-password" component={ResetPassword} />
             <Route exact path="/add-bootcamp" component={AddBootcamp} />
             <Route exact path="/manage-courses" component={ManageCourses} />
-            <Route exact path="/manage-bootcamp" component={ManageBootcamp} />
             <Route exact path="/add-course" component={AddCourse} />
             <Route
               exact

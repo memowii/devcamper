@@ -8,7 +8,7 @@ import {
   Badge,
   CardText,
 } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { RatingBadge } from "../../common/components/RatingBadge";
 
@@ -29,12 +29,12 @@ export const BootcampCard = ({
         <Col md="8">
           <CardBody>
             <CardTitle tag="h5">
-              <NavLink to={`/bootcamp/${id}`}>
+              <Link to={`/bootcamp/${id}`}>
                 {name}
                 <RatingBadge className="float-right">
                   {averageRating}
                 </RatingBadge>
-              </NavLink>
+              </Link>
             </CardTitle>
             <Badge color="dark" className="mb-2">
               {place}

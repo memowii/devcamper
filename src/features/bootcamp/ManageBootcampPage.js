@@ -1,23 +1,22 @@
 import React from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import img1 from "../assets/images/image_1.jpg";
-import { BootcampCard } from "../components/BootcampCard";
+import img1 from "../../assets/images/image_1.jpg";
+import { BootcampCard } from "../bootcamps/BootcampCard";
+import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
 
-import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
-
-export const ManageBootcamp = () => {
+export const ManageBootcampPage = () => {
   return (
     <InnerLayoutWithCard>
       <h1 className="mb-4">Manage Bootcamp</h1>
 
       <BootcampCard
-        img={img1}
-        title="Devworks Bootcamp"
-        rating="8.8"
+        photo={img1}
+        name="Devworks Bootcamp"
+        averageRating="8.8"
         place="Boston, MA"
-        courses="Web Development, UI/UX, Mobile Development"
+        careers="Web Development, UI/UX, Mobile Development"
       />
 
       <Form className="mb-4">
@@ -36,17 +35,17 @@ export const ManageBootcamp = () => {
         />
       </Form>
 
-      <NavLink to="/add-bootcamp" className="btn btn-primary btn-block">
+      <Link to="/add-bootcamp" className="btn btn-primary btn-block">
         Edit Bootcamp Details
-      </NavLink>
+      </Link>
 
-      <NavLink to="/manage-courses" className="btn btn-secondary btn-block">
+      <Link to="/manage-courses" className="btn btn-secondary btn-block">
         Manage Courses
-      </NavLink>
+      </Link>
 
-      <NavLink to="/manage-courses" className="btn btn-danger btn-block">
+      <Link to="/manage-courses" className="btn btn-danger btn-block">
         Remove Bootcamp
-      </NavLink>
+      </Link>
 
       <p className="text-muted mt-5">
         * You can only add one bootcamp per account.
