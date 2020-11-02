@@ -20,7 +20,7 @@ const schema = yup.object().shape({
 export const schemaResolver = yupResolver(schema);
 
 export const defaultValues = {
-  currentPassword: "123456",
-  newPassword: "1234567",
-  newPasswordConf: "1234568",
+  currentPassword: "",
+  newPassword: "",
+  newPasswordConf: "",
 };

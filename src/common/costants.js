@@ -5,3 +5,4 @@ export const DELAY_TIME_WHEN_FAILED_REGISTRATION = 4000;
 export const EMAIL_IN_USE_ERROR = "emailInUseError";
 export const PASSWORD_IS_SHORT_ERROR = "passwordIsShortError";
 export const INVALID_CREDENTIALS = "invalidCredentials";
+export const PASSWORD_IS_INCORRECT = "passwordIsIncorrect";
