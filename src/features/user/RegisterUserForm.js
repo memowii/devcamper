@@ -93,7 +93,7 @@ export const RegisterUserForm = () => {
     }
   };
 
-  const validatePasswordsAfterSubtting = () => {
+  const validatePasswordsAfterSubmitting = () => {
     if (!isSubmitted) return;
     trigger(["password", "password_conf"]);
   };
@@ -132,7 +132,7 @@ export const RegisterUserForm = () => {
           placeholder="Enter password"
           innerRef={register}
           invalid={errors.password ? true : false}
-          onChange={validatePasswordsAfterSubtting}
+          onChange={validatePasswordsAfterSubmitting}
         />
         <FormFeedback>{errors.password?.message}</FormFeedback>
       </FormGroup>
@@ -145,7 +145,7 @@ export const RegisterUserForm = () => {
           placeholder="Confirm password"
           innerRef={register}
           invalid={errors.password_conf ? true : false}
-          onChange={validatePasswordsAfterSubtting}
+          onChange={validatePasswordsAfterSubmitting}
         />
         <FormFeedback>{errors.password_conf?.message}</FormFeedback>
       </FormGroup>
