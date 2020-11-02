@@ -19,7 +19,11 @@ export const ManageBootcampPage = () => {
     const fetchedBootcamp = await get(`/bootcamps?user=${userId}`);
 
     if (response.ok) {
-      if (fetchedBootcamp.count > 0) setBootcamp(fetchedBootcamp.data[0]);
+      if (fetchedBootcamp.count > 0) {
+        setBootcamp(fetchedBootcamp.data[0]);
+      } else {
+        setBootcamp({});
+      }
     }
   }, [userId, response.ok]);
 
