@@ -12,23 +12,104 @@ import {
   FormFeedback,
 } from "reactstrap";
 import { useForm } from "react-hook-form";
+import useFetch from "use-http";
+import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
-import { schemaResolver, defaultValues } from "./addBootcampFormConfs";
+import {
+  schemaResolver,
+  defaultValues,
+  DELAY_TIME_WHEN_BOOTCAMP_IS_CREATED,
+  DELAY_TIME_WHEN_BOOTCAMP_NAME_IS_USED,
+} from "./addBootcampFormConfs";
+import {
+  BASE_API_URL,
+  EMAIL_IN_USE_ERROR,
+  PUBLISHER_HAS_CREATED_ANOTHER_BOOTCAMP_ERROR,
+  DELAY_TIME_WHEN_FAILED_REGISTRATION,
+} from "../../common/costants";
+import { getLoggedInUserData, getErrorType } from "../../common/utils";
+import { LoadingButton } from "../../common/components/LoadingButton";
 
 export const AddBootcampPage = () => {
-  const {
-    handleSubmit,
-    register,
-    errors,
-    // trigger,
-    // formState,
-    // setError,
-  } = useForm({
+  const { token } = getLoggedInUserData();
+  const { handleSubmit, register, errors, setError } = useForm({
     defaultValues,
     resolver: schemaResolver,
   });
+  const { post, response, loading } = useFetch(BASE_API_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const history = useHistory();
 
-  const handleSubmitBootcamp = (data) => console.log(data);
+  const handleSubmitBootcamp = async (bootcampData) => {
+    const resData = await post("/bootcamps", bootcampData);
+
+    if (response.ok) {
+      toast("Your bootcamp has been created.", {
+        autoClose: DELAY_TIME_WHEN_BOOTCAMP_IS_CREATED,
+        pauseOnHover: false,
+        closeButton: false,
+        toastId: "toastId-1",
+        type: toast.TYPE.SUCCESS,
+        onClose: () => {
+          toast.dismiss();
+          history.push("/manage-bootcamp");
+          history.go(0);
+        },
+      });
+    } else {
+      // REVIEW: Check for the variable EMAIL_IN_USE_ERROR.
+      if (getErrorType(resData) === EMAIL_IN_USE_ERROR) {
+        toast(
+          "A bootcamp with that name already exists. Please use a different name.",
+          {
+            autoClose: DELAY_TIME_WHEN_BOOTCAMP_NAME_IS_USED,
+            pauseOnHover: false,
+            closeButton: false,
+            closeOnClick: false,
+            toastId: "toastId-3",
+            type: toast.TYPE.ERROR,
+            onClose: () => toast.dismiss(),
+          }
+        );
+        setError("name", {
+          type: "manual",
+          message: "Please use a different name.",
+        });
+      } else if (
+        getErrorType(resData) === PUBLISHER_HAS_CREATED_ANOTHER_BOOTCAMP_ERROR
+      ) {
+        toast(
+          "You have already published a bootcamp. You can only add one bootcamp per account",
+          {
+            autoClose: 4500,
+            pauseOnHover: false,
+            closeButton: false,
+            closeOnClick: false,
+            toastId: "toastId-3",
+            type: toast.TYPE.ERROR,
+            onClose: () => toast.dismiss(),
+          }
+        );
+      } else {
+        toast(
+          "An error occurred in your bootcamp publication. Please try again later.",
+          {
+            autoClose: DELAY_TIME_WHEN_FAILED_REGISTRATION,
+            pauseOnHover: false,
+            closeButton: false,
+            closeOnClick: false,
+            toastId: "toastId-4",
+            type: toast.TYPE.ERROR,
+            onClose: () => toast.dismiss(),
+          }
+        );
+      }
+    }
+  };
 
   return (
     <section className="mt-5">
@@ -209,10 +290,12 @@ export const AddBootcampPage = () => {
           </Row>
 
           <FormGroup>
-            <Input
-              type="submit"
-              value="Submit Bootcamp"
-              className="btn btn-success btn-block my-4"
+            <LoadingButton
+              text="Submit Bootcamp"
+              color="success"
+              className="my-4"
+              loadingText="Creating bootcamp ..."
+              loading={loading}
             />
           </FormGroup>
         </Form>

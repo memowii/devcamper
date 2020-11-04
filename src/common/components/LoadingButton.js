@@ -6,9 +6,10 @@ export const LoadingButton = ({
   text = "Submit",
   color = "primary",
   loadingText,
+  className = "",
 }) => {
   return (
-    <Button type="submit" color={color} block>
+    <Button type="submit" color={color} className={className} block disabled={loading ? true : false}>
       {!loading ? (
         text
       ) : (

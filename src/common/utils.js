@@ -5,6 +5,7 @@ import {
   PASSWORD_IS_SHORT_ERROR,
   INVALID_CREDENTIALS,
   PASSWORD_IS_INCORRECT,
+  PUBLISHER_HAS_CREATED_ANOTHER_BOOTCAMP_ERROR,
 } from "./costants";
 
 export const capitalizeWord = (word) => word[0].toUpperCase() + word.substr(1);
@@ -57,6 +58,9 @@ export const getErrorType = (response) => {
     if (error.includes("Invalid credentials")) return INVALID_CREDENTIALS;
 
     if (error.includes("Password is incorrect")) return PASSWORD_IS_INCORRECT;
+
+    if (error.includes("already published a bootcamp"))
+      return PUBLISHER_HAS_CREATED_ANOTHER_BOOTCAMP_ERROR;
   }
 
   return null;

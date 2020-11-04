@@ -96,7 +96,7 @@ export const App = () => (
             /> */}
         </Switch>
       </Layout>
-      <ToastContainer />
     </BrowserRouter>
+    <ToastContainer />
   </div>
 );
