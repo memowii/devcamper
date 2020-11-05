@@ -42,5 +42,5 @@ export const defaultValues = {
   acceptGi: false,
 };
 
-export const DELAY_TIME_WHEN_BOOTCAMP_IS_CREATED = 2750;
+export const DELAY_TIME_WHEN_BOOTCAMP_IS_CREATED = 2300;
 export const DELAY_TIME_WHEN_BOOTCAMP_NAME_IS_USED = 4000;

@@ -47,7 +47,7 @@ export const ManageBootcampPage = () => {
     if (isEmpty(bootcamp)) {
       return <NoBootcamp />;
     } else {
-      return <ThereIsBootcamp />;
+      return <ThereIsBootcamp {...bootcamp} />;
     }
   };
 
@@ -68,7 +68,7 @@ export const ManageBootcampPage = () => {
   );
 };
 
-const ThereIsBootcamp = () => {
+const ThereIsBootcamp = ({ id }) => {
   return (
     <>
       <BootcampCard
@@ -95,7 +95,10 @@ const ThereIsBootcamp = () => {
         />
       </Form>
 
-      <Link to="/add-bootcamp" className="btn btn-primary btn-block">
+      <Link
+        to={`/manage-bootcamp/${id}/edit-bootcamp`}
+        className="btn btn-primary btn-block"
+      >
         Edit Bootcamp Details
       </Link>
 

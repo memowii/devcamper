@@ -18,10 +18,10 @@ import { LoginUserPage } from "../features/user/LoginUserPage";
 import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
 import { ManageBootcampPage } from "../features/bootcamp/ManageBootcampPage";
 import { AddBootcampPage } from "../features/bootcamp/AddBootcampPage";
+import { EditBootcampPage } from "../features/bootcamp/EditBootcampPage";
 // import { ResetPassword } from "../pages/ResetPassword";
 // import { ManageCourses } from "../pages/ManageCourses";
 // import { AddCourse } from "../pages/AddCourse";
-// import { ManageBootcampNone } from "../pages/ManageBootcampNone";
 // import { ManageCoursesNone } from "../pages/ManageCoursesNone";
 
 export const App = () => (
@@ -79,6 +79,12 @@ export const App = () => (
             path="/add-bootcamp"
             role="publisher"
             component={AddBootcampPage}
+          />
+          <PrivateRoute
+            exact
+            path="/manage-bootcamp/:bootcampId/edit-bootcamp"
+            role="publisher"
+            component={EditBootcampPage}
           />
           {/*
             <Route exact path="/reset-password" component={ResetPassword} />
