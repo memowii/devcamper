@@ -20,8 +20,8 @@ import { ManageBootcampPage } from "../features/bootcamp/ManageBootcampPage";
 import { AddBootcampPage } from "../features/bootcamp/AddBootcampPage";
 import { EditBootcampPage } from "../features/bootcamp/EditBootcampPage";
 import { ManageCoursesPage } from "../features/courses/ManageCoursesPage";
+import { AddCoursePage } from "../features/courses/AddCoursePage";
 // import { ResetPassword } from "../pages/ResetPassword";
-// import { AddCourse } from "../pages/AddCourse";
 
 export const App = () => (
   <div className="App">
@@ -91,20 +91,13 @@ export const App = () => (
             role="publisher"
             component={ManageCoursesPage}
           />
-          {/*
-            <Route exact path="/reset-password" component={ResetPassword} />
-            <Route exact path="/manage-courses" component={ManageCourses} />
-            <Route exact path="/add-course" component={AddCourse} />
-            <Route
-              exact
-              path="/manage-bootcamp-none"
-              component={ManageBootcampNone}
-            />
-            <Route
-              exact
-              path="/manage-courses-none"
-              component={ManageCoursesNone}
-            /> */}
+          <PrivateRoute
+            exact
+            path="/add-course"
+            role="publisher"
+            component={AddCoursePage}
+          />
+          {/* <Route exact path="/reset-password" component={ResetPassword} /> */}
         </Switch>
       </Layout>
     </BrowserRouter>
