@@ -240,7 +240,7 @@ export const AddBootcampPage = () => {
                     <FormFeedback>{errors.careers?.message}</FormFeedback>
                   </FormGroup>
                   <FormGroup check>
-                    <Label check>
+                    <Label check for="housing">
                       <Input
                         type="checkbox"
                         name="housing"
@@ -250,7 +250,7 @@ export const AddBootcampPage = () => {
                     </Label>
                   </FormGroup>
                   <FormGroup check>
-                    <Label check>
+                    <Label check for="jobAssistance">
                       <Input
                         type="checkbox"
                         name="jobAssistance"
@@ -260,7 +260,7 @@ export const AddBootcampPage = () => {
                     </Label>
                   </FormGroup>
                   <FormGroup check>
-                    <Label check>
+                    <Label check for="jobGuarantee">
                       <Input
                         type="checkbox"
                         name="jobGuarantee"
@@ -270,7 +270,7 @@ export const AddBootcampPage = () => {
                     </Label>
                   </FormGroup>
                   <FormGroup check>
-                    <Label check>
+                    <Label check for="acceptGi">
                       <Input
                         type="checkbox"
                         name="acceptGi"
