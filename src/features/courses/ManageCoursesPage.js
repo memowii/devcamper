@@ -2,15 +2,15 @@ import React from "react";
 import { Table } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
-import { BootcampCard } from "../components/BootcampCard";
-import { TableRow } from "../components/TableRow";
+import { BootcampCard } from "../bootcamps/BootcampCard";
+import { TableRow } from "../../common/components/TableRow";
 
-import { InnerLayoutWithCard } from "../components/InnerLayoutWithCard";
-import { BackButton } from "../components/BackButton";
+import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
+import { BackButton } from "../../common/components/BackButton";
 
-import img1 from "../assets/images/image_1.jpg";
+import img1 from "../../assets/images/image_1.jpg";
 
-export const ManageCourses = () => {
+export const ManageCoursesPage = () => {
   return (
     <InnerLayoutWithCard>
       <BackButton to="/bootcamp" className="btn-link text-secondary">

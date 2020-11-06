@@ -19,10 +19,9 @@ import { UnauthorizedUser } from "../features/user/UnauthorizedUser";
 import { ManageBootcampPage } from "../features/bootcamp/ManageBootcampPage";
 import { AddBootcampPage } from "../features/bootcamp/AddBootcampPage";
 import { EditBootcampPage } from "../features/bootcamp/EditBootcampPage";
+import { ManageCoursesPage } from "../features/courses/ManageCoursesPage";
 // import { ResetPassword } from "../pages/ResetPassword";
-// import { ManageCourses } from "../pages/ManageCourses";
 // import { AddCourse } from "../pages/AddCourse";
-// import { ManageCoursesNone } from "../pages/ManageCoursesNone";
 
 export const App = () => (
   <div className="App">
@@ -85,6 +84,12 @@ export const App = () => (
             path="/manage-bootcamp/:bootcampId/edit-bootcamp"
             role="publisher"
             component={EditBootcampPage}
+          />
+          <PrivateRoute
+            exact
+            path="/manage-courses"
+            role="publisher"
+            component={ManageCoursesPage}
           />
           {/*
             <Route exact path="/reset-password" component={ResetPassword} />
