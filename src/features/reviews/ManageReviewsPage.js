@@ -99,7 +99,9 @@ export const ManageReviewsPage = () => {
             {reviews.map((review) => (
               <Fragment key={review._id}>
                 <TableRow
-                  {...review}
+                  name={review.bootcamp.name}
+                  rating={review.rating}
+                  to={`/manage-reviews/${review._id}/edit-review`}
                   toggleModal={() => toggleModal(review._id)}
                 />
               </Fragment>

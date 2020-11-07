@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { Table, Spinner } from "reactstrap";
 import { Link } from "react-router-dom";
 import useFetch from "use-http";
@@ -81,15 +81,22 @@ export const ManageCoursesPage = () => {
   );
 };
 
-const ThereIsBootcamp = ({ id }) => {
+const ThereIsBootcamp = ({
+  id,
+  name,
+  averageRating,
+  place,
+  careers,
+  courses,
+}) => {
   return (
     <>
       <BootcampCard
         photo={img1}
-        name="Devworks Bootcamp"
-        raverageRatingating="4.9"
-        place="Boston, MA"
-        careers="Web Development, UI/UX, Mobile Development"
+        name={name}
+        averageRating={averageRating}
+        place={place}
+        careers={careers}
       />
 
       <Link
@@ -107,8 +114,15 @@ const ThereIsBootcamp = ({ id }) => {
           </tr>
         </thead>
         <tbody>
-          {/* <TableRow tdsContent={["Front End Web Development"]} /> */}
-          {/* <TableRow tdsContent={["Full Stack Web Development"]} /> */}
+          {courses.length > 0 &&
+            courses.map((course) => (
+              <Fragment key={course._id}>
+                <TableRow
+                  name={course.title}
+                  to={`/manage-reviews/${course._id}/edit-review`}
+                />
+              </Fragment>
+            ))}
         </tbody>
       </Table>
     </>

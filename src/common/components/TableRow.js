@@ -4,16 +4,13 @@ import { Button } from "reactstrap";
 
 import { IconStore } from "./IconStore";
 
-export const TableRow = ({ _id, bootcamp, rating, toggleModal }) => {
+export const TableRow = ({ name, rating, to, toggleModal }) => {
   return (
     <tr>
-      <td>{bootcamp.name}</td>
-      <td>{rating}</td>
+      <td>{name}</td>
+      {rating && <td>{rating}</td>}
       <td>
-        <Link
-          to={`/manage-reviews/${_id}/edit-review`}
-          className="btn btn-secondary mr-1"
-        >
+        <Link to={to} className="btn btn-secondary mr-1">
           {IconStore("faPencilAlt")}
         </Link>
         <Button color="danger" onClick={toggleModal}>
