@@ -27,7 +27,7 @@ export const AddCoursePage = ({ match }) => {
   const history = useHistory();
 
   const handleSubmitCourse = async (courseData) => {
-    await post(`/bootcamps/${bootcampId}/coursesx`, courseData);
+    await post(`/bootcamps/${bootcampId}/courses`, courseData);
 
     if (response.ok) {
       toast("Your course has been created.", {

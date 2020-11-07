@@ -23,11 +23,10 @@ const schema = yup.object().shape({
 export const schemaResolver = yupResolver(schema);
 
 export const defaultValues = {
-  title: "FULL TIME - BOOTCAMP",
-  weeks: "11",
-  tuition: "5000",
-  minimumSkill: "beginner",
-  description:
-    "You will take a journey from being a novice to being a 'world class beginner' through an intensive full time route. You will become comfortable with frontend and backend coding, along with the tools, technologies and methodologies needed to navigate through to the next stage in your career.",
-  scholarshipAvailable: true,
+  title: "",
+  weeks: "",
+  tuition: "",
+  minimumSkill: "",
+  description: "",
+  scholarshipAvailable: false,
 };

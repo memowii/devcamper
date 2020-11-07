@@ -62,7 +62,7 @@ export const ManageCoursesPage = () => {
     }
 
     if (bootcamp.courses?.length > 0) {
-      return <ThereIsBootcamp />;
+      return <ThereIsBootcamp {...bootcamp} />;
     } else {
       return <NoBootcamp {...bootcamp} />;
     }
@@ -81,7 +81,7 @@ export const ManageCoursesPage = () => {
   );
 };
 
-const ThereIsBootcamp = () => {
+const ThereIsBootcamp = ({ id }) => {
   return (
     <>
       <BootcampCard
@@ -92,7 +92,10 @@ const ThereIsBootcamp = () => {
         careers="Web Development, UI/UX, Mobile Development"
       />
 
-      <Link to="/add-course" className="btn btn-primary btn-block mb-4">
+      <Link
+        to={`/manage-courses/${id}/add-course`}
+        className="btn btn-primary btn-block mb-4"
+      >
         Add Bootcamp Course
       </Link>
 
