@@ -64,7 +64,7 @@ export const ManageCoursesPage = () => {
     if (bootcamp.courses?.length > 0) {
       return <ThereIsBootcamp />;
     } else {
-      return <NoBootcamp />;
+      return <NoBootcamp {...bootcamp} />;
     }
   };
 
@@ -112,12 +112,15 @@ const ThereIsBootcamp = () => {
   );
 };
 
-const NoBootcamp = () => {
+const NoBootcamp = ({ id }) => {
   return (
     <>
       <p className="lead">You have not yet added any courses.</p>
 
-      <Link to="/add-course" className="btn btn-primary btn-block">
+      <Link
+        to={`/manage-courses/${id}/add-course`}
+        className="btn btn-primary btn-block"
+      >
         Add Your first course
       </Link>
     </>

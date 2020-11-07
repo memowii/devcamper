@@ -93,7 +93,7 @@ export const App = () => (
           />
           <PrivateRoute
             exact
-            path="/add-course"
+            path="/manage-courses/:bootcampId/add-course"
             role="publisher"
             component={AddCoursePage}
           />

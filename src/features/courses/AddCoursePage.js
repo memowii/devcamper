@@ -1,26 +1,65 @@
 import React from "react";
 import { Label, Input, Form, FormGroup, FormFeedback } from "reactstrap";
 import { useForm } from "react-hook-form";
+import useFetch from "use-http";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 import { InnerLayoutWithCard } from "../../common/components/InnerLayoutWithCard";
 import { BackButton } from "../../common/components/BackButton";
 import { schemaResolver, defaultValues } from "./addCourseFormConfs";
+import { getLoggedInUserData } from "../../common/utils";
+import { BASE_API_URL } from "../../common/costants";
+import { LoadingButton } from "../../common/components/LoadingButton";
 
-export const AddCoursePage = () => {
-  const {
-    handleSubmit,
-    register,
-    errors,
-    trigger,
-    formState,
-    setError,
-  } = useForm({
+export const AddCoursePage = ({ match }) => {
+  const { token } = getLoggedInUserData();
+  const { bootcampId } = match.params;
+  const { handleSubmit, register, errors } = useForm({
     defaultValues,
     resolver: schemaResolver,
   });
+  const { post, response, loading } = useFetch(BASE_API_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const history = useHistory();
 
-  const handleSubmitCourse = (data) => console.log(data);
+  const handleSubmitCourse = async (courseData) => {
+    await post(`/bootcamps/${bootcampId}/coursesx`, courseData);
+
+    if (response.ok) {
+      toast("Your course has been created.", {
+        autoClose: 3000,
+        pauseOnHover: false,
+        closeButton: false,
+        toastId: "toastId-1",
+        type: toast.TYPE.SUCCESS,
+        onClose: () => {
+          toast.dismiss();
+          history.push("/manage-courses");
+          history.go(0);
+        },
+      });
+    } else {
+      toast(
+        "An error occurred while registering your course. Please try again later.",
+        {
+          autoClose: 5000,
+          pauseOnHover: false,
+          closeButton: false,
+          toastId: "toastId-2",
+          type: toast.TYPE.ERROR,
+          onClose: () => {
+            toast.dismiss();
+            history.push("/manage-courses");
+            history.go(0);
+          },
+        }
+      );
+    }
+  };
 
   return (
     <InnerLayoutWithCard>
@@ -116,10 +155,11 @@ export const AddCoursePage = () => {
         </FormGroup>
 
         <FormGroup className="mt-4">
-          <Input
-            type="submit"
-            value="Add Course"
-            className="btn btn-dark btn-block"
+          <LoadingButton
+            text="Add Course"
+            color="dark"
+            loading={loading}
+            loadingText="Adding course..."
           />
         </FormGroup>
       </Form>
