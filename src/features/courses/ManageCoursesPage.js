@@ -1,6 +1,14 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
-import { Table, Spinner } from "reactstrap";
-import { Link } from "react-router-dom";
+import {
+  Table,
+  Spinner,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+} from "reactstrap";
+import { Link, useHistory } from "react-router-dom";
 import useFetch from "use-http";
 import { toast } from "react-toastify";
 
@@ -17,9 +25,17 @@ import {
 import { Fatal } from "../../common/components/Fatal";
 
 export const ManageCoursesPage = () => {
-  const { id: userId } = getLoggedInUserData();
-  const { get, response, error, loading } = useFetch(BASE_API_URL);
+  const { id: userId, token } = getLoggedInUserData();
+  const { get, del, response, error, loading } = useFetch(BASE_API_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   const [bootcamp, setBootcamp] = useState({});
+  const [modal, setModal] = useState(false);
+  const [courseId, setCourseId] = useState();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const history = useHistory();
 
   const fetchBootcamp = useCallback(async () => {
     const fetchedBootcamp = await get(`/bootcamps?user=${userId}`);
@@ -34,7 +50,7 @@ export const ManageCoursesPage = () => {
           pauseOnHover: false,
           closeButton: false,
           closeOnClick: false,
-          toastId: "toastId-4",
+          toastId: "toastId-1",
           type: toast.TYPE.ERROR,
           onClose: () => toast.dismiss(),
         }
@@ -46,8 +62,8 @@ export const ManageCoursesPage = () => {
     fetchBootcamp();
   }, [fetchBootcamp]);
 
-  const putBootcampOptions = () => {
-    if (loading) {
+  const putCoursesOptions = () => {
+    if (loading && !isDeleting) {
       return (
         <div className="d-flex justify-content-center mt-5 mb-4">
           <Spinner color="primary" />
@@ -55,16 +71,54 @@ export const ManageCoursesPage = () => {
       );
     }
 
-    if (error) {
+    if (error && !isDeleting) {
       return (
         <Fatal message="An error ocurred while fetching your bootcamp. Please try again later." />
       );
     }
 
     if (bootcamp.courses?.length > 0) {
-      return <ThereIsBootcamp {...bootcamp} />;
+      return <CoursesOptions {...bootcamp} toggleModal={toggleModal} />;
     } else {
-      return <NoBootcamp {...bootcamp} />;
+      return <NoCoursesOptions {...bootcamp} />;
+    }
+  };
+
+  const toggleModal = (courseId) => {
+    setModal(!modal);
+    setCourseId(courseId);
+  };
+
+  const deleteCourse = async () => {
+    setIsDeleting(true);
+    await del(`/courses/${courseId}`);
+
+    if (response.ok) {
+      toast("The course has been deleted.", {
+        autoClose: 3000,
+        pauseOnHover: false,
+        closeButton: false,
+        closeOnClick: false,
+        toastId: "toastId-2",
+        type: toast.TYPE.SUCCESS,
+        onClose: () => {
+          toast.dismiss();
+          history.go(0);
+        },
+      });
+    } else {
+      toast(
+        "An error occurred while deleting the course. Please try again later.",
+        {
+          autoClose: DELAY_TIME_WHEN_FAILED_REGISTRATION,
+          pauseOnHover: false,
+          closeButton: false,
+          closeOnClick: false,
+          toastId: "toastId-3",
+          type: toast.TYPE.ERROR,
+          onClose: () => toast.dismiss(),
+        }
+      );
     }
   };
 
@@ -76,18 +130,53 @@ export const ManageCoursesPage = () => {
 
       <h1 className="mb-4">Manage Courses</h1>
 
-      {putBootcampOptions()}
+      {putCoursesOptions()}
+
+      <Modal isOpen={modal} toggle={toggleModal} size="sm">
+        <ModalHeader toggle={toggleModal}>Remove course</ModalHeader>
+        <ModalBody>Are you sure you want to remove this course?</ModalBody>
+        <ModalFooter>
+          <Button
+            color="danger"
+            onClick={() => {
+              deleteCourse();
+              toggleModal(null);
+            }}
+          >
+            Yes
+          </Button>{" "}
+          <Button color="secondary" onClick={() => toggleModal()}>
+            Cancel
+          </Button>
+        </ModalFooter>
+      </Modal>
     </InnerLayoutWithCard>
   );
 };
 
-const ThereIsBootcamp = ({
+const NoCoursesOptions = ({ id }) => {
+  return (
+    <>
+      <p className="lead">You have not yet added any courses.</p>
+
+      <Link
+        to={`/manage-courses/${id}/add-course`}
+        className="btn btn-primary btn-block"
+      >
+        Add Your first course
+      </Link>
+    </>
+  );
+};
+
+const CoursesOptions = ({
   id,
   name,
   averageRating,
   place,
   careers,
   courses,
+  toggleModal,
 }) => {
   return (
     <>
@@ -120,26 +209,12 @@ const ThereIsBootcamp = ({
                 <TableRow
                   name={course.title}
                   to={`/manage-courses/${course._id}/edit-course`}
+                  toggleModal={() => toggleModal(course._id)}
                 />
               </Fragment>
             ))}
         </tbody>
       </Table>
-    </>
-  );
-};
-
-const NoBootcamp = ({ id }) => {
-  return (
-    <>
-      <p className="lead">You have not yet added any courses.</p>
-
-      <Link
-        to={`/manage-courses/${id}/add-course`}
-        className="btn btn-primary btn-block"
-      >
-        Add Your first course
-      </Link>
     </>
   );
 };
