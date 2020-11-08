@@ -181,6 +181,7 @@ const CoursesOptions = ({
   return (
     <>
       <BootcampCard
+        id={id}
         photo={img1}
         name={name}
         averageRating={averageRating}
