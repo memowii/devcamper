@@ -119,7 +119,7 @@ const ThereIsBootcamp = ({
               <Fragment key={course._id}>
                 <TableRow
                   name={course.title}
-                  to={`/manage-reviews/${course._id}/edit-review`}
+                  to={`/manage-courses/${course._id}/edit-course`}
                 />
               </Fragment>
             ))}

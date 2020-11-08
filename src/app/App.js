@@ -21,6 +21,7 @@ import { AddBootcampPage } from "../features/bootcamp/AddBootcampPage";
 import { EditBootcampPage } from "../features/bootcamp/EditBootcampPage";
 import { ManageCoursesPage } from "../features/courses/ManageCoursesPage";
 import { AddCoursePage } from "../features/courses/AddCoursePage";
+import { EditCoursePage } from "../features/courses/EditCoursePage";
 // import { ResetPassword } from "../pages/ResetPassword";
 
 export const App = () => (
@@ -96,6 +97,12 @@ export const App = () => (
             path="/manage-courses/:bootcampId/add-course"
             role="publisher"
             component={AddCoursePage}
+          />
+          <PrivateRoute
+            exact
+            path="/manage-courses/:bootcampId/edit-course"
+            role="publisher"
+            component={EditCoursePage}
           />
           {/* <Route exact path="/reset-password" component={ResetPassword} /> */}
         </Switch>
