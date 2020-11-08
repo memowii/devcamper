@@ -100,7 +100,7 @@ export const App = () => (
           />
           <PrivateRoute
             exact
-            path="/manage-courses/:bootcampId/edit-course"
+            path="/manage-courses/:courseId/edit-course"
             role="publisher"
             component={EditCoursePage}
           />
