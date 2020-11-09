@@ -32,7 +32,7 @@ export const EditCoursePage = ({ match }) => {
     if (response.ok) {
       reset(fetchedCourse.data);
     }
-  }, [get, courseId, response]);
+  }, [get, courseId, response, reset]);
 
   useEffect(() => {
     fetchCourse();

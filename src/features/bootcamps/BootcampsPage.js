@@ -35,12 +35,16 @@ export const BootcampsPage = () => {
     return <BootcampList bootcamps={bootcamps} />;
   };
 
+  const handleFilterBootcamps = (filterData) => {
+    
+  };
+
   return (
     <section className="my-5">
       <Container>
         <Row>
           <Col md="4">
-            <BootcampsSidebar />
+            <BootcampsSidebar onFilterBootcamps={handleFilterBootcamps} />
           </Col>
 
           <Col md="8">
