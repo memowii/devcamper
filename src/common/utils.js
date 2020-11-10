@@ -65,3 +65,15 @@ export const getErrorType = (response) => {
 
   return null;
 };
+
+export const getQueryString = (query) => {
+  if (isEmpty(query)) return "";
+
+  const params = Object.keys(query)
+    .map(
+      (key) => `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`
+    )
+    .join("&");
+
+  return `?${params}`;
+};

@@ -10,6 +10,7 @@ export const BootcampList = ({ bootcamps = [] }) => {
         id={bootcamp.id}
         photo={image1}
         name={bootcamp.name}
+        averageCost={bootcamp.averageCost}
         averageRating={bootcamp.averageRating}
         place={`${bootcamp.location.city}, ${bootcamp.location.state}`}
         careers={bootcamp.careers.join(", ")}

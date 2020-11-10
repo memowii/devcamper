@@ -12,6 +12,8 @@ const schema = yup.object().shape({
 export const schemaResolver = yupResolver(schema);
 
 export const defaultValues = {
-  rating: ratingDefaultValue,
-  budget: budgetDefaultValue,
+  // rating: ratingDefaultValue,
+  rating: 8,
+  // budget: budgetDefaultValue,
+  budget: 8000,
 };

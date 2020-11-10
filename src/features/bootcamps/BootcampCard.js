@@ -11,11 +11,13 @@ import {
 import { Link } from "react-router-dom";
 
 import { RatingBadge } from "../../common/components/RatingBadge";
+import { formatCost } from "../../common/utils";
 
 export const BootcampCard = ({
   id,
   photo,
   name,
+  averageCost,
   averageRating,
   place,
   careers,
@@ -40,6 +42,9 @@ export const BootcampCard = ({
               {place}
             </Badge>
             <CardText>{careers}</CardText>
+            <CardText className="BootcampCard__cost">
+              {averageCost && formatCost(averageCost)}
+            </CardText>
           </CardBody>
         </Col>
       </Row>
