@@ -47,7 +47,10 @@ export const BootcampsPage = () => {
   };
 
   const handleFilterBootcamps = (filterData) => {
-    const { rating, budget } = filterData;
+    let { rating, budget } = filterData;
+    rating = rating === "any" ? "" : rating;
+    budget = budget === "any" ? "" : budget;
+
     let filteredBootcamps = initialBootcamps.slice();
 
     if (rating) {

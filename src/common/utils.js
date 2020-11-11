@@ -69,11 +69,21 @@ export const getErrorType = (response) => {
 export const getQueryString = (query) => {
   if (isEmpty(query)) return "";
 
-  const params = Object.keys(query)
-    .map(
-      (key) => `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`
-    )
-    .join("&");
+  const params = Object.keys(query).map((key) => {
+    if (query[key]) {
+      return `${encodeURIComponent(key)}=${encodeURIComponent(query[key])}`;
+    } else {
+      return "";
+    }
+  });
 
-  return `?${params}`;
+  const compactedParams = params.filter((e) => !!e);
+
+  if (compactedParams.length > 0) {
+    return compactedParams.length > 1
+      ? `?${compactedParams.join("&")}`
+      : `?${compactedParams}`;
+  } else {
+    return "";
+  }
 };

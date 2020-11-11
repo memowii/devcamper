@@ -1,19 +1,27 @@
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-const ratingDefaultValue = "any";
-const budgetDefaultValue = "any";
+const defaulFiltertValue = "any";
 
-const schema = yup.object().shape({
-  rating: yup.string().notOneOf([ratingDefaultValue]).required(),
-  budget: yup.string().notOneOf([budgetDefaultValue]).required(),
-});
+const schema = yup.object().shape(
+  {
+    rating: yup.string().when("budget", {
+      is: defaulFiltertValue,
+      then: yup.string().notOneOf([defaulFiltertValue]).required(),
+    }),
+    budget: yup.string().when("rating", {
+      is: defaulFiltertValue,
+      then: yup.string().notOneOf([defaulFiltertValue]).required(),
+    }),
+  },
+  [["budget", "rating"]]
+);
 
 export const schemaResolver = yupResolver(schema);
 
 export const defaultValues = {
-  // rating: ratingDefaultValue,
-  rating: 8,
-  // budget: budgetDefaultValue,
-  budget: 8000,
+  rating: defaulFiltertValue,
+  // rating: 8,
+  budget: defaulFiltertValue,
+  // budget: 8000,
 };
